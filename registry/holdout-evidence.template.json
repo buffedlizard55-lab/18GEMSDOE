@@ -1,0 +1,32 @@
+{
+  "schema_version": 1,
+  "candidate_id": "H18-N1",
+  "pre_registered": false,
+  "holdout_locked_before_tuning": false,
+  "baseline_independently_reproduced": false,
+  "negative_controls_pass": false,
+  "content_unique": false,
+  "holdout_id": "NOT_LOCKED",
+  "holdout_manifest_sha256": "",
+  "input_manifest_sha256": "",
+  "preregistration_commit": "",
+  "gate_status": "BLOCKED",
+  "baseline": {
+    "status": "GROUP_REPORTED_NOT_REPRODUCED",
+    "dense_fold_dti": [],
+    "sparse_fold_dti": []
+  },
+  "candidate": {
+    "dense_fold_dti": [],
+    "sparse_fold_dti": []
+  },
+  "paired_block_bootstrap_95pct_lower_bound": {
+    "dense": null,
+    "sparse": null
+  },
+  "notes": [
+    "Replace only after data provenance and split are independently verified.",
+    "The site builder refuses this blocked template; it is not evidence that a candidate was tested.",
+    "Store one-time sealed holdout evidence and all failed results with input/split hashes."
+  ]
+}

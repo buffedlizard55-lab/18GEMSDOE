@@ -1,0 +1,23 @@
+{
+  "benchmark_id": "16GEMSDOE-H18-3a-reported-best-2026-09-30",
+  "status": "GROUP_REPORTED_NOT_INDEPENDENTLY_REPRODUCED_IN_18GEMSDOE",
+  "scope": "Four-quadrant spatial holdout on known catalogue faults plus a 20%-of-components sparse proxy; not hidden-test performance.",
+  "candidate": "H18-3a endpoint/junction complexity prior",
+  "mean_dense_dti": 0.21319,
+  "mean_sparse_dti": 0.09401,
+  "fold_dense_dti": [0.20839, 0.23871, 0.15356, 0.25209],
+  "fold_sparse_dti": [0.10112, 0.08631, 0.07762, 0.11098],
+  "baseline_h16_1": {
+    "mean_dense_dti": 0.21272,
+    "mean_sparse_dti": 0.08541,
+    "fold_dense_dti": [0.20774, 0.23898, 0.15464, 0.24951],
+    "fold_sparse_dti": [0.089, 0.07794, 0.06622, 0.10847]
+  },
+  "source": "https://raw.githubusercontent.com/buffedlizard55-lab/16GEMSDOE/main/evidence/hypothesis_h18_validation.json",
+  "limitations": [
+    "Values are reported by a sibling project and have not been independently rerun in this checkout.",
+    "The truth is known-catalogue geometry and a synthetic sparse proxy, not the hidden new-fault labels.",
+    "A separate post-hoc calibration in the 16GEMSDOE repository reports no detectable relationship between its dense proxy and public scores (Spearman rho=0.171, p=0.5413, n=15)."
+  ],
+  "release_gate_usable": false
+}

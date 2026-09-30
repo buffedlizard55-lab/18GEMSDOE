@@ -1,0 +1,2 @@
+# Upstream geotiff.js embeds regex/template strings with intentional whitespace in generated code.
+assets/js/submission-builder.bundle.js whitespace=-blank-at-eol

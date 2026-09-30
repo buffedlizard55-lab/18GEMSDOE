@@ -1,0 +1,27 @@
+# Competition and geospatial data (keep out of Git)
+data/
+*.tif
+*.tiff
+*.gpkg
+*.shp
+*.shx
+*.dbf
+*.prj
+*.gdb/
+*.zip
+*.7z
+*.tar
+*.tar.gz
+*.bin
+
+# Generated outputs and local environments
+build/
+outputs/
+.venv/
+venv/
+__pycache__/
+.pytest_cache/
+.mypy_cache/
+node_modules/
+coverage/
+.DS_Store
