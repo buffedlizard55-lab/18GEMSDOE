@@ -72,60 +72,277 @@ R = 3 px, which bounds the leak to that width; it is not zero.</p>
 <p><em>Colours: blue = training catalogue (masked out of scoring, free), orange = SGMC state-map structure
 lines with no label within 300 m, red = the multi-family physics conjunction. Yellow marks pixels where
 components coincide.</em></p>
-| Property | Value |
-|---|---|
-| candidate | `H19-C` |
-| physics support (tuning-fold choice) | `400,000 px` |
-| physics pixels kept | `388,228 (2.5 % on state-map lines, 1.1 % on the catalogue)` |
-| state-map component | `82,155 px, of which 61,664 px have no label within 300 m` |
-| catalogue component | `60,988 px (masked out of scoring by the platform)` |
-| total emitted | `513,786 px = 9.94 % of the footprint` |
-| mass the metric can charge for | `452,798 px` |
-| sealed catalogue read | `DTI 0.0229 on 12,676 held-out label px` |
-
-**Sensitivity — the score the metric would return for this field, as a function of the truth size and of how much of it the field covers.** Nothing here is a forecast; it is the metric's own arithmetic applied to the field's paid mass.
-
-| assumed truth size | coverage ρ | resulting DTI |
-|---:|---:|---:|
-| 30,000 px | 0.1 | 0.0262 |
-| 30,000 px | 0.2 | 0.0524 |
-| 30,000 px | 0.3 | 0.0786 |
-| 30,000 px | 0.5 | 0.1309 |
-| 30,000 px | 0.7 | 0.1833 |
-| 60,000 px | 0.1 | 0.0433 |
-| 60,000 px | 0.2 | 0.0866 |
-| 60,000 px | 0.3 | 0.1299 |
-| 60,000 px | 0.5 | 0.2165 |
-| 60,000 px | 0.7 | 0.3031 |
-| 120,000 px | 0.1 | 0.0643 |
-| 120,000 px | 0.2 | 0.1286 |
-| 120,000 px | 0.3 | 0.1930 |
-| 120,000 px | 0.5 | 0.3216 |
-| 120,000 px | 0.7 | 0.4503 |
-| 240,000 px | 0.1 | 0.0849 |
-| 240,000 px | 0.2 | 0.1699 |
-| 240,000 px | 0.3 | 0.2548 |
-| 240,000 px | 0.5 | 0.4247 |
-| 240,000 px | 0.7 | 0.5946 |
-
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>candidate</td>
+<td><code>H19-C</code></td>
+</tr>
+<tr>
+<td>physics support (tuning-fold choice)</td>
+<td><code>400,000 px</code></td>
+</tr>
+<tr>
+<td>physics pixels kept</td>
+<td><code>388,228 (2.5 % on state-map lines, 1.1 % on the catalogue)</code></td>
+</tr>
+<tr>
+<td>state-map component</td>
+<td><code>82,155 px, of which 61,664 px have no label within 300 m</code></td>
+</tr>
+<tr>
+<td>catalogue component</td>
+<td><code>60,988 px (masked out of scoring by the platform)</code></td>
+</tr>
+<tr>
+<td>total emitted</td>
+<td><code>513,786 px = 9.94 % of the footprint</code></td>
+</tr>
+<tr>
+<td>mass the metric can charge for</td>
+<td><code>452,798 px</code></td>
+</tr>
+<tr>
+<td>sealed catalogue read</td>
+<td><code>DTI 0.0229 on 12,676 held-out label px</code></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Sensitivity — the score the metric would return for this field, as a function of the truth size and of how much of it the field covers.</strong> Nothing here is a forecast; it is the metric's own arithmetic applied to the field's paid mass.</p>
+<table>
+<thead>
+<tr>
+<th style="text-align: right;">assumed truth size</th>
+<th style="text-align: right;">coverage ρ</th>
+<th style="text-align: right;">resulting DTI</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: right;">30,000 px</td>
+<td style="text-align: right;">0.1</td>
+<td style="text-align: right;">0.0262</td>
+</tr>
+<tr>
+<td style="text-align: right;">30,000 px</td>
+<td style="text-align: right;">0.2</td>
+<td style="text-align: right;">0.0524</td>
+</tr>
+<tr>
+<td style="text-align: right;">30,000 px</td>
+<td style="text-align: right;">0.3</td>
+<td style="text-align: right;">0.0786</td>
+</tr>
+<tr>
+<td style="text-align: right;">30,000 px</td>
+<td style="text-align: right;">0.5</td>
+<td style="text-align: right;">0.1309</td>
+</tr>
+<tr>
+<td style="text-align: right;">30,000 px</td>
+<td style="text-align: right;">0.7</td>
+<td style="text-align: right;">0.1833</td>
+</tr>
+<tr>
+<td style="text-align: right;">60,000 px</td>
+<td style="text-align: right;">0.1</td>
+<td style="text-align: right;">0.0433</td>
+</tr>
+<tr>
+<td style="text-align: right;">60,000 px</td>
+<td style="text-align: right;">0.2</td>
+<td style="text-align: right;">0.0866</td>
+</tr>
+<tr>
+<td style="text-align: right;">60,000 px</td>
+<td style="text-align: right;">0.3</td>
+<td style="text-align: right;">0.1299</td>
+</tr>
+<tr>
+<td style="text-align: right;">60,000 px</td>
+<td style="text-align: right;">0.5</td>
+<td style="text-align: right;">0.2165</td>
+</tr>
+<tr>
+<td style="text-align: right;">60,000 px</td>
+<td style="text-align: right;">0.7</td>
+<td style="text-align: right;">0.3031</td>
+</tr>
+<tr>
+<td style="text-align: right;">120,000 px</td>
+<td style="text-align: right;">0.1</td>
+<td style="text-align: right;">0.0643</td>
+</tr>
+<tr>
+<td style="text-align: right;">120,000 px</td>
+<td style="text-align: right;">0.2</td>
+<td style="text-align: right;">0.1286</td>
+</tr>
+<tr>
+<td style="text-align: right;">120,000 px</td>
+<td style="text-align: right;">0.3</td>
+<td style="text-align: right;">0.1930</td>
+</tr>
+<tr>
+<td style="text-align: right;">120,000 px</td>
+<td style="text-align: right;">0.5</td>
+<td style="text-align: right;">0.3216</td>
+</tr>
+<tr>
+<td style="text-align: right;">120,000 px</td>
+<td style="text-align: right;">0.7</td>
+<td style="text-align: right;">0.4503</td>
+</tr>
+<tr>
+<td style="text-align: right;">240,000 px</td>
+<td style="text-align: right;">0.1</td>
+<td style="text-align: right;">0.0849</td>
+</tr>
+<tr>
+<td style="text-align: right;">240,000 px</td>
+<td style="text-align: right;">0.2</td>
+<td style="text-align: right;">0.1699</td>
+</tr>
+<tr>
+<td style="text-align: right;">240,000 px</td>
+<td style="text-align: right;">0.3</td>
+<td style="text-align: right;">0.2548</td>
+</tr>
+<tr>
+<td style="text-align: right;">240,000 px</td>
+<td style="text-align: right;">0.5</td>
+<td style="text-align: right;">0.4247</td>
+</tr>
+<tr>
+<td style="text-align: right;">240,000 px</td>
+<td style="text-align: right;">0.7</td>
+<td style="text-align: right;">0.5946</td>
+</tr>
+</tbody>
+</table>
 
 <h2 id="4-arms-controls-and-the-matched-mass-comparison">4. Arms, controls and the matched-mass comparison</h2>
-| Arm | Proxy support (px) | Emission (px) | Proxy DTI | Tuning-fold DTI | Per-fold (tuning) | Matched-support DTI (Δ vs shipped file) |
-|---|---:|---:|---:|---:|---|---|
-| `cond` | 60000 | 59,333 | 0.0037 | 0.0030 | 0: 0.002, 1: 0.006, 2: 0.004, 3: 0.000 | 0.0224 (-0.0790) |
-| `conjunction` | 250000 | 247,498 | 0.1229 | 0.0073 | 0: 0.010, 1: 0.004, 2: 0.004, 3: 0.011 | 0.0926 (-0.0088) |
-| `control_blanket` | full grid | 5,106,385 | 0.0592 | 0.0592 | — | 0.0592 |
-| `control_random` | 60000 | 59,532 | 0.0384 | 0.0200 | 0: 0.013, 1: 0.013, 2: 0.008, 3: 0.042 | 0.0882 (-0.0132) |
-| `deep_mag` | 60000 | 59,639 | 0.0110 | 0.0084 | 0: 0.008, 1: 0.007, 2: 0.008, 3: 0.009 | 0.0315 (-0.0699) |
-| `grav_ridge` | 120000 | 118,576 | 0.0097 | 0.0034 | 0: 0.002, 1: 0.003, 2: 0.004, 3: 0.004 | 0.0125 (-0.0889) |
-| `known_catalogue` | 60000 | 0 | 0.0000 | 0.0000 | 0: 0.000, 1: 0.000, 2: 0.000, 3: 0.000 | 0.0000 (-0.1014) |
-| `mag_ridge` | 250000 | 248,272 | 0.0459 | 0.0114 | 0: 0.012, 1: 0.012, 2: 0.006, 3: 0.015 | 0.0357 (-0.0657) |
-| `seis` | 60000 | 59,102 | 0.0023 | 0.0000 | 0: 0.000, 1: 0.000, 2: 0.000, 3: 0.000 | 0.0088 (-0.0926) |
-| `strain` | 60000 | 59,230 | 0.0164 | 0.0004 | 0: 0.002, 1: 0.000, 2: 0.000, 3: 0.000 | 0.0299 (-0.0715) |
-| `topo_ridge` | 120000 | 119,662 | 0.0848 | 0.0245 | 0: 0.020, 1: 0.007, 2: 0.008, 3: 0.060 | 0.1040 (+0.0026) |
-
-Comparator: the previously shipped `ens12` field (`data/comparator_ens12.tif`, 172,974 px) scores **0.1014** on the same proxy population. The proxy population is USGS SGMC structure with no training label within 300 m (61,664 px).
-
+<table>
+<thead>
+<tr>
+<th>Arm</th>
+<th style="text-align: right;">Proxy support (px)</th>
+<th style="text-align: right;">Emission (px)</th>
+<th style="text-align: right;">Proxy DTI</th>
+<th style="text-align: right;">Tuning-fold DTI</th>
+<th>Per-fold (tuning)</th>
+<th>Matched-support DTI (Δ vs shipped file)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>cond</code></td>
+<td style="text-align: right;">60000</td>
+<td style="text-align: right;">59,333</td>
+<td style="text-align: right;">0.0037</td>
+<td style="text-align: right;">0.0030</td>
+<td>0: 0.002, 1: 0.006, 2: 0.004, 3: 0.000</td>
+<td>0.0224 (-0.0790)</td>
+</tr>
+<tr>
+<td><code>conjunction</code></td>
+<td style="text-align: right;">250000</td>
+<td style="text-align: right;">247,498</td>
+<td style="text-align: right;">0.1229</td>
+<td style="text-align: right;">0.0073</td>
+<td>0: 0.010, 1: 0.004, 2: 0.004, 3: 0.011</td>
+<td>0.0926 (-0.0088)</td>
+</tr>
+<tr>
+<td><code>control_blanket</code></td>
+<td style="text-align: right;">full grid</td>
+<td style="text-align: right;">5,106,385</td>
+<td style="text-align: right;">0.0592</td>
+<td style="text-align: right;">0.0592</td>
+<td>—</td>
+<td>0.0592</td>
+</tr>
+<tr>
+<td><code>control_random</code></td>
+<td style="text-align: right;">60000</td>
+<td style="text-align: right;">59,532</td>
+<td style="text-align: right;">0.0384</td>
+<td style="text-align: right;">0.0200</td>
+<td>0: 0.013, 1: 0.013, 2: 0.008, 3: 0.042</td>
+<td>0.0882 (-0.0132)</td>
+</tr>
+<tr>
+<td><code>deep_mag</code></td>
+<td style="text-align: right;">60000</td>
+<td style="text-align: right;">59,639</td>
+<td style="text-align: right;">0.0110</td>
+<td style="text-align: right;">0.0084</td>
+<td>0: 0.008, 1: 0.007, 2: 0.008, 3: 0.009</td>
+<td>0.0315 (-0.0699)</td>
+</tr>
+<tr>
+<td><code>grav_ridge</code></td>
+<td style="text-align: right;">120000</td>
+<td style="text-align: right;">118,576</td>
+<td style="text-align: right;">0.0097</td>
+<td style="text-align: right;">0.0034</td>
+<td>0: 0.002, 1: 0.003, 2: 0.004, 3: 0.004</td>
+<td>0.0125 (-0.0889)</td>
+</tr>
+<tr>
+<td><code>known_catalogue</code></td>
+<td style="text-align: right;">60000</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0.0000</td>
+<td style="text-align: right;">0.0000</td>
+<td>0: 0.000, 1: 0.000, 2: 0.000, 3: 0.000</td>
+<td>0.0000 (-0.1014)</td>
+</tr>
+<tr>
+<td><code>mag_ridge</code></td>
+<td style="text-align: right;">250000</td>
+<td style="text-align: right;">248,272</td>
+<td style="text-align: right;">0.0459</td>
+<td style="text-align: right;">0.0114</td>
+<td>0: 0.012, 1: 0.012, 2: 0.006, 3: 0.015</td>
+<td>0.0357 (-0.0657)</td>
+</tr>
+<tr>
+<td><code>seis</code></td>
+<td style="text-align: right;">60000</td>
+<td style="text-align: right;">59,102</td>
+<td style="text-align: right;">0.0023</td>
+<td style="text-align: right;">0.0000</td>
+<td>0: 0.000, 1: 0.000, 2: 0.000, 3: 0.000</td>
+<td>0.0088 (-0.0926)</td>
+</tr>
+<tr>
+<td><code>strain</code></td>
+<td style="text-align: right;">60000</td>
+<td style="text-align: right;">59,230</td>
+<td style="text-align: right;">0.0164</td>
+<td style="text-align: right;">0.0004</td>
+<td>0: 0.002, 1: 0.000, 2: 0.000, 3: 0.000</td>
+<td>0.0299 (-0.0715)</td>
+</tr>
+<tr>
+<td><code>topo_ridge</code></td>
+<td style="text-align: right;">120000</td>
+<td style="text-align: right;">119,662</td>
+<td style="text-align: right;">0.0848</td>
+<td style="text-align: right;">0.0245</td>
+<td>0: 0.020, 1: 0.007, 2: 0.008, 3: 0.060</td>
+<td>0.1040 (+0.0026)</td>
+</tr>
+</tbody>
+</table>
+<p>Comparator: the previously shipped <code>ens12</code> field (<code>data/comparator_ens12.tif</code>, 172,974 px) scores <strong>0.1014</strong> on the same proxy population. The proxy population is USGS SGMC structure with no training label within 300 m (61,664 px).</p>
 
 <p>Reading the table:</p>
 <ul>
@@ -140,15 +357,26 @@ Comparator: the previously shipped `ens12` field (`data/comparator_ens12.tif`, 1
   (172,974 px) so no arm wins by buying more coverage.</li>
 </ul>
 <h2 id="5-the-sealed-read-pre-registered-single">5. The sealed read (pre-registered, single)</h2>
-Arm selected on the tuning folds: **`topo_ridge`** at support 250,000 px. Sealed truth: 10,461 proxy pixels in 14 blocks that no selection step touched.
-
-| Field | Sealed-slice proxy DTI |
-|---|---:|
-| `topo_ridge` | 0.0003 |
-| shipped `ens12` comparator | 0.0085 |
-
-Verdict: **the candidate does not beat the comparator on the sealed blocks**. This is written here because it is the result, whichever way it fell.
-
+<p>Arm selected on the tuning folds: <strong><code>topo_ridge</code></strong> at support 250,000 px. Sealed truth: 10,461 proxy pixels in 14 blocks that no selection step touched.</p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th style="text-align: right;">Sealed-slice proxy DTI</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>topo_ridge</code></td>
+<td style="text-align: right;">0.0003</td>
+</tr>
+<tr>
+<td>shipped <code>ens12</code> comparator</td>
+<td style="text-align: right;">0.0085</td>
+</tr>
+</tbody>
+</table>
+<p>Verdict: <strong>the candidate does not beat the comparator on the sealed blocks</strong>. This is written here because it is the result, whichever way it fell.</p>
 
 <h2 id="6-what-failed-and-what-that-means">6. What failed, and what that means</h2>
 <ul>

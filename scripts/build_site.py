@@ -29,6 +29,8 @@ ROOT = Path(__file__).resolve().parents[1]
 DOCS = ROOT / "docs"
 EVIDENCE = ROOT / "data" / "evidence"
 
+MD_EXTENSIONS = ["tables", "fenced_code", "toc", "sane_lists", "attr_list"]
+
 PAGES = [
     ("index.md", "index.html", "Home"),
     ("executive_summary.md", "docs/executive_summary.html", "Executive summary — how to submit"),
@@ -301,14 +303,19 @@ def rewrite_md_links(text: str, src: Path, out: Path) -> str:
 
 def render(src: Path, title: str, depth: int, out: Path) -> str:
     text = rewrite_md_links(src.read_text(), src, out)
-    body = markdown.markdown(
-        text, extensions=["tables", "fenced_code", "toc", "sane_lists", "attr_list"]
-    )
-    body = body.replace("<!-- DOWNLOAD_BLOCK -->", download_block(depth))
-    body = body.replace("<!-- RESULTS_TABLE -->", results_table())
-    body = body.replace("<!-- CANDIDATE_BLOCK -->", candidate_block())
-    body = body.replace("<!-- LEADERBOARD_BLOCK -->", leaderboard_block())
-    body = body.replace("<!-- SEALED_BLOCK -->", sealed_block())
+    body = markdown.markdown(text, extensions=MD_EXTENSIONS)
+    def md(fragment: str) -> str:
+        """Blocks are written as Markdown but injected after the page has been converted."""
+        return markdown.markdown(fragment, extensions=MD_EXTENSIONS)
+
+    body = body.replace("<!-- DOWNLOAD_BLOCK -->", download_block(depth))  # already HTML
+    for tag, fn in (
+        ("<!-- RESULTS_TABLE -->", results_table),
+        ("<!-- CANDIDATE_BLOCK -->", candidate_block),
+        ("<!-- LEADERBOARD_BLOCK -->", leaderboard_block),
+        ("<!-- SEALED_BLOCK -->", sealed_block),
+    ):
+        body = body.replace(tag, md(fn()))
     prefix = "../" * depth
     return TEMPLATE.format(
         title=html.escape(title),
