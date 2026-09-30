@@ -1,22 +1,123 @@
 <!doctype html>
-<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="description" content="Open blockers, attribution irregularities, and science/engineering controls for 18GEMSDOE."><title>Audit &amp; irregularities — 18GEMSDOE</title><link rel="stylesheet" href="../assets/site.css"></head>
-<body><a class="skip-link" href="#main">Skip to content</a><header class="topbar"><a class="brand" href="../index.html"><span class="brand-mark">18</span><span>GEMS<span class="brand-muted">DOE</span></span></a><nav aria-label="Main navigation"><a href="hypotheses.html">Research</a><a href="results.html">Evidence</a><a href="data.html">Data &amp; provenance</a><a href="submission.html" class="nav-cta">Submission guide <span aria-hidden="true">↗</span></a></nav></header>
-<main id="main"><section class="page-hero"><div class="shell"><p class="eyebrow">AUDIT · OWN THE OUTCOME</p><h1>Irregularities stay visible.</h1><p>Open blockers and attribution questions are not footnotes. They determine whether any model result is interpretable or ready to submit.</p></div></section>
-<div class="shell doc-layout"><article class="doc-content"><div class="callout danger"><p><strong>Decision: hold release.</strong> There is no verified 18GEMSDOE training stack, locked split, tested candidate, official template check, or ready-to-upload TIFF.</p></div>
-<h2>Open findings</h2>
-<table class="doc-table"><thead><tr><th>ID / status</th><th>Finding &amp; implication</th><th>Next evidence required</th></tr></thead><tbody>
-<tr><td><strong>A-01 · BLOCKER</strong></td><td>No original competition feature stack, official template/labels, model, holdout, or candidate TIFF is in this checkout. No new result exists.</td><td>Authorized original files; byte/hash and raster metadata verification; split locked before coding.</td></tr>
-<tr><td><strong>A-02 · PARTIAL DIRECT CHECK</strong></td><td>Public GEMSDOE and 5GEMSDOE tracked TIFFs are byte-identical (Git blob SHA-1 <code>812e61b74050d1350cc2bde1fab0c76ead32e0c4</code>). Sibling-project records report a related 0.1563 history and 8GEMSDOE scored-mask match; those score mappings and pixel comparisons were not reproduced here.</td><td>Manually reconcile signed-in platform submission IDs and local hashes; do not infer an upload from a repo artifact.</td></tr>
-<tr><td><strong>A-03 · OPEN</strong></td><td>A small bridge raster matches the bridge’s own manifest, not a fresh official download; label meaning and transform were not verified.</td><td>Compare with authorized original bytes and validate raster semantics.</td></tr>
-<tr><td><strong>A-04 · ATTRIBUTION</strong></td><td>The 30 Sep 2026 official manual snapshot shows DARD 0.3168 (rank 1), `extradr19` 0.1855 (rank 22), SDCF9 and smashi34 each 0.1563. The group has not established whether `extradr19` is our entry. Other participants sharing 0.1563 do not prove duplicate artifacts.</td><td>Check the signed-in team account and submission history. No leaderboard scraping.</td></tr>
-<tr><td><strong>A-05 · OPEN REPRODUCTION</strong></td><td>H18-3a dense/sparse proxy means (0.21319/0.09401) are from 16GEMSDOE’s report, not independently reproduced here; known-fault reconstruction is not hidden-label validation. Its own reported post-hoc calibration weakens its use as a leaderboard predictor.</td><td>Rerun source data, exact evaluator, split and comparator; report proxy limits.</td></tr>
-<tr><td><strong>A-06 · COMPLIANCE</strong></td><td>DrivenData Terms prohibit robots/spiders/automatic access absent permission. No live automatic leaderboard feed is implemented.</td><td>Use manual dated snapshots only; seek written permission before automation.</td></tr>
-<tr><td><strong>A-07 · CONTROL REQUIRED</strong></td><td>GeoDAWN acquisition blocks and flight specifications differ; 3DEP DEM project boundaries may create seams. Such boundaries can masquerade as potential-field or relief edges.</td><td>Map acquisition/flight/DEM boundaries. Predict trace-local fault-plane surface edges; control lithologic contacts and survey seams explicitly.</td></tr>
-<tr><td><strong>A-08 · SCIENCE CONTROL</strong></td><td>Scarp-diffusion templates identify scarp-like shapes, not tectonic origin or absolute age. Wave-cut shorelines, roads, channels, erosion and a documented trenched erosional scarp are relevant alternatives.</td><td>Use multi-marker displacement and explicit infrastructure, shoreline, channel, fan-margin and erosional controls. See <a href="hypotheses.html#scarp-diffusion">scarp references</a>.</td></tr>
-<tr><td><strong>A-09 · CONDITIONAL COVERAGE</strong></td><td>Exact DEM coverage, ComCat mechanism count, Sentinel-1 coherence, and INGENIOUS v2 archive bytes remain unchecked. Prior direct GDR ZIP retrieval returned HTTP 500.</td><td>Run source/coverage audit before declaring any candidate feasible.</td></tr>
-<tr><td><strong>A-10 · TOOL LIMITATION</strong></td><td>Python validator, package gate, and browser GeoTIFF writer now have synthetic-raster tests. No official competition template or full-size candidate has been tested. Evidence booleans and hashes are not cryptographic proof of scientific correctness.</td><td>Run both validators against the authorized official template; reviewer must audit split, source logs, controls, comparator, unique-pixel check and evidence files.</td></tr>
-</tbody></table>
-<h2>How evidence labels are used</h2><div class="definition-grid"><div class="definition"><h3>Official platform snapshot</h3><p>Manually observed public leaderboard row with date. Does not establish account ownership.</p></div><div class="definition"><h3>Directly verified</h3><p>Bytes, hash, or metadata directly checked here. Only covers the specified artifact and method.</p></div><div class="definition"><h3>Group-reported</h3><p>Sibling-project calculation not rerun in this repository. Never upgrade by repetition.</p></div></div>
-<p>The detailed finding register, source links, and actions are in <a href="../docs/audit.md">the audit Markdown</a>. Related records: <a href="results.html">score and evidence</a>, <a href="data.html">data provenance</a>, <a href="validation.html">release gate</a>.</p>
-</article><aside class="doc-aside"><p class="eyebrow">TOP BLOCKERS</p><h3>Before a valid test</h3><ol><li>Obtain authorized data.</li><li>Verify provenance and grid.</li><li>Freeze the spatial split.</li><li>Reproduce the comparator.</li><li>Run a preregistered candidate.</li></ol><p><strong>Current release status:</strong> blocked.</p></aside></div></main>
-<footer class="footer"><div class="shell footer-inner"><a class="brand footer-brand" href="../index.html"><span class="brand-mark">18</span><span>GEMS<span class="brand-muted">DOE</span></span></a><p>Open issues are part of the record.</p><div class="footer-links"><a href="audit.html">Audit</a><a href="sources.html">Sources</a><a href="https://github.com/buffedlizard55-lab/18GEMSDOE" target="_blank" rel="noopener noreferrer">GitHub ↗</a></div></div></footer></body></html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Audit — 18GEMSDOE</title>
+<link rel="stylesheet" href="../assets/site.css">
+</head>
+<body>
+<header class="site">
+  <div class="wrap">
+    <a class="brand" href="../index.html">18GEMSDOE</a>
+    <nav><a href="../docs/executive_summary.html">Submit</a><a href="../docs/submission.html">Format</a><a href="../docs/hypotheses.html">Hypotheses</a><a href="../docs/validation.html">Validation</a><a href="../docs/results.html">Results</a><a href="../docs/audit.html">Audit</a><a href="../docs/sources.html">Sources</a><a href="../docs/data.html">Data</a></nav>
+  </div>
+</header>
+<main class="wrap">
+<h1 id="audit-irregularities-duplicates-and-checks-that-failed-their-own-test">Audit — irregularities, duplicates, and checks that failed their own test</h1>
+<p>Classes of statement: <strong>[VERIFIED-HERE]</strong> recomputed in this checkout from bytes or from a primary
+source fetched during this session; <strong>[GROUP-REPORTED]</strong> asserted by a sibling project with its
+evidence file linked; <strong>[INFERENCE]</strong> reasoning.</p>
+<p>Every check below is reproducible with <code>python scripts/audit_checks.py</code> (writes
+<code>data/evidence/audit_checks.json</code>, including the checks whose inputs were absent — those are recorded
+as <strong>SKIPPED</strong>, never as a pass).</p>
+<h2 id="a-01-why-the-group-kept-scoring-01563-one-file-several-repositories">A-01 · Why the group kept scoring 0.1563 — one file, several repositories</h2>
+<p><strong>[VERIFIED-HERE]</strong> <code>buffedlizard55-lab/GEMSDOE</code> and <code>buffedlizard55-lab/5GEMSDOE</code> both commit
+<code>data/evidence/runs/ens12-adopted-floor0.1-w0/submission.tif</code>; the files are <strong>byte-identical</strong>,
+SHA-256 <code>7f00890a62878d612fb5eef67a9a364a2df819433dde74b6762ce4fc0fc4fe15</code>, 570,890 bytes. The file is
+a hard 0/1 mask with 172,974 positive pixels (3.35 % of the valid footprint). <code>5GEMSDOE</code> also stores
+the same bytes as <code>data/evidence/leaderboard_anchor/gemsdoe-ens12-adopted-7f00890a.tif</code>.</p>
+<p><strong>[GROUP-REPORTED]</strong> The same scored content (<code>scored_content_sha256 6e6f23c6…</code>) sits at eight paths
+across six repositories; <code>8GEMSDOE</code>'s entry is <code>max(ens12, catalogue)</code> and scored the same 0.1563;
+<code>GEMSDOE2</code> overlaps it at Jaccard ≈ 0.95
+(<a href="https://raw.githubusercontent.com/buffedlizard55-lab/16GEMSDOE/main/evidence/submission_similarity.json">16GEMSDOE <code>submission_similarity.json</code></a>).</p>
+<p><strong>[INFERENCE]</strong> So the repeated public score is, at least in part, <strong>the same prediction uploaded from
+different repositories</strong>, not four independent ideas converging. This repository therefore refuses to
+package a file whose hash is already registered (<code>scripts/make_submission.py</code>).</p>
+<h2 id="a-02-a-check-that-failed-and-was-abandoned-63-of-the-usgs-fault-database-is-missing-from-the-labels">A-02 · A check that failed and was abandoned: "63 % of the USGS fault database is missing from the labels"</h2>
+<p><strong>[VERIFIED-HERE — abandoned]</strong> Rasterising the public QFaults shapefile gives 197,294 line pixels in
+the footprint's bounding box, of which only 72,245 (36.6 %) lie within 300 m of a training label.
+Read carelessly that says: <em>the labels omit two-thirds of the USGS fault network — a free 125,053-pixel
+fault population for the submission.</em></p>
+<p>That reading is <strong>wrong</strong>, and the check that killed it is in <code>scripts/audit_checks.py</code> (check B):
+the valid survey footprint is only <strong>42.1 %</strong> of the grid, and <strong>71,984 of the 71,985 QFaults pixels
+that fall inside that footprint (99.999 %) are within 300 m of a training label</strong>. The "missing"
+pixels are simply outside the survey, where nothing is scored. The correct statement, and the one used
+everywhere on this site, is: <em>the labels are the QFaults network inside the footprint.</em></p>
+<p><em>Recorded because it is the exact self-deception the brief warns about: a large, exciting number that
+came from forgetting to intersect with the scored area.</em></p>
+<h2 id="a-03-provided-band-6-is-not-what-its-tag-says">A-03 · Provided band 6 is not what its tag says</h2>
+<p><strong>[VERIFIED-HERE]</strong> Band 6 of <code>training_features.tif</code> is tagged
+<code>tc — "Tilt angle or total curvature - magnetic field derivative for edge detection"</code>. Its values are
+<strong>identical</strong> to the GeoDAWN release layer <code>22103_tc_a2.tif</code> (max absolute difference 0 over the
+5,165,840 pixels valid in both), and in that release the <code>tc</code> grid belongs to the <strong>radiometric</strong>
+family alongside <code>k</code>, <code>th</code>, <code>u</code>, <code>uk</code>, <code>uth</code>, <code>thk</code>. A sibling project reached the same conclusion
+independently (Pearson = Spearman = 1.0; "band 6 IS the GeoDAWN radiometric total count (tag
+description is wrong)") <strong>[GROUP-REPORTED]</strong>.</p>
+<p><strong>[INFERENCE]</strong> Two consequences: (1) the feature stack is the GeoDAWN release, so the release's other
+layers are legitimate, same-grid, public-domain inputs — not another survey; (2) four of the nineteen
+provided bands are exactly release layers <code>rtp</code>, <code>tmi</code>, <code>tmi_hg</code>, <code>tmi_vg</code>, while <strong><code>k</code>, <code>th</code>, <code>u</code>,
+<code>uk</code>, <code>uth</code>, <code>thk</code> are absent</strong> from the stack, which is what makes hypothesis H19-D a genuine data
+gap rather than a re-slicing of the given bands.</p>
+<h2 id="a-04-mask-semantics-were-undocumented-here-until-this-pass">A-04 · Mask semantics were undocumented here until this pass</h2>
+<p><strong>[VERIFIED-HERE]</strong> The staff answer is unambiguous: the known-fault mask is <strong>pixel-exact and
+identical to the provided training labels, with no buffer</strong>, and the buffer around known faults does
+not apply
+(<a href="https://community.drivendata.org/t/scoring-clarification-are-known-usgs-ingenious-faults-masked-when-scoring-and-are-they-in-the-final-round-label-set/11516/4">forum 11516 post 4</a>).</p>
+<p><strong>[VERIFIED-HERE]</strong> The previous contents of this repository never stated those semantics: a search of
+the committed README for "mask" and "known fault" returns nothing about scoring behaviour, so the
+operating rule (is painting the catalogue neutral, helpful, or fatal?) was left ambiguous for whoever
+packaged a file. It is now written down in <code>gems18/metric.py</code> (<code>known_mask</code> is applied to both the
+prediction and the truth) and in <code>tests/test_metric.py::test_known_mask_is_pixel_exact_and_free</code>.</p>
+<h2 id="a-05-what-the-organizers-will-not-say-recorded-because-it-bounds-what-a-proxy-can-prove">A-05 · What the organizers will not say (recorded, because it bounds what a proxy can prove)</h2>
+<p><strong>[VERIFIED-HERE]</strong> Asked which data sources, fault types and coverage produced the new test faults,
+DrivenData staff replied: <em>"We're not sharing details about the data sources, fault types, or coverage
+behind the test faults beyond what's in the problem description."</em> The same post states that the
+largest prize pool (Phase 2) uses a test set <strong>updated by expert review of all Phase 1 submissions</strong>
+(<a href="https://community.drivendata.org/t/how-were-the-new-test-faults-identified-data-sources-and-fault-types/11527/7">forum 11527 post 7</a>).</p>
+<p><strong>[INFERENCE]</strong> No proxy in this repository can be validated against the hidden truth. Every holdout
+number here is weak evidence and is labelled as such on the page that shows it.</p>
+<h2 id="a-06-the-groups-proxies-do-not-predict-the-board">A-06 · The group's proxies do not predict the board</h2>
+<p><strong>[GROUP-REPORTED]</strong> Post-hoc calibration over 15 distinct scored files: SGMC-gap proxy
+ρ = +0.52 (p = 0.048), SGMC-off-catalogue ρ = +0.39 (p = 0.15), known-fault proxy ρ = +0.17
+(p = 0.54) (<a href="https://raw.githubusercontent.com/buffedlizard55-lab/16GEMSDOE/main/evidence/proxy_calibration_vs_lb.json">16GEMSDOE <code>proxy_calibration_vs_lb.json</code></a>).
+The file's own per-file table shows the correlation is fragile: the file with the <em>highest</em> SGMC-gap
+score (0.1439) has the <em>lowest</em> public score of the five pinned entries (0.1294).</p>
+<p><strong>[INFERENCE]</strong> A proxy that explains ~27 % of rank variance is not a gate; it is a weak prior. It is
+used here to compare arms, never to forecast a leaderboard number.</p>
+<h2 id="a-07-format-failure-that-was-reported-and-could-not-be-reproduced">A-07 · Format failure that was reported and could not be reproduced</h2>
+<p><strong>[GROUP-REPORTED]</strong> "Predicted values must be in range [0, 1]" was reported after downloading a file
+from a sibling site; neither sibling could reproduce it from the files they published. The plausible
+causes are a wrong file being picked, values above 1 or below 0 inside the footprint, or
+<code>NaN</code>/<code>Inf</code> inside it. <strong>[MEASURED-HERE]</strong> this repository's validator
+(<code>scripts/validate_submission.py</code>, <code>gems18/submission.py::validate_geotiff</code>) refuses all four cases and
+is run against the official template before any file is offered for download.</p>
+<h2 id="a-08-provenance-caveats-that-must-travel-with-the-numbers">A-08 · Provenance caveats that must travel with the numbers</h2>
+<ol>
+<li>The official rasters reach this checkout through a <strong>git bridge</strong> committed by a sibling project
+   from the public mirror URLs printed on the competition data tab. The bytes are SHA-256-pinned and
+   re-verified here (<code>scripts/audit_checks.py</code> check A: PASS against all three pins), and the
+   rasters' own metadata — 19 bands, EPSG:32611, 100 m, the stated bounds, int8 labels with the
+   <code>-1/0/1</code> coding — matches the official description <strong>[MEASURED-HERE]</strong>. The mapping from the mirror
+   URLs to the DrivenData data tab was performed by that sibling and is not re-checkable from here.</li>
+<li>The GeoDAWN native grids come from a public mirror of the USGS release; the area-2 grid is
+   identical to the competition grid (3292 × 3730, EPSG:32611, 100 m, same bounds)
+   <strong>[MEASURED-HERE]</strong>, consistent with the competition rasters being derived from that release.</li>
+<li>USGS 3DEP 1 m lidar — which the problem description explicitly points participants to — is <strong>not
+   obtainable from this sandbox</strong> (the host is blocked). Two sibling projects fetched it on GitHub
+   runners; this repository does not use it, and hypotheses that need it are marked as such.</li>
+</ol>
+<h2 id="a-09-not-verified-here-and-therefore-not-claimed">A-09 · Not verified here, and therefore not claimed</h2>
+<ul>
+<li>Any live leaderboard score of any 18GEMSDOE file (none has been submitted).</li>
+<li>That the hidden new-fault population resembles any proxy on this site.</li>
+<li>The internal computation of sibling projects' evidence JSONs (linked, not re-run).</li>
+<li>That <code>extradr19</code> on the leaderboard is this group's account.</li>
+</ul>
+</main>
+<footer class="wrap">
+  <p>Static site. Every figure on these pages is rendered from a committed evidence file at build time.
+  Sources are linked for manual review; see <a href="../docs/audit.html">Audit</a> for what was and was not verified.</p>
+</footer>
+</body>
+</html>

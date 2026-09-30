@@ -1,0 +1,1474 @@
+{
+ "generated_utc": "2026-09-30T21:14:26Z",
+ "purpose": "H19 detector arms on the locked SGMC-gap proxy with the pixel-exact known-fault mask",
+ "inputs": {
+  "features": "data/training_features.tif",
+  "features_sha256": "4371c82e3b8339b807bdffcf4ef59a225520fe2988d521be208ae33743123bc5",
+  "labels": "data/labels.tif",
+  "labels_sha256": "7ba308ccdc4418b31a178f4f1ef21aaa6e152e4028f2f6f64b01f7eb25ae4093",
+  "proxy": "data/proxy_catalogue.tif",
+  "proxy_sha256": "7563e187171f7210d70295f958b0b2714c1fa504afa35f9a4688fc99b1e1122a",
+  "comparator": "data/comparator_ens12.tif",
+  "deep_layer": "/tmp/gr/GeoDAWN_tiffs/22103_area2_tiffs/22103_upcont_tmi150_a2.tif"
+ },
+ "truth": {
+  "proxy_gap_px": 61664,
+  "known_fault_px": 60988,
+  "footprint_px": 5167373
+ },
+ "split_sha256": "41332369d7dd448b8b24b250417228391bef53f436ed11ddbe28e29857fb0f9e",
+ "targets": [
+  60000,
+  120000,
+  250000
+ ],
+ "results": {
+  "_depth_base_grad": {
+   "sweep": {
+    "60000": {
+     "full_field": {
+      "dti": 0.0036090399329258586,
+      "tp_w": 220.63784790039062,
+      "fp_w": 58797.2421875,
+      "fn_w": 61443.36215209961,
+      "truth_px": 61664,
+      "mass": 59540.0,
+      "emission_px": 59540,
+      "scored_px": 5167373
+     },
+     "fold_dti": {
+      "0": 0.0,
+      "1": 0.0,
+      "2": 0.010655139469303885,
+      "3": 0.0017754460015234118
+     },
+     "fold_truth_px": {
+      "0": 1823,
+      "1": 1321,
+      "2": 1120,
+      "3": 3598
+     },
+     "tuning_dti": 0.00301698874883778,
+     "tuning_truth_px": 7862,
+     "timing_s": {
+      "emission": 0.15,
+      "scorer_init": 1.15,
+      "evaluate": 0.28
+     }
+    },
+    "120000": {
+     "full_field": {
+      "dti": 0.005334829967821571,
+      "tp_w": 389.4942626953125,
+      "fp_w": 118002.9375,
+      "fn_w": 61274.50573730469,
+      "truth_px": 61664,
+      "mass": 119277.0,
+      "emission_px": 119277,
+      "scored_px": 5167373
+     },
+     "fold_dti": {
+      "0": 0.0,
+      "1": 0.0,
+      "2": 0.005511947031820384,
+      "3": 0.000981994881283899
+     },
+     "fold_truth_px": {
+      "0": 1823,
+      "1": 1321,
+      "2": 1120,
+      "3": 3598
+     },
+     "tuning_dti": 0.0015994390049411259,
+     "tuning_truth_px": 7862,
+     "timing_s": {
+      "emission": 0.13,
+      "scorer_init": 1.1,
+      "evaluate": 0.24
+     }
+    },
+    "250000": {
+     "full_field": {
+      "dti": 0.006571241930212791,
+      "tp_w": 647.063232421875,
+      "fp_w": 245041.640625,
+      "fn_w": 61016.936767578125,
+      "truth_px": 61664,
+      "mass": 247258.0,
+      "emission_px": 247258,
+      "scored_px": 5167373
+     },
+     "fold_dti": {
+      "0": 0.0,
+      "1": 0.0,
+      "2": 0.002709730071791799,
+      "3": 0.0005016712164623423
+     },
+     "fold_truth_px": {
+      "0": 1823,
+      "1": 1321,
+      "2": 1120,
+      "3": 3598
+     },
+     "tuning_dti": 0.0007970801021058159,
+     "tuning_truth_px": 7862,
+     "timing_s": {
+      "emission": 0.14,
+      "scorer_init": 1.14,
+      "evaluate": 0.36
+     }
+    }
+   }
+  },
+  "_grav_slope": {
+   "sweep": {
+    "60000": {
+     "full_field": {
+      "dti": 0.003237278755765365,
+      "tp_w": 197.7161407470703,
+      "fp_w": 58520.265625,
+      "fn_w": 61466.28385925293,
+      "truth_px": 61664,
+      "mass": 59136.0,
+      "emission_px": 59136,
+      "scored_px": 5167373
+     },
+     "fold_dti": {
+      "0": 0.00388121643673116,
+      "1": 0.0012980330549086296,
+      "2": 0.0007489149719177878,
+      "3": 0.0035810543214527158
+     },
+     "fold_truth_px": {
+      "0": 1823,
+      "1": 1321,
+      "2": 1120,
+      "3": 3598
+     },
+     "tuning_dti": 0.0024343692045364442,
+     "tuning_truth_px": 7862,
+     "timing_s": {
+      "emission": 0.13,
+      "scorer_init": 1.24,
+      "evaluate": 0.2
+     }
+    },
+    "120000": {
+     "full_field": {
+      "dti": 0.008151484805234612,
+      "tp_w": 593.1742553710938,
+      "fp_w": 116595.125,
+      "fn_w": 61070.825744628906,
+      "truth_px": 61664,
+      "mass": 118432.0,
+      "emission_px": 118432,
+      "scored_px": 5167373
+     },
+     "fold_dti": {
+      "0": 0.002227665143019017,
+      "1": 0.0018019409337708527,
+      "2": 0.002734922425382449,
+      "3": 0.0019823809111830766
+     },
+     "fold_truth_px": {
+      "0": 1823,
+      "1": 1321,
+      "2": 1120,
+      "3": 3598
+     },
+     "tuning_dti": 0.0021823333735257575,
+     "tuning_truth_px": 7862,
+     "timing_s": {
+      "emission": 0.15,
+      "scorer_init": 1.21,
+      "evaluate": 0.26
+     }
+    },
+    "250000": {
+     "full_field": {
+      "dti": 0.014049432693836131,
+      "tp_w": 1375.3287353515625,
+      "fp_w": 241429.265625,
+      "fn_w": 60288.67126464844,
+      "truth_px": 61664,
+      "mass": 245734.0,
+      "emission_px": 245734,
+      "scored_px": 5167373
+     },
+     "fold_dti": {
+      "0": 0.0011211902370068159,
+      "1": 0.0008880993576614331,
+      "2": 0.001370112888946029,
+      "3": 0.001040472075494175
+     },
+     "fold_truth_px": {
+      "0": 1823,
+      "1": 1321,
+      "2": 1120,
+      "3": 3598
+     },
+     "tuning_dti": 0.0011042114928630114,
+     "tuning_truth_px": 7862,
+     "timing_s": {
+      "emission": 0.13,
+      "scorer_init": 1.13,
+      "evaluate": 0.34
+     }
+    }
+   }
+  },
+  "cond": {
+   "sweep": {
+    "60000": {
+     "full_field": {
+      "dti": 0.0037289390210174336,
+      "tp_w": 227.83096313476562,
+      "fp_w": 58606.5,
+      "fn_w": 61436.169036865234,
+      "truth_px": 61664,
+      "mass": 59333.0,
+      "emission_px": 59333,
+      "scored_px": 5167373
+     },
+     "fold_dti": {
+      "0": 0.0018011257035512108,
+      "1": 0.0064359044125336835,
+      "2": 0.003922178078276511,
+      "3": 0.00028839968308831866
+     },
+     "fold_truth_px": {
+      "0": 1823,
+      "1": 1321,
+      "2": 1120,
+      "3": 3598
+     },
+     "tuning_dti": 0.003004007187227773,
+     "tuning_truth_px": 7862,
+     "timing_s": {
+      "emission": 0.16,
+      "scorer_init": 1.25,
+      "evaluate": 0.2
+     }
+    },
+    "120000": {
+     "full_field": {
+      "dti": 0.01346217603276731,
+      "tp_w": 978.7325439453125,
+      "fp_w": 115877.28125,
+      "fn_w": 60685.26745605469,
+      "truth_px": 61664,
+      "mass": 118835.0,
+      "emission_px": 118835,
+      "scored_px": 5167373
+     },
+     "fold_dti": {
+      "0": 0.0009514219794296564,
+      "1": 0.005069346306115598,
+      "2": 0.0037158968694889364,
+      "3": 0.001751929361641544
+     },
+     "fold_truth_px": {
+      "0": 1823,
+      "1": 1321,
+      "2": 1120,
+      "3": 3598
+     },
+     "tuning_dti": 0.002843067139938024,
+     "tuning_truth_px": 7862,
+     "timing_s": {
+      "emission": 0.14,
+      "scorer_init": 1.29,
+      "evaluate": 0.25
+     }
+    },
+    "250000": {
+     "full_field": {
+      "dti": 0.026004967762448247,
+      "tp_w": 2540.46142578125,
+      "fp_w": 239260.484375,
+      "fn_w": 59123.53857421875,
+      "truth_px": 61664,
+      "mass": 246871.0,
+      "emission_px": 246871,
+      "scored_px": 5167373
+     },
+     "fold_dti": {
+      "0": 0.0004721379587106067,
+      "1": 0.002495299296828002,
+      "2": 0.0018230515194081736,
+      "3": 0.0008933691072286979
+     },
+     "fold_truth_px": {
+      "0": 1823,
+      "1": 1321,
+      "2": 1120,
+      "3": 3598
+     },
+     "tuning_dti": 0.0014140613011652662,
+     "tuning_truth_px": 7862,
+     "timing_s": {
+      "emission": 0.14,
+      "scorer_init": 1.08,
+      "evaluate": 0.34
+     }
+    }
+   }
+  },
+  "conjunction": {
+   "sweep": {
+    "60000": {
+     "full_field": {
+      "dti": 0.0363378047654164,
+      "tp_w": 2212.5205078125,
+      "fp_w": 55569.3125,
+      "fn_w": 59451.4794921875,
+      "truth_px": 61664,
+      "mass": 59595.0,
+      "emission_px": 59595,
+      "scored_px": 5167373
+     },
+     "fold_dti": {
+      "0": 0.007647534118334489,
+      "1": 0.00107541717313272,
+      "2": 0.00277656826041457,
+      "3": 0.008015802065162059
+     },
+     "fold_truth_px": {
+      "0": 1823,
+      "1": 1321,
+      "2": 1120,
+      "3": 3598
+     },
+     "tuning_dti": 0.00501158650713084,
+     "tuning_truth_px": 7862,
+     "timing_s": {
+      "emission": 0.48,
+      "scorer_init": 1.17,
+      "evaluate": 0.19
+     }
+    },
+    "120000": {
+     "full_field": {
+      "dti": 0.06448436025368454,
+      "tp_w": 4673.1123046875,
+      "fp_w": 111015.515625,
+      "fn_w": 56990.8876953125,
+      "truth_px": 61664,
+      "mass": 119052.0,
+      "emission_px": 119052,
+      "scored_px": 5167373
+     },
+     "fold_dti": {
+      "0": 0.007434921178145146,
+      "1": 0.002528765903828213,
+      "2": 0.003920912923959001,
+      "3": 0.010262990127964434
+     },
+     "fold_truth_px": {
+      "0": 1823,
+      "1": 1321,
+      "2": 1120,
+      "3": 3598
+     },
+     "tuning_dti": 0.006121600037391227,
+     "tuning_truth_px": 7862,
+     "timing_s": {
+      "emission": 0.45,
+      "scorer_init": 1.08,
+      "evaluate": 0.24
+     }
+    },
+    "250000": {
+     "full_field": {
+      "dti": 0.122907221756083,
+      "tp_w": 12031.439453125,
+      "fp_w": 230764.65625,
+      "fn_w": 49632.560546875,
+      "truth_px": 61664,
+      "mass": 247498.0,
+      "emission_px": 247498,
+      "scored_px": 5167373
+     },
+     "fold_dti": {
+      "0": 0.009585282748906666,
+      "1": 0.0039975713009598604,
+      "2": 0.004151238348935701,
+      "3": 0.011363241013925341
+     },
+     "fold_truth_px": {
+      "0": 1823,
+      "1": 1321,
+      "2": 1120,
+      "3": 3598
+     },
+     "tuning_dti": 0.00731779466851167,
+     "tuning_truth_px": 7862,
+     "timing_s": {
+      "emission": 0.5,
+      "scorer_init": 1.21,
+      "evaluate": 0.38
+     }
+    }
+   }
+  },
+  "control_blanket": {
+   "full_field": {
+    "dti": 0.05918623912261284,
+    "tp_w": 61664.0,
+    "fp_w": 4900999.0,
+    "fn_w": 0.0,
+    "truth_px": 61664,
+    "mass": 5106385.0,
+    "emission_px": 5106385,
+    "scored_px": 5167373
+   },
+   "fold_dti": {
+    "0": 0.00178247472415624,
+    "1": 0.0012921415686343058,
+    "2": 0.0010957049344874992,
+    "3": 0.0035131387287511725
+   },
+   "fold_truth_px": {
+    "0": 1823,
+    "1": 1321,
+    "2": 1120,
+    "3": 3598
+   }
+  },
+  "control_random": {
+   "sweep": {
+    "60000": {
+     "full_field": {
+      "dti": 0.03835113214822893,
+      "tp_w": 2348.284912109375,
+      "fp_w": 57151.59375,
+      "fn_w": 59315.715087890625,
+      "truth_px": 61664,
+      "mass": 59532.0,
+      "emission_px": 59532,
+      "scored_px": 5167373
+     },
+     "fold_dti": {
+      "0": 0.013178246870497581,
+      "1": 0.013310685035748676,
+      "2": 0.008460317619999666,
+      "3": 0.042023804023071494
+     },
+     "fold_truth_px": {
+      "0": 1823,
+      "1": 1321,
+      "2": 1120,
+      "3": 3598
+     },
+     "tuning_dti": 0.01999991864957035,
+     "tuning_truth_px": 7862,
+     "timing_s": {
+      "emission": 0.5,
+      "scorer_init": 1.09,
+      "evaluate": 0.21
+     }
+    },
+    "120000": {
+     "full_field": {
+      "dti": 0.07149761380781026,
+      "tp_w": 5227.79296875,
+      "fp_w": 113708.3359375,
+      "fn_w": 56436.20703125,
+      "truth_px": 61664,
+      "mass": 118993.0,
+      "emission_px": 118993,
+      "scored_px": 5167373
+     },
+     "fold_dti": {
+      "0": 0.01430932832686048,
+      "1": 0.01032501407101365,
+      "2": 0.008668753943067598,
+      "3": 0.028488852995831117
+     },
+     "fold_truth_px": {
+      "0": 1823,
+      "1": 1321,
+      "2": 1120,
+      "3": 3598
+     },
+     "tuning_dti": 0.015688301631505135,
+     "tuning_truth_px": 7862,
+     "timing_s": {
+      "emission": 0.48,
+      "scorer_init": 1.12,
+      "evaluate": 0.25
+     }
+    },
+    "250000": {
+     "full_field": {
+      "dti": 0.09300179104373689,
+      "tp_w": 9180.359375,
+      "fp_w": 237721.84375,
+      "fn_w": 52483.640625,
+      "truth_px": 61664,
+      "mass": 247198.0,
+      "emission_px": 247198,
+      "scored_px": 5167373
+     },
+     "fold_dti": {
+      "0": 0.00710068579431445,
+      "1": 0.005082191101513507,
+      "2": 0.004252882872713188,
+      "3": 0.014526494349152118
+     },
+     "fold_truth_px": {
+      "0": 1823,
+      "1": 1321,
+      "2": 1120,
+      "3": 3598
+     },
+     "tuning_dti": 0.0078026327274830715,
+     "tuning_truth_px": 7862,
+     "timing_s": {
+      "emission": 0.52,
+      "scorer_init": 1.07,
+      "evaluate": 0.42
+     }
+    }
+   }
+  },
+  "deep_mag": {
+   "sweep": {
+    "60000": {
+     "full_field": {
+      "dti": 0.011047572864127705,
+      "tp_w": 674.0076904296875,
+      "fp_w": 57717.8515625,
+      "fn_w": 60989.99230957031,
+      "truth_px": 61664,
+      "mass": 59639.0,
+      "emission_px": 59639,
+      "scored_px": 5167373
+     },
+     "fold_dti": {
+      "0": 0.008129484010808622,
+      "1": 0.007395222192536424,
+      "2": 0.008465844203643035,
+      "3": 0.009498896601838816
+     },
+     "fold_truth_px": {
+      "0": 1823,
+      "1": 1321,
+      "2": 1120,
+      "3": 3598
+     },
+     "tuning_dti": 0.00840827833504242,
+     "tuning_truth_px": 7862,
+     "timing_s": {
+      "emission": 0.14,
+      "scorer_init": 1.05,
+      "evaluate": 0.19
+     }
+    },
+    "120000": {
+     "full_field": {
+      "dti": 0.02006887746138531,
+      "tp_w": 1457.63623046875,
+      "fp_w": 115044.75,
+      "fn_w": 60206.36376953125,
+      "truth_px": 61664,
+      "mass": 119244.0,
+      "emission_px": 119244,
+      "scored_px": 5167373
+     },
+     "fold_dti": {
+      "0": 0.005509865572410971,
+      "1": 0.0038555185210687667,
+      "2": 0.00639133342976308,
+      "3": 0.005590776307106072
+     },
+     "fold_truth_px": {
+      "0": 1823,
+      "1": 1321,
+      "2": 1120,
+      "3": 3598
+     },
+     "tuning_dti": 0.005340437666826861,
+     "tuning_truth_px": 7862,
+     "timing_s": {
+      "emission": 0.14,
+      "scorer_init": 1.05,
+      "evaluate": 0.26
+     }
+    },
+    "250000": {
+     "full_field": {
+      "dti": 0.036510848475654396,
+      "tp_w": 3558.4736328125,
+      "fp_w": 237102.828125,
+      "fn_w": 58105.5263671875,
+      "truth_px": 61664,
+      "mass": 247141.0,
+      "emission_px": 247141,
+      "scored_px": 5167373
+     },
+     "fold_dti": {
+      "0": 0.0027401962405984985,
+      "1": 0.0019020303471673145,
+      "2": 0.0031426682879102906,
+      "3": 0.0028567292944314585
+     },
+     "fold_truth_px": {
+      "0": 1823,
+      "1": 1321,
+      "2": 1120,
+      "3": 3598
+     },
+     "tuning_dti": 0.002661936016741258,
+     "tuning_truth_px": 7862,
+     "timing_s": {
+      "emission": 0.14,
+      "scorer_init": 1.07,
+      "evaluate": 0.34
+     }
+    }
+   }
+  },
+  "grav_ridge": {
+   "sweep": {
+    "60000": {
+     "full_field": {
+      "dti": 0.0050323627058850165,
+      "tp_w": 307.2942199707031,
+      "fp_w": 58354.7421875,
+      "fn_w": 61356.7057800293,
+      "truth_px": 61664,
+      "mass": 59233.0,
+      "emission_px": 59233,
+      "scored_px": 5167373
+     },
+     "fold_dti": {
+      "0": 0.004379140000081137,
+      "1": 0.002275332966669352,
+      "2": 0.0,
+      "3": 0.006082265753661328
+     },
+     "fold_truth_px": {
+      "0": 1823,
+      "1": 1321,
+      "2": 1120,
+      "3": 3598
+     },
+     "tuning_dti": 0.00330101632620869,
+     "tuning_truth_px": 7862,
+     "timing_s": {
+      "emission": 0.45,
+      "scorer_init": 1.08,
+      "evaluate": 0.2
+     }
+    },
+    "120000": {
+     "full_field": {
+      "dti": 0.0097169890088353,
+      "tp_w": 707.024169921875,
+      "fp_w": 116445.234375,
+      "fn_w": 60956.975830078125,
+      "truth_px": 61664,
+      "mass": 118576.0,
+      "emission_px": 118576,
+      "scored_px": 5167373
+     },
+     "fold_dti": {
+      "0": 0.0023246218335513983,
+      "1": 0.0033892907639020723,
+      "2": 0.003559443377417202,
+      "3": 0.004281895261499205
+     },
+     "fold_truth_px": {
+      "0": 1823,
+      "1": 1321,
+      "2": 1120,
+      "3": 3598
+     },
+     "tuning_dti": 0.003400399738113571,
+     "tuning_truth_px": 7862,
+     "timing_s": {
+      "emission": 0.45,
+      "scorer_init": 1.19,
+      "evaluate": 0.24
+     }
+    },
+    "250000": {
+     "full_field": {
+      "dti": 0.01599561681076744,
+      "tp_w": 1567.1456298828125,
+      "fp_w": 241644.0625,
+      "fn_w": 60096.85437011719,
+      "truth_px": 61664,
+      "mass": 246254.0,
+      "emission_px": 246254,
+      "scored_px": 5167373
+     },
+     "fold_dti": {
+      "0": 0.0011540134766304666,
+      "1": 0.001668923001759201,
+      "2": 0.0017469145159997868,
+      "3": 0.002184399718898968
+     },
+     "fold_truth_px": {
+      "0": 1823,
+      "1": 1321,
+      "2": 1120,
+      "3": 3598
+     },
+     "tuning_dti": 0.0016919034696278963,
+     "tuning_truth_px": 7862,
+     "timing_s": {
+      "emission": 0.46,
+      "scorer_init": 1.27,
+      "evaluate": 0.35
+     }
+    }
+   }
+  },
+  "known_catalogue": {
+   "sweep": {
+    "60000": {
+     "full_field": {
+      "dti": 0.0,
+      "tp_w": 0.0,
+      "fp_w": 0.0,
+      "fn_w": 61664.0,
+      "truth_px": 61664,
+      "mass": 0.0,
+      "emission_px": 0,
+      "scored_px": 5167373
+     },
+     "fold_dti": {
+      "0": 0.0,
+      "1": 0.0,
+      "2": 0.0,
+      "3": 0.0
+     },
+     "fold_truth_px": {
+      "0": 1823,
+      "1": 1321,
+      "2": 1120,
+      "3": 3598
+     },
+     "tuning_dti": 0.0,
+     "tuning_truth_px": 7862,
+     "timing_s": {
+      "emission": 0.49,
+      "scorer_init": 1.27,
+      "evaluate": 0.14
+     }
+    },
+    "120000": {
+     "full_field": {
+      "dti": 0.0,
+      "tp_w": 0.0,
+      "fp_w": 0.0,
+      "fn_w": 61664.0,
+      "truth_px": 61664,
+      "mass": 0.0,
+      "emission_px": 0,
+      "scored_px": 5167373
+     },
+     "fold_dti": {
+      "0": 0.0,
+      "1": 0.0,
+      "2": 0.0,
+      "3": 0.0
+     },
+     "fold_truth_px": {
+      "0": 1823,
+      "1": 1321,
+      "2": 1120,
+      "3": 3598
+     },
+     "tuning_dti": 0.0,
+     "tuning_truth_px": 7862,
+     "timing_s": {
+      "emission": 0.06,
+      "scorer_init": 1.19,
+      "evaluate": 0.14
+     }
+    },
+    "250000": {
+     "full_field": {
+      "dti": 0.0,
+      "tp_w": 0.0,
+      "fp_w": 0.0,
+      "fn_w": 61664.0,
+      "truth_px": 61664,
+      "mass": 0.0,
+      "emission_px": 0,
+      "scored_px": 5167373
+     },
+     "fold_dti": {
+      "0": 0.0,
+      "1": 0.0,
+      "2": 0.0,
+      "3": 0.0
+     },
+     "fold_truth_px": {
+      "0": 1823,
+      "1": 1321,
+      "2": 1120,
+      "3": 3598
+     },
+     "tuning_dti": 0.0,
+     "tuning_truth_px": 7862,
+     "timing_s": {
+      "emission": 0.07,
+      "scorer_init": 1.19,
+      "evaluate": 0.14
+     }
+    }
+   }
+  },
+  "mag_ridge": {
+   "sweep": {
+    "60000": {
+     "full_field": {
+      "dti": 0.012640763164576808,
+      "tp_w": 772.0228271484375,
+      "fp_w": 57942.31640625,
+      "fn_w": 60891.97717285156,
+      "truth_px": 61664,
+      "mass": 59593.0,
+      "emission_px": 59593,
+      "scored_px": 5167373
+     },
+     "fold_dti": {
+      "0": 0.0036820397921217144,
+      "1": 0.004369989229333733,
+      "2": 0.0012736189291190129,
+      "3": 0.007172226381809939
+     },
+     "fold_truth_px": {
+      "0": 1823,
+      "1": 1321,
+      "2": 1120,
+      "3": 3598
+     },
+     "tuning_dti": 0.004232550504935323,
+     "tuning_truth_px": 7862,
+     "timing_s": {
+      "emission": 0.49,
+      "scorer_init": 1.17,
+      "evaluate": 0.21
+     }
+    },
+    "120000": {
+     "full_field": {
+      "dti": 0.029261012305981122,
+      "tp_w": 2127.72607421875,
+      "fp_w": 114793.25,
+      "fn_w": 59536.27392578125,
+      "truth_px": 61664,
+      "mass": 119374.0,
+      "emission_px": 119374,
+      "scored_px": 5167373
+     },
+     "fold_dti": {
+      "0": 0.007599791521379837,
+      "1": 0.005723256485994167,
+      "2": 0.0024340878733838662,
+      "3": 0.018445354555570635
+     },
+     "fold_truth_px": {
+      "0": 1823,
+      "1": 1321,
+      "2": 1120,
+      "3": 3598
+     },
+     "tuning_dti": 0.00873360864241378,
+     "tuning_truth_px": 7862,
+     "timing_s": {
+      "emission": 0.52,
+      "scorer_init": 1.35,
+      "evaluate": 0.3
+     }
+    },
+    "250000": {
+     "full_field": {
+      "dti": 0.045929982214443395,
+      "tp_w": 4501.66162109375,
+      "fp_w": 238899.3125,
+      "fn_w": 57162.33837890625,
+      "truth_px": 61664,
+      "mass": 248272.0,
+      "emission_px": 248272,
+      "scored_px": 5167373
+     },
+     "fold_dti": {
+      "0": 0.011639555999502518,
+      "1": 0.012154056733048492,
+      "2": 0.006351355639382302,
+      "3": 0.015224563326702644
+     },
+     "fold_truth_px": {
+      "0": 1823,
+      "1": 1321,
+      "2": 1120,
+      "3": 3598
+     },
+     "tuning_dti": 0.011381394153830786,
+     "tuning_truth_px": 7862,
+     "timing_s": {
+      "emission": 0.47,
+      "scorer_init": 1.14,
+      "evaluate": 0.37
+     }
+    }
+   }
+  },
+  "seis": {
+   "sweep": {
+    "60000": {
+     "full_field": {
+      "dti": 0.0022595843331867467,
+      "tp_w": 138.0,
+      "fp_w": 58571.8984375,
+      "fn_w": 61526.0,
+      "truth_px": 61664,
+      "mass": 59102.0,
+      "emission_px": 59102,
+      "scored_px": 5167373
+     },
+     "fold_dti": {
+      "0": 0.0,
+      "1": 0.0,
+      "2": 0.0,
+      "3": 0.0
+     },
+     "fold_truth_px": {
+      "0": 1823,
+      "1": 1321,
+      "2": 1120,
+      "3": 3598
+     },
+     "tuning_dti": 0.0,
+     "tuning_truth_px": 7862,
+     "timing_s": {
+      "emission": 0.14,
+      "scorer_init": 1.19,
+      "evaluate": 0.19
+     }
+    },
+    "120000": {
+     "full_field": {
+      "dti": 0.003662170918245996,
+      "tp_w": 266.723876953125,
+      "fp_w": 117238.15625,
+      "fn_w": 61397.276123046875,
+      "truth_px": 61664,
+      "mass": 118326.0,
+      "emission_px": 118326,
+      "scored_px": 5167373
+     },
+     "fold_dti": {
+      "0": 0.0,
+      "1": 0.0,
+      "2": 0.0,
+      "3": 0.0
+     },
+     "fold_truth_px": {
+      "0": 1823,
+      "1": 1321,
+      "2": 1120,
+      "3": 3598
+     },
+     "tuning_dti": 0.0,
+     "tuning_truth_px": 7862,
+     "timing_s": {
+      "emission": 0.15,
+      "scorer_init": 1.11,
+      "evaluate": 0.26
+     }
+    },
+    "250000": {
+     "full_field": {
+      "dti": 0.01762341631610089,
+      "tp_w": 1722.3905029296875,
+      "fp_w": 240286.9375,
+      "fn_w": 59941.60949707031,
+      "truth_px": 61664,
+      "mass": 246369.0,
+      "emission_px": 246369,
+      "scored_px": 5167373
+     },
+     "fold_dti": {
+      "0": 0.0,
+      "1": 0.0,
+      "2": 0.0,
+      "3": 0.0
+     },
+     "fold_truth_px": {
+      "0": 1823,
+      "1": 1321,
+      "2": 1120,
+      "3": 3598
+     },
+     "tuning_dti": 0.0,
+     "tuning_truth_px": 7862,
+     "timing_s": {
+      "emission": 0.15,
+      "scorer_init": 1.21,
+      "evaluate": 0.36
+     }
+    }
+   }
+  },
+  "strain": {
+   "sweep": {
+    "60000": {
+     "full_field": {
+      "dti": 0.01641057305425819,
+      "tp_w": 997.6134033203125,
+      "fp_w": 56300.85546875,
+      "fn_w": 60666.38659667969,
+      "truth_px": 61664,
+      "mass": 59230.0,
+      "emission_px": 59230,
+      "scored_px": 5167373
+     },
+     "fold_dti": {
+      "0": 0.0017593360048004127,
+      "1": 0.0,
+      "2": 0.0,
+      "3": 0.0
+     },
+     "fold_truth_px": {
+      "0": 1823,
+      "1": 1321,
+      "2": 1120,
+      "3": 3598
+     },
+     "tuning_dti": 0.00043609726089805103,
+     "tuning_truth_px": 7862,
+     "timing_s": {
+      "emission": 0.14,
+      "scorer_init": 1.16,
+      "evaluate": 0.2
+     }
+    },
+    "120000": {
+     "full_field": {
+      "dti": 0.028407765275376355,
+      "tp_w": 2050.5205078125,
+      "fp_w": 112201.9296875,
+      "fn_w": 59613.4794921875,
+      "truth_px": 61664,
+      "mass": 118130.0,
+      "emission_px": 118130,
+      "scored_px": 5167373
+     },
+     "fold_dti": {
+      "0": 0.0009331261637685506,
+      "1": 0.0,
+      "2": 0.0,
+      "3": 0.0
+     },
+     "fold_truth_px": {
+      "0": 1823,
+      "1": 1321,
+      "2": 1120,
+      "3": 3598
+     },
+     "tuning_dti": 0.00023222615267814016,
+     "tuning_truth_px": 7862,
+     "timing_s": {
+      "emission": 0.14,
+      "scorer_init": 1.18,
+      "evaluate": 0.24
+     }
+    },
+    "250000": {
+     "full_field": {
+      "dti": 0.02916969422551242,
+      "tp_w": 2847.68115234375,
+      "fp_w": 238619.5625,
+      "fn_w": 58816.31884765625,
+      "truth_px": 61664,
+      "mass": 246842.0,
+      "emission_px": 246842,
+      "scored_px": 5167373
+     },
+     "fold_dti": {
+      "0": 0.00046052299067682074,
+      "1": 0.0,
+      "2": 0.0,
+      "3": 0.0
+     },
+     "fold_truth_px": {
+      "0": 1823,
+      "1": 1321,
+      "2": 1120,
+      "3": 3598
+     },
+     "tuning_dti": 0.000114873097510264,
+     "tuning_truth_px": 7862,
+     "timing_s": {
+      "emission": 0.15,
+      "scorer_init": 1.23,
+      "evaluate": 0.4
+     }
+    }
+   }
+  },
+  "topo_ridge": {
+   "sweep": {
+    "60000": {
+     "full_field": {
+      "dti": 0.05770740159139561,
+      "tp_w": 3490.967041015625,
+      "fp_w": 52324.375,
+      "fn_w": 58173.032958984375,
+      "truth_px": 61664,
+      "mass": 59891.0,
+      "emission_px": 59891,
+      "scored_px": 5167373
+     },
+     "fold_dti": {
+      "0": 0.014511264431596256,
+      "1": 0.0033690106880970043,
+      "2": 0.004990135565360596,
+      "3": 0.05872998485254484
+     },
+     "fold_truth_px": {
+      "0": 1823,
+      "1": 1321,
+      "2": 1120,
+      "3": 3598
+     },
+     "tuning_dti": 0.02169034962100043,
+     "tuning_truth_px": 7862,
+     "timing_s": {
+      "emission": 0.61,
+      "scorer_init": 1.41,
+      "evaluate": 0.25
+     }
+    },
+    "120000": {
+     "full_field": {
+      "dti": 0.08483272171122878,
+      "tp_w": 6083.033203125,
+      "fp_w": 105792.03125,
+      "fn_w": 55580.966796875,
+      "truth_px": 61664,
+      "mass": 119662.0,
+      "emission_px": 119662,
+      "scored_px": 5167373
+     },
+     "fold_dti": {
+      "0": 0.02041400834203082,
+      "1": 0.006722240555798029,
+      "2": 0.00813247720846148,
+      "3": 0.060259534362455666
+     },
+     "fold_truth_px": {
+      "0": 1823,
+      "1": 1321,
+      "2": 1120,
+      "3": 3598
+     },
+     "tuning_dti": 0.024542773687854947,
+     "tuning_truth_px": 7862,
+     "timing_s": {
+      "emission": 0.52,
+      "scorer_init": 1.19,
+      "evaluate": 0.25
+     }
+    },
+    "250000": {
+     "full_field": {
+      "dti": 0.1203547986431255,
+      "tp_w": 11597.306640625,
+      "fp_w": 223543.296875,
+      "fn_w": 50066.693359375,
+      "truth_px": 61664,
+      "mass": 248666.0,
+      "emission_px": 248666,
+      "scored_px": 5167373
+     },
+     "fold_dti": {
+      "0": 0.014809152028407026,
+      "1": 0.0041739021988159665,
+      "2": 0.005446328514843743,
+      "3": 0.037107856668384134
+     },
+     "fold_truth_px": {
+      "0": 1823,
+      "1": 1321,
+      "2": 1120,
+      "3": 3598
+     },
+     "tuning_dti": 0.015583794199365847,
+     "tuning_truth_px": 7862,
+     "timing_s": {
+      "emission": 0.63,
+      "scorer_init": 1.42,
+      "evaluate": 0.35
+     }
+    }
+   }
+  }
+ },
+ "bootstrap_vs_comparator": {
+  "_depth_base_grad": {
+   "target": 60000,
+   "vs": "ens12_shipped_comparator",
+   "n_blocks": 26,
+   "mean": -0.0061938009493222555,
+   "p_candidate_better": 0.0,
+   "ci95": [
+    -0.008233652064874546,
+    -0.004171185896678912
+   ]
+  },
+  "_grav_slope": {
+   "target": 60000,
+   "vs": "ens12_shipped_comparator",
+   "n_blocks": 26,
+   "mean": -0.0063110876433698625,
+   "p_candidate_better": 0.0,
+   "ci95": [
+    -0.00816961305503924,
+    -0.0045995664126994955
+   ]
+  },
+  "cond": {
+   "target": 60000,
+   "vs": "ens12_shipped_comparator",
+   "n_blocks": 26,
+   "mean": -0.006182509836209533,
+   "p_candidate_better": 0.0,
+   "ci95": [
+    -0.008184991871071107,
+    -0.004291208742286968
+   ]
+  },
+  "conjunction": {
+   "target": 250000,
+   "vs": "ens12_shipped_comparator",
+   "n_blocks": 26,
+   "mean": -6.611577692848369e-06,
+   "p_candidate_better": 0.4925,
+   "ci95": [
+    -0.001377245393928461,
+    0.0015138814804610736
+   ]
+  },
+  "control_random": {
+   "target": 60000,
+   "vs": "ens12_shipped_comparator",
+   "n_blocks": 26,
+   "mean": -0.0007530535239728823,
+   "p_candidate_better": 0.381,
+   "ci95": [
+    -0.005215859120731961,
+    0.004187063787948254
+   ]
+  },
+  "deep_mag": {
+   "target": 60000,
+   "vs": "ens12_shipped_comparator",
+   "n_blocks": 26,
+   "mean": -0.005038851339419328,
+   "p_candidate_better": 0.0,
+   "ci95": [
+    -0.007210164036211559,
+    -0.002988669085154789
+   ]
+  },
+  "grav_ridge": {
+   "target": 120000,
+   "vs": "ens12_shipped_comparator",
+   "n_blocks": 26,
+   "mean": -0.005892866079519709,
+   "p_candidate_better": 0.0,
+   "ci95": [
+    -0.007723848143282719,
+    -0.004196097291425986
+   ]
+  },
+  "known_catalogue": {
+   "target": 60000,
+   "vs": "ens12_shipped_comparator",
+   "n_blocks": 26,
+   "mean": -0.006831048542971673,
+   "p_candidate_better": 0.0,
+   "ci95": [
+    -0.008664968144821166,
+    -0.005066826444155797
+   ]
+  },
+  "mag_ridge": {
+   "target": 250000,
+   "vs": "ens12_shipped_comparator",
+   "n_blocks": 26,
+   "mean": -0.0035286155714982998,
+   "p_candidate_better": 0.0025,
+   "ci95": [
+    -0.006163302271833591,
+    -0.0009520688924388282
+   ]
+  },
+  "seis": {
+   "target": 60000,
+   "vs": "ens12_shipped_comparator",
+   "n_blocks": 26,
+   "mean": -0.006541750661259815,
+   "p_candidate_better": 0.0,
+   "ci95": [
+    -0.008425447261894443,
+    -0.0046987295010017804
+   ]
+  },
+  "strain": {
+   "target": 60000,
+   "vs": "ens12_shipped_comparator",
+   "n_blocks": 26,
+   "mean": -0.004773974472570204,
+   "p_candidate_better": 0.0,
+   "ci95": [
+    -0.006604426518659454,
+    -0.0030818790891707095
+   ]
+  },
+  "topo_ridge": {
+   "target": 120000,
+   "vs": "ens12_shipped_comparator",
+   "n_blocks": 26,
+   "mean": 0.0017856267411004096,
+   "p_candidate_better": 0.6605,
+   "ci95": [
+    -0.004750900929886747,
+    0.009582131568004044
+   ]
+  }
+ },
+ "matched_support_comparison": {
+  "_depth_base_grad": {
+   "support_px": 172974,
+   "dti": 0.004933085407114193,
+   "delta_vs_comparator": -0.09648690762817315
+  },
+  "_grav_slope": {
+   "support_px": 172974,
+   "dti": 0.010058440483323775,
+   "delta_vs_comparator": -0.09136155255196357
+  },
+  "cond": {
+   "support_px": 172974,
+   "dti": 0.02241580550183873,
+   "delta_vs_comparator": -0.07900418753344861
+  },
+  "conjunction": {
+   "support_px": 172974,
+   "dti": 0.09259530200894701,
+   "delta_vs_comparator": -0.008824691026340328
+  },
+  "control_random": {
+   "support_px": 172974,
+   "dti": 0.0881700472500284,
+   "delta_vs_comparator": -0.01324994578525894
+  },
+  "deep_mag": {
+   "support_px": 172974,
+   "dti": 0.031516091760961776,
+   "delta_vs_comparator": -0.06990390127432557
+  },
+  "grav_ridge": {
+   "support_px": 172974,
+   "dti": 0.012486982206065292,
+   "delta_vs_comparator": -0.08893301082922205
+  },
+  "known_catalogue": {
+   "support_px": 172974,
+   "dti": 0.0,
+   "delta_vs_comparator": -0.10141999303528734
+  },
+  "mag_ridge": {
+   "support_px": 172974,
+   "dti": 0.03573459130411933,
+   "delta_vs_comparator": -0.06568540173116802
+  },
+  "seis": {
+   "support_px": 172974,
+   "dti": 0.0088001930864362,
+   "delta_vs_comparator": -0.09261979994885114
+  },
+  "strain": {
+   "support_px": 172974,
+   "dti": 0.029932370966310518,
+   "delta_vs_comparator": -0.07148762206897682
+  },
+  "topo_ridge": {
+   "support_px": 172974,
+   "dti": 0.1040472557663344,
+   "delta_vs_comparator": 0.0026272627310470614
+  },
+  "_comparator": {
+   "support_px": 166519,
+   "dti": 0.10141999303528734
+  }
+ },
+ "sealed": {
+  "candidate": "topo_ridge",
+  "target": 250000,
+  "truth_px_sealed": 10461,
+  "candidate_dti": 0.0002557448329605322,
+  "comparator_dti": 0.008470614263511303,
+  "note": "single pre-registered read of the sealed slice; no tuning followed it"
+ },
+ "submission": {},
+ "logs": [
+  "[    0.0s] features (3730, 3292) bands=19 (mag_anom, rtp, tmi_hg, geod_2ndinv, iso_grav_anom_slope, tc, geod_shearrate, geod_dilaterate, tmi_vg, deq_n100a15, iso_grav_anom_vg, det_elev, iso_grav_anom, tmi, depth_to_base_surf, ieq_n100a15, cond_surf, iso_grav_anom_hg, det_elev_slope)",
+  "[    0.1s] footprint 5167373 px | known faults 60988 px | proxy-gap 61664 px",
+  "[    0.1s] partition 56 blocks | split sha256 41332369d7dd448b\u2026 | sealed 14",
+  "[    0.1s] magnetics: RTP + TMI horizontal gradient, tilt derivative, TMI-HG",
+  "[   36.4s]   ridge pixels 1179402",
+  "[   36.4s] gravity: isostatic anomaly gradient (physically independent of magnetics)",
+  "[   51.1s]   ridge pixels 364902",
+  "[   51.1s] topography: curvature of detrended elevation + slope of detrended elevation",
+  "[   61.8s]   ridge pixels 754021",
+  "[   61.8s] subsurface, strain and seismicity",
+  "[  104.5s] deep magnetic gradient (native-resolution GeoDAWN): 22103_upcont_tmi150_a2.tif",
+  "[  111.5s] conjunction: >= 2 physically independent families must agree at the same trace",
+  "[  112.0s]   conjunction pixels 678220",
+  "[  112.0s] controls: matched random lineament network, blanket field",
+  "[  867.4s] comparator loaded: data/comparator_ens12.tif (172974 positive px)",
+  "[  872.8s] _depth_base_grad best support   60000 -> proxy DTI 0.0036 (emission 59540 px); folds 0:0.000, 1:0.000, 2:0.011, 3:0.002",
+  "[  878.3s] _grav_slope      best support   60000 -> proxy DTI 0.0032 (emission 59136 px); folds 0:0.004, 1:0.001, 2:0.001, 3:0.004",
+  "[  883.8s] cond             best support   60000 -> proxy DTI 0.0037 (emission 59333 px); folds 0:0.002, 1:0.006, 2:0.004, 3:0.000",
+  "[  890.2s] conjunction      best support  250000 -> proxy DTI 0.1229 (emission 247498 px); folds 0:0.010, 1:0.004, 2:0.004, 3:0.011",
+  "[  896.3s] control_blanket  proxy DTI 0.0592",
+  "[  902.6s] control_random   best support   60000 -> proxy DTI 0.0384 (emission 59532 px); folds 0:0.013, 1:0.013, 2:0.008, 3:0.042",
+  "[  907.6s] deep_mag         best support   60000 -> proxy DTI 0.0110 (emission 59639 px); folds 0:0.008, 1:0.007, 2:0.008, 3:0.009",
+  "[  914.0s] grav_ridge       best support  120000 -> proxy DTI 0.0097 (emission 118576 px); folds 0:0.002, 1:0.003, 2:0.004, 3:0.004",
+  "[  919.2s] known_catalogue  best support   60000 -> proxy DTI 0.0000 (emission 0 px); folds 0:0.000, 1:0.000, 2:0.000, 3:0.000",
+  "[  925.9s] mag_ridge        best support  250000 -> proxy DTI 0.0459 (emission 248272 px); folds 0:0.012, 1:0.012, 2:0.006, 3:0.015",
+  "[  931.3s] seis             best support   60000 -> proxy DTI 0.0023 (emission 59102 px); folds 0:0.000, 1:0.000, 2:0.000, 3:0.000",
+  "[  936.9s] strain           best support   60000 -> proxy DTI 0.0164 (emission 59230 px); folds 0:0.002, 1:0.000, 2:0.000, 3:0.000",
+  "[  944.4s] topo_ridge       best support  120000 -> proxy DTI 0.0848 (emission 119662 px); folds 0:0.020, 1:0.007, 2:0.008, 3:0.060",
+  "[  945.9s] comparator (ens12 shipped file) proxy DTI 0.1014",
+  "[  945.9s] bootstrap _depth_base_grad vs comparator: mean diff -0.0062, P(better) 0.0",
+  "[  945.9s] bootstrap _grav_slope      vs comparator: mean diff -0.0063, P(better) 0.0",
+  "[  945.9s] bootstrap cond             vs comparator: mean diff -0.0062, P(better) 0.0",
+  "[  945.9s] bootstrap conjunction      vs comparator: mean diff -0.0000, P(better) 0.4925",
+  "[  945.9s] bootstrap control_random   vs comparator: mean diff -0.0008, P(better) 0.381",
+  "[  945.9s] bootstrap deep_mag         vs comparator: mean diff -0.0050, P(better) 0.0",
+  "[  945.9s] bootstrap grav_ridge       vs comparator: mean diff -0.0059, P(better) 0.0",
+  "[  945.9s] bootstrap known_catalogue  vs comparator: mean diff -0.0068, P(better) 0.0",
+  "[  945.9s] bootstrap mag_ridge        vs comparator: mean diff -0.0035, P(better) 0.0025",
+  "[  945.9s] bootstrap seis             vs comparator: mean diff -0.0065, P(better) 0.0",
+  "[  945.9s] bootstrap strain           vs comparator: mean diff -0.0048, P(better) 0.0",
+  "[  945.9s] bootstrap topo_ridge       vs comparator: mean diff +0.0018, P(better) 0.6605",
+  "[  949.1s] SEALED topo_ridge@250000: candidate 0.0003 vs comparator 0.0085",
+  "[  968.8s] matched-support (172,974 px) table: cond:0.0224, conjunction:0.0926, control_random:0.0882, deep_mag:0.0315, grav_ridge:0.0125, known_catalogue:0.0000, mag_ridge:0.0357, seis:0.0088, strain:0.0299, topo_ridge:0.1040"
+ ],
+ "caveats": [
+  "The proxy is USGS SGMC structure absent from the training labels; the scored population is expert interpretation of the same geophysics. Compare arms, never leaderboards.",
+  "Post-hoc calibration on the group's 15 distinct scored files: Spearman rho = +0.52 (p = 0.048) between proxy DTI and public score \u2014 weak evidence, and the first live A/B recalibrates it.",
+  "Known-fault pixels are masked pixel-exactly (DrivenData staff, forum 11516 post 4), so arms that also paint the catalogue are neither helped nor hurt (confirmed on the live board by 8GEMSDOE vs GEMSDOE: identical scored content, identical 0.1563)."
+ ]
+}

@@ -1,103 +1,124 @@
-# Audit and irregularities
+# Audit — irregularities, duplicates, and checks that failed their own test
 
-Statuses distinguish **DIRECTLY VERIFIED** (checked in this session), **OFFICIAL SOURCE** (official statement/page), **GROUP-REPORTED** (a sibling project’s published result), and **OPEN** (not resolved).
+Classes of statement: **[VERIFIED-HERE]** recomputed in this checkout from bytes or from a primary
+source fetched during this session; **[GROUP-REPORTED]** asserted by a sibling project with its
+evidence file linked; **[INFERENCE]** reasoning.
 
-<a id="a-01"></a>
+Every check below is reproducible with `python scripts/audit_checks.py` (writes
+`data/evidence/audit_checks.json`, including the checks whose inputs were absent — those are recorded
+as **SKIPPED**, never as a pass).
 
-## A-01 — No project data or validation artifacts in this checkout — OPEN / BLOCKER
+## A-01 · Why the group kept scoring 0.1563 — one file, several repositories
 
-**Finding:** this branch started with only `README.md`. There is no official feature stack, sample template, label raster, model, locked split, holdout output, or candidate GeoTIFF in 18GEMSDOE. No model was trained or evaluated here. A public-mirror label file was hash-matched to that mirror’s manifest in a prior session, but not compared with an official download or opened as a raster.
+**[VERIFIED-HERE]** `buffedlizard55-lab/GEMSDOE` and `buffedlizard55-lab/5GEMSDOE` both commit
+`data/evidence/runs/ens12-adopted-floor0.1-w0/submission.tif`; the files are **byte-identical**,
+SHA-256 `7f00890a62878d612fb5eef67a9a364a2df819433dde74b6762ce4fc0fc4fe15`, 570,890 bytes. The file is
+a hard 0/1 mask with 172,974 positive pixels (3.35 % of the valid footprint). `5GEMSDOE` also stores
+the same bytes as `data/evidence/leaderboard_anchor/gemsdoe-ens12-adopted-7f00890a.tif`.
 
-**Impact:** the new hypotheses cannot be scored; the holdout is not locked; no 18GEMSDOE submission is ready. Do not submit or report a candidate score until resolved.
+**[GROUP-REPORTED]** The same scored content (`scored_content_sha256 6e6f23c6…`) sits at eight paths
+across six repositories; `8GEMSDOE`'s entry is `max(ens12, catalogue)` and scored the same 0.1563;
+`GEMSDOE2` overlaps it at Jaccard ≈ 0.95
+([16GEMSDOE `submission_similarity.json`](https://raw.githubusercontent.com/buffedlizard55-lab/16GEMSDOE/main/evidence/submission_similarity.json)).
 
-**Next evidence:** stage authorized source files outside Git, verify bytes/metadata/provenance, then lock a basin/fault-system holdout before coding. [Data status](data.md) · [preregistration](research/preregistration.md).
+**[INFERENCE]** So the repeated public score is, at least in part, **the same prediction uploaded from
+different repositories**, not four independent ideas converging. This repository therefore refuses to
+package a file whose hash is already registered (`scripts/make_submission.py`).
 
-<a id="a-02"></a>
+## A-02 · A check that failed and was abandoned: "63 % of the USGS fault database is missing from the labels"
 
-## A-02 — Repeated 0.1563 artifact — DIRECTLY VERIFIED IN PART
+**[VERIFIED-HERE — abandoned]** Rasterising the public QFaults shapefile gives 197,294 line pixels in
+the footprint's bounding box, of which only 72,245 (36.6 %) lie within 300 m of a training label.
+Read carelessly that says: *the labels omit two-thirds of the USGS fault network — a free 125,053-pixel
+fault population for the submission.*
 
-**Finding:** the public `GEMSDOE` and `5GEMSDOE` repositories both store a 570,890-byte `submission.tif` with Git blob SHA `812e61b74050d1350cc2bde1fab0c76ead32e0c4`; both sidecar fields also have the same blob SHA `6a89b64e01a7c11b8235449c538390ac3435605d`. This is exact byte identity for those tracked files. The public 16GEMSDOE registry maps the display name `GEMSDOE1` to the `GEMSDOE` repo and reports that it/5GEMSDOE scored 0.1563; it also reports 8GEMSDOE is pixel-identical on the scored mask. The latter comparisons and the upload mapping have not been recomputed here.
+That reading is **wrong**, and the check that killed it is in `scripts/audit_checks.py` (check B):
+the valid survey footprint is only **42.1 %** of the grid, and **71,984 of the 71,985 QFaults pixels
+that fall inside that footprint (99.999 %) are within 300 m of a training label**. The "missing"
+pixels are simply outside the survey, where nothing is scored. The correct statement, and the one used
+everywhere on this site, is: *the labels are the QFaults network inside the footprint.*
 
-**Impact:** copying the same tracked prediction into a second site is not a new candidate; same pixels would ordinarily produce the same deterministic score. Score equality alone does not prove two other entrants share a file. GitHub lookup for a repository literally named `GEMSDOE1` returned 404; this may be a display name rather than a repo.
+*Recorded because it is the exact self-deception the brief warns about: a large, exciting number that
+came from forgetting to intersect with the scored area.*
 
-**Next evidence:** reconcile platform submission IDs and file hashes in the account; never infer upload mapping from a site’s displayed artifact. [Results](results.md).
+## A-03 · Provided band 6 is not what its tag says
 
-<a id="a-03"></a>
+**[VERIFIED-HERE]** Band 6 of `training_features.tif` is tagged
+`tc — "Tilt angle or total curvature - magnetic field derivative for edge detection"`. Its values are
+**identical** to the GeoDAWN release layer `22103_tc_a2.tif` (max absolute difference 0 over the
+5,165,840 pixels valid in both), and in that release the `tc` grid belongs to the **radiometric**
+family alongside `k`, `th`, `u`, `uk`, `uth`, `thk`. A sibling project reached the same conclusion
+independently (Pearson = Spearman = 1.0; "band 6 IS the GeoDAWN radiometric total count (tag
+description is wrong)") **[GROUP-REPORTED]**.
 
-## A-03 — Public mirror is not independent official provenance — OPEN
+**[INFERENCE]** Two consequences: (1) the feature stack is the GeoDAWN release, so the release's other
+layers are legitimate, same-grid, public-domain inputs — not another survey; (2) four of the nineteen
+provided bands are exactly release layers `rtp`, `tmi`, `tmi_hg`, `tmi_vg`, while **`k`, `th`, `u`,
+`uk`, `uth`, `thk` are absent** from the stack, which is what makes hypothesis H19-D a genuine data
+gap rather than a re-slicing of the given bands.
 
-**Finding:** a public `GEMSDOE` bridge manifest pins a hash for `existing_faults.tif`; the local file hash matched that manifest. The manifest asserts a link to official data-tab mirrors, but no original official data download was available for byte comparison. The full feature stack remains undownloaded in this checkout.
+## A-04 · Mask semantics were undocumented here until this pass
 
-**Impact:** hash agreement proves identity with the bridge manifest, not source provenance, raster semantics, or an eligible validation input.
+**[VERIFIED-HERE]** The staff answer is unambiguous: the known-fault mask is **pixel-exact and
+identical to the provided training labels, with no buffer**, and the buffer around known faults does
+not apply
+([forum 11516 post 4](https://community.drivendata.org/t/scoring-clarification-are-known-usgs-ingenious-faults-masked-when-scoring-and-are-they-in-the-final-round-label-set/11516/4)).
 
-**Next evidence:** compare every bridge file to the official source download and record raster metadata. Keep bridge artifacts out of production until then. [Data status](data.md).
+**[VERIFIED-HERE]** The previous contents of this repository never stated those semantics: a search of
+the committed README for "mask" and "known fault" returns nothing about scoring behaviour, so the
+operating rule (is painting the catalogue neutral, helpful, or fatal?) was left ambiguous for whoever
+packaged a file. It is now written down in `gems18/metric.py` (`known_mask` is applied to both the
+prediction and the truth) and in `tests/test_metric.py::test_known_mask_is_pixel_exact_and_free`.
 
-<a id="a-04"></a>
+## A-05 · What the organizers will not say (recorded, because it bounds what a proxy can prove)
 
-## A-04 — Current leaderboard vs historical group status — OPEN ATTRIBUTION
+**[VERIFIED-HERE]** Asked which data sources, fault types and coverage produced the new test faults,
+DrivenData staff replied: *"We're not sharing details about the data sources, fault types, or coverage
+behind the test faults beyond what's in the problem description."* The same post states that the
+largest prize pool (Phase 2) uses a test set **updated by expert review of all Phase 1 submissions**
+([forum 11527 post 7](https://community.drivendata.org/t/how-were-the-new-test-faults-identified-data-sources-and-fault-types/11527/7)).
 
-**Finding:** a manual official leaderboard snapshot on 2026-09-30 shows DARD 0.3168 at rank 1 and `extradr19` 0.1855 at rank 22, with four submissions shown. The public 16GEMSDOE README still describes 0.1563 as the group’s best public score. This checkout does not establish whether `extradr19` is the group’s entrant, whether the README is stale, or how any live submission maps to a local file.
+**[INFERENCE]** No proxy in this repository can be validated against the hidden truth. Every holdout
+number here is weak evidence and is labelled as such on the page that shows it.
 
-**Impact:** the prior `.1563` may no longer be the best group public result. Do not repeat it as the current top score without resolving account ownership and submission history. The user’s previously cited leader score 0.3049 is also stale relative to this manual snapshot.
+## A-06 · The group's proxies do not predict the board
 
-**Next evidence:** compare the signed-in team account, submission IDs, timestamps, filenames, and hashes manually; update `registry/score-ledger.csv`. No automated polling is used. [Official leaderboard](https://www.drivendata.org/competitions/306/competition-doe-gems/leaderboard/) · [snapshot](../registry/leaderboard_snapshot.json).
+**[GROUP-REPORTED]** Post-hoc calibration over 15 distinct scored files: SGMC-gap proxy
+ρ = +0.52 (p = 0.048), SGMC-off-catalogue ρ = +0.39 (p = 0.15), known-fault proxy ρ = +0.17
+(p = 0.54) ([16GEMSDOE `proxy_calibration_vs_lb.json`](https://raw.githubusercontent.com/buffedlizard55-lab/16GEMSDOE/main/evidence/proxy_calibration_vs_lb.json)).
+The file's own per-file table shows the correlation is fragile: the file with the *highest* SGMC-gap
+score (0.1439) has the *lowest* public score of the five pinned entries (0.1294).
 
-<a id="a-05"></a>
+**[INFERENCE]** A proxy that explains ~27 % of rank variance is not a gate; it is a weak prior. It is
+used here to compare arms, never to forecast a leaderboard number.
 
-## A-05 — Prior holdout is a weak, group-reported proxy — OPEN REPRODUCTION
+## A-07 · Format failure that was reported and could not be reproduced
 
-**Finding:** 16GEMSDOE reports H18-3a means of 0.21319 dense / 0.09401 sparse, a pass over H16-1’s 0.21272 / 0.08541 on a four-quadrant known-fault/sparse-proxy protocol. It is not hidden-label performance and has not been rerun in this checkout. Its own post-hoc calibration reports no detectable dense-proxy rank relationship to 15 historical public scores (ρ=0.171, p=0.5413).
+**[GROUP-REPORTED]** "Predicted values must be in range [0, 1]" was reported after downloading a file
+from a sibling site; neither sibling could reproduce it from the files they published. The plausible
+causes are a wrong file being picked, values above 1 or below 0 inside the footprint, or
+`NaN`/`Inf` inside it. **[MEASURED-HERE]** this repository's validator
+(`scripts/validate_submission.py`, `gems18/submission.py::validate_geotiff`) refuses all four cases and
+is run against the official template before any file is offered for download.
 
-**Impact:** use H18-3a only as a provisional comparator; reproduce the evaluator and disclose proxy limitations. No candidate has passed any 18GEMSDOE gate.
+## A-08 · Provenance caveats that must travel with the numbers
 
-<a id="a-06"></a>
+1. The official rasters reach this checkout through a **git bridge** committed by a sibling project
+   from the public mirror URLs printed on the competition data tab. The bytes are SHA-256-pinned and
+   re-verified here (`scripts/audit_checks.py` check A: PASS against all three pins), and the
+   rasters' own metadata — 19 bands, EPSG:32611, 100 m, the stated bounds, int8 labels with the
+   `-1/0/1` coding — matches the official description **[MEASURED-HERE]**. The mapping from the mirror
+   URLs to the DrivenData data tab was performed by that sibling and is not re-checkable from here.
+2. The GeoDAWN native grids come from a public mirror of the USGS release; the area-2 grid is
+   identical to the competition grid (3292 × 3730, EPSG:32611, 100 m, same bounds)
+   **[MEASURED-HERE]**, consistent with the competition rasters being derived from that release.
+3. USGS 3DEP 1 m lidar — which the problem description explicitly points participants to — is **not
+   obtainable from this sandbox** (the host is blocked). Two sibling projects fetched it on GitHub
+   runners; this repository does not use it, and hypotheses that need it are marked as such.
 
-## A-06 — No automatic DrivenData leaderboard feed — COMPLIANCE CONTROL
+## A-09 · Not verified here, and therefore not claimed
 
-**Finding:** DrivenData Terms of Use prohibit robots, spiders, or other automatic devices from accessing the site. The platform has no approved API/permission established in this checkout.
-
-**Impact:** automatic monitoring cannot be implemented responsibly now. The site links to the official board and stores manually read, dated snapshots. Seek written permission before any automation. [Terms](https://www.drivendata.org/termsofuse/).
-
-<a id="a-07"></a>
-
-## A-07 — GeoDAWN acquisition boundaries can mimic geophysical edges — CONTROL REQUIRED
-
-**Finding:** USGS describes four north-to-south acquisition blocks. Area 1 and Area 2 have different flight specifications, including nominal line spacing of 200 m vs 400 m; the Tonopah block’s Area 1 and part of Area 2 were flown with a Bell helicopter, while other Area 2 portions used fixed-wing aircraft. Do not simplify this to “each block had a different aircraft.” 3DEP one-meter products may also have inter-project seams.
-
-**Impact:** gradient/edge hypotheses must predict an edge at the actual fault trace and include lithologic contacts, acquisition block boundaries, flight-spec changes, and DEM-project seams as controls. No detector should reward data-processing stripes. [USGS GeoDAWN survey page](https://www.usgs.gov/data/geodawn-airborne-magnetic-and-radiometric-surveys-northwestern-great-basin-nevada-and) · [3DEP catalog](https://catalog.data.gov/dataset/1-meter-digital-elevation-models-dems-usgs-national-map-3dep-downloadable-data-collection).
-
-<a id="a-08"></a>
-
-## A-08 — Scarp morphology is not a fault label — SCIENCE CONTROL
-
-**Finding:** Hanks et al. (1984) applied diffusion-style morphology to both wave-cut shoreline and fault-controlled landforms. Hilley et al. (2010) match a modeled curvature template to *scarp-like* DEM topography. Sare et al. (2019) report roads/channels/other scarp-like features in results and use review to remove false detections. GBCGE documents a trenched scarp that proved erosional.
-
-**Impact:** do not call a template match or inferred `κt` an absolute fault age or tectonic proof. Any geomorphic detector needs explicit roads, canals, channels, shoreline, fan-margin, and erosional controls. [Scarp literature and primary sources](research/hypotheses.md#scarp-diffusion-science).
-
-<a id="a-09"></a>
-
-## A-09 — Candidate source access/coverage remains conditional
-
-**Finding:** USGS MF-2323 shoreline GIS, the 3DEP 1 m catalog, ComCat documentation, NASA ASF Sentinel-1 access, and GDR 1391 listings are available to review. This checkout has not downloaded/checked the exact DEM tiles, queried ComCat mechanism coverage, processed Sentinel-1 scenes, or verified the GDR ZIP bytes. Some NASA products/tools require Earthdata login; GDR direct ZIP requests returned HTTP 500 in the earlier sandbox session.
-
-**Impact:** the shortlist is not a declaration that data is immediately usable. Run an access/coverage audit before claiming a candidate is feasible. [Sources](sources.md) · [data status](data.md).
-
-<a id="a-10"></a>
-
-## A-10 — Submission tools have not seen the official template — OPEN / ENGINEERING LIMITATION
-
-**Finding:** the Python validator/packager, evidence gate, and browser GeoTIFF writer have been implemented and exercised using synthetic rasters. No official competition sample template or full-size user prediction was available for a real-file round trip. The release gate validates required evidence fields and recomputes fold thresholds, but hashes and boolean flags do not authenticate that the scientific evidence is genuine or correctly computed.
-
-**Impact:** passing synthetic tests establishes tool behavior for the tested fixtures only; it does not certify compatibility with the competition file, validate scientific performance, or authorize an upload.
-
-**Next evidence:** run both tools against the authorized official template; inspect output in an independent GeoTIFF reader; have a reviewer audit the source logs, split lock, baseline, controls, uniqueness comparison, and evidence artifacts.
-
-<a id="a-11"></a>
-
-## A-11 — Fault-catalogue positional confidence is heterogeneous — CONTROL REQUIRED
-
-**Finding:** USGS describes QFault traces/attributes as simplified geologic interpretations for hazard characterization and says only a limited set of metadata fields has been maintained since 2017. Archived reports and Nevada compilation metadata illustrate differing source scales/reliability; NBMG warns that some regional Nevada traces were digitized at 1:250,000 and may be inaccurate at larger viewing scales. The GDR listing describes INGENIOUS Faults v1/v2 as an updated, QFault-related compilation, but v2 ZIP bytes/field definitions were not inspected here after a prior download error. Historical Nevada work documented omitted smaller intrabasin Quaternary faults, but that does not identify current competition labels.
-
-**Impact:** never treat catalogue traces as equal-accuracy, field-verified ground truth or unmapped space as confirmed non-fault. Use per-segment source/scale/certainty fields where available, document label uncertainty, spatially group source campaigns, and treat catalogue-derived validation as a proxy with known completeness and location limits.
-
-**Next evidence:** inspect the exact authorized/catalogue release and each segment’s provenance/quality fields before constructing folds or controls. See [QFault/INGENIOUS sources](sources.md#s9) and [data caveats](data.md#fault-catalogue-coverage-and-mapping-quality).
+* Any live leaderboard score of any 18GEMSDOE file (none has been submitted).
+* That the hidden new-fault population resembles any proxy on this site.
+* The internal computation of sibling projects' evidence JSONs (linked, not re-run).
+* That `extradr19` on the leaderboard is this group's account.

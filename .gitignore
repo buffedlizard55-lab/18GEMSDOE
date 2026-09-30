@@ -1,5 +1,5 @@
 # Competition and geospatial data (keep out of Git)
-data/
+data/*
 *.tif
 *.tiff
 *.gpkg
@@ -25,3 +25,13 @@ __pycache__/
 node_modules/
 coverage/
 .DS_Store
+
+# --- exceptions that must ship with the repository ---------------------------
+# a) the packaged download: small, SHA-256-pinned and format-validated
+!docs/downloads/*.tif
+# b) the text evidence every number on the site is rendered from
+data/*
+!data/evidence/
+data/evidence/*
+!data/evidence/*.json
+!data/evidence/*.log

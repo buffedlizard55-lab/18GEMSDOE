@@ -1,47 +1,257 @@
 <!doctype html>
-<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="description" content="Official competition, USGS, NASA, primary literature, and prior-group sources behind 18GEMSDOE claims."><title>Sources &amp; claim registry — 18GEMSDOE</title><link rel="stylesheet" href="../assets/site.css"></head>
-<body><a class="skip-link" href="#main">Skip to content</a><header class="topbar"><a class="brand" href="../index.html"><span class="brand-mark">18</span><span>GEMS<span class="brand-muted">DOE</span></span></a><nav aria-label="Main navigation"><a href="hypotheses.html">Research</a><a href="results.html">Evidence</a><a href="data.html">Data &amp; provenance</a><a href="submission.html" class="nav-cta">Submission guide <span aria-hidden="true">↗</span></a></nav></header>
-<main id="main"><section class="page-hero"><div class="shell"><p class="eyebrow">SOURCES · CLAIM REGISTRY · DIRECT LINKS</p><h1>Trace every claim to its source.</h1><p>Official competition and government sources are separated from group-reported work. A source link supports only the claim stated; it does not validate a model score.</p></div></section>
-<div class="shell doc-layout"><article class="doc-content">
-<h2>Official competition and rules</h2>
-<div class="source-item" id="s1"><h3>S1 · GEMS Prize competition page</h3><p><a href="https://www.drivendata.org/competitions/306/competition-doe-gems/" target="_blank" rel="noopener noreferrer">DrivenData competition #306 ↗</a></p><p>Competition objective, account/data-tab workflow, submission navigation, deadline and current competition details. Not a candidate score source.</p></div>
-<div class="source-item" id="s2"><h3>S2 · Problem description, metric, data &amp; format</h3><p><a href="https://www.drivendata.org/competitions/306/competition-doe-gems/page/967/" target="_blank" rel="noopener noreferrer">Official problem description ↗</a></p><p>100 m multiband feature raster, GeoDAWN/INGENIOUS context, official grid and format, α=0.2 / β=0.8 / 300 m metric. Hidden-label mapping methods are not disclosed.</p></div>
-<div class="source-item" id="s3"><h3>S3 · Official NLR rules</h3><p><a href="https://docs.nlr.gov/docs/fy26osti/96647.pdf" target="_blank" rel="noopener noreferrer">Rules PDF ↗</a></p><p>Scored-submission limits, final-submission selection, and finalist reproducibility requirements. Read the rules directly before any final submission.</p></div>
-<div class="source-item" id="s4"><h3>S4 · DrivenData Terms of Use</h3><p><a href="https://www.drivendata.org/termsofuse/" target="_blank" rel="noopener noreferrer">Terms of Use ↗</a></p><p>Robots/spider/automatic site access prohibition; project policy is manual dated leaderboard snapshots only.</p></div>
-<div class="source-item" id="s5"><h3>S5 · Organizer definition of “new fault”</h3><p><a href="https://community.drivendata.org/t/where-do-you-draw-the-line/11536/2" target="_blank" rel="noopener noreferrer">DrivenData staff reply ↗</a></p><p>New pixels may include extensions, splays or parallel strands. Does not reveal hidden-label source methods.</p></div>
-<div class="source-item" id="s6"><h3>S6 · Organizer response on test-source details</h3><p><a href="https://community.drivendata.org/t/how-were-the-new-test-faults-identified-data-sources-and-fault-types/11527/7" target="_blank" rel="noopener noreferrer">DrivenData staff reply ↗</a></p><p>Organizers decline to disclose hidden-label sources, types and coverage beyond the problem description.</p></div>
-<div class="source-item" id="s7"><h3>S7 · Weekly-submission reset clarification</h3><p><a href="https://community.drivendata.org/t/weekly-submissions/11524/2" target="_blank" rel="noopener noreferrer">DrivenData staff reply ↗</a></p><p>Submission allowance resets on a rolling window.</p></div>
-<div class="source-item" id="s8"><h3>S8 · Dated public leaderboard snapshot</h3><p><a href="https://www.drivendata.org/competitions/306/competition-doe-gems/leaderboard/" target="_blank" rel="noopener noreferrer">Official public leaderboard ↗</a></p><p>Live page is authoritative; this repository stores a manually read 2026-09-30 snapshot. The snapshot does not establish account ownership.</p></div>
-
-<h2 id="catalogue-methods">Official fault-catalogue and geology sources</h2>
-<div class="source-item" id="s9"><h3>S9 · USGS Quaternary Faults / QFault methodology</h3><p><a href="https://www.usgs.gov/programs/earthquake-hazards/faults" target="_blank" rel="noopener noreferrer">USGS Faults and QFault page ↗</a> · <a href="https://earthquake.usgs.gov/static/lfs/nshm/qfaults/Reports/563b.pdf" target="_blank" rel="noopener noreferrer">Archived record example (PDF) ↗</a></p><p>USGS describes an archive compiled from many published sources; its hazard traces and metadata are simplified geologic interpretations. The page notes limited maintained metadata since 2017 and distinguishes evidence classes, including nontectonic Class D examples such as erosional/fluvial scarps. Archived reports show source trails and, for some records, scale/location-reliability notes. This is a heterogeneous catalogue, not a uniformly complete or field-verified census.</p></div>
-<div class="source-item" id="s10"><h3>S10 · Historical Nevada catalogue gap</h3><p><a href="https://nbmg.unr.edu/_docs/Newsletters/nl18.htm" target="_blank" rel="noopener noreferrer">NBMG, “Nevada’s Quaternary Fault Hazard” (1993) ↗</a></p><p>The first-cut statewide hazard data set focused on the largest faults and omitted numerous smaller intrabasin Quaternary faults. Historical evidence only—not a statement about current QFault completeness or competition labels.</p></div>
-<div class="source-item" id="s11"><h3>S11 · Detailed Quaternary map-method example</h3><p><a href="https://www.usgs.gov/maps/surficial-geology-and-quaternary-fault-map-las-vegas-valley-clark-county-nevada" target="_blank" rel="noopener noreferrer">USGS Las Vegas Valley surficial geology &amp; fault map (2024) ↗</a></p><p>1:50,000 compilation integrates 1:24,000 maps, new field/desktop review, lidar in undeveloped areas, historic photos in urban areas and age constraints. An example of detailed work, not a regional quality guarantee.</p></div>
-<div class="source-item" id="s12"><h3>S12 · INGENIOUS Great Basin compilation</h3><p><a href="https://gdr.openei.org/submissions/1391" target="_blank" rel="noopener noreferrer">DOE Geothermal Data Repository 1391 ↗</a></p><p>Public listing states CC BY 4.0; QFault-following v1 and an updated v2 compilation with field definitions. The v2 archive bytes/fields were not inspected in this sandbox because a prior direct download returned HTTP 500. No unverified per-trace accuracy or field-verification claim is made.</p></div>
-<div class="source-item" id="s13"><h3>S13 · USGS western Great Basin paleolake GIS</h3><p><a href="https://pubs.usgs.gov/mf/1999/mf-2323/" target="_blank" rel="noopener noreferrer">MF-2323 map and downloads ↗</a> · <a href="https://pubs.usgs.gov/mf/1999/mf-2323/mf2323_met.html" target="_blank" rel="noopener noreferrer">Metadata ↗</a></p><p>Publicly listed GIS; shoreline positions were interpreted from 3-arc-second (~90 m) DEM contours, suitable for regional context, not fine 100 m offsets by itself.</p></div>
-<div class="source-item" id="s14"><h3>S14 · USGS 3DEP one-meter DEMs</h3><p><a href="https://catalog.data.gov/dataset/1-meter-digital-elevation-models-dems-usgs-national-map-3dep-downloadable-data-collection" target="_blank" rel="noopener noreferrer">Data.gov collection record ↗</a> · <a href="https://www.usgs.gov/3d-elevation-program" target="_blank" rel="noopener noreferrer">USGS 3DEP ↗</a></p><p>Public-domain collection; products may be seamless within projects but not across projects. Exact study footprint and project seams are unverified.</p></div>
-<div class="source-item" id="s15"><h3>S15 · GeoDAWN survey specifications</h3><p><a href="https://www.usgs.gov/data/geodawn-airborne-magnetic-and-radiometric-surveys-northwestern-great-basin-nevada-and" target="_blank" rel="noopener noreferrer">USGS GeoDAWN release ↗</a></p><p>Acquisition blocks, overlapping surveys and differing flight specifications (nominal Area 1 line spacing 200 m; Area 2 400 m). Not every block had a unique aircraft; survey seams require controls.</p></div>
-<div class="source-item" id="s16"><h3>S16 · Geothermal structural mechanisms</h3><p><a href="https://pubs.usgs.gov/publication/70202167" target="_blank" rel="noopener noreferrer">Siler et al. (2019), USGS record ↗</a> · <a href="https://doi.org/10.1186/s40517-018-0117-0" target="_blank" rel="noopener noreferrer">Open-access article ↗</a></p><p>Structural discontinuities and stress state in two Basin-and-Range geothermal systems. Mechanism context only, not evidence for a specific mapped pixel.</p></div>
-<div class="source-item" id="s17"><h3>S17 · Great Basin fault-mapping field example</h3><p><a href="https://gbcge.org/locations/dixie-valley/" target="_blank" rel="noopener noreferrer">GBCGE Dixie Valley ↗</a></p><p>One candidate scarp was trenched, showed no stratigraphic offset and was interpreted as erosional—a concrete false-positive case, not a rate estimate.</p></div>
-<div class="source-item" id="s30"><h3>S30 · NBMG Nevada fault-layer scale warning</h3><p><a href="https://gisweb.unr.edu/nbmg/rest/services/Geology/Faults/MapServer" target="_blank" rel="noopener noreferrer">NBMG MapServer metadata ↗</a></p><p>Regional layer was adapted/modified from NBMG M167 and USGS QFault; metadata states traces were digitized at 1:250,000 and spatial error can be significant when viewed at larger scales. Not a universal error radius for every segment.</p></div>
-
-<h2 id="scarp-sources">Primary scarp-morphology literature</h2>
-<div class="source-item" id="s18"><h3>S18 · Hanks et al. (1984)</h3><p><a href="https://www.usgs.gov/publications/modification-wave-cut-and-faulting-controlled-landforms" target="_blank" rel="noopener noreferrer">USGS record ↗</a> · <a href="https://doi.org/10.1029/JB089iB07p05771" target="_blank" rel="noopener noreferrer">DOI ↗</a></p><p>Diffusion-style morphology for both wave-cut and fault-controlled landforms; modeled product such as κt is not calendar age without independent diffusivity calibration.</p></div>
-<div class="source-item" id="s19"><h3>S19 · Andrews &amp; Hanks (1985)</h3><p><a href="https://doi.org/10.1029/JB090iB12p10193" target="_blank" rel="noopener noreferrer">DOI / publisher record ↗</a></p><p>Primary inverse solution for linearly diffusion-degraded scarps; absolute age depends on diffusivity calibration.</p></div>
-<div class="source-item" id="s20"><h3>S20 · Hilley et al. (2010)</h3><p><a href="https://pubs.usgs.gov/publication/70033862" target="_blank" rel="noopener noreferrer">USGS record ↗</a> · <a href="https://doi.org/10.1029/2009GL042044" target="_blank" rel="noopener noreferrer">DOI ↗</a></p><p>Second-derivative scarp template, height fit and signal-to-noise applied to scarp-like DEM topography; no tectonic-origin guarantee.</p></div>
-<div class="source-item" id="s21"><h3>S21 · Sare et al. (2019)</h3><p><a href="https://agupubs.onlinelibrary.wiley.com/doi/full/10.1029/2018JB016886" target="_blank" rel="noopener noreferrer">Open-access JGR article ↗</a></p><p>Regional curvature-template workflow reports scarp-like false positives and visual screening for nontectonic features. Not a GeoDAWN validation.</p></div>
-
-<h2>Conditional candidate services</h2>
-<div class="source-item" id="s22"><h3>S22 · USGS ComCat</h3><p><a href="https://earthquake.usgs.gov/data/comcat/" target="_blank" rel="noopener noreferrer">Catalog documentation ↗</a> · <a href="https://earthquake.usgs.gov/fdsnws/event/1/" target="_blank" rel="noopener noreferrer">FDSN event API ↗</a></p><p>Source parameters and associated moment-tensor/focal-mechanism products. No footprint coverage count has been computed.</p></div>
-<div class="source-item" id="s23"><h3>S23 · NASA Sentinel-1 / ASF DAAC</h3><p><a href="https://www.earthdata.nasa.gov/data/platforms/space-based-platforms/sentinel-1" target="_blank" rel="noopener noreferrer">NASA Sentinel-1 ↗</a> · <a href="https://www.earthdata.nasa.gov/data/tools/asf-search" target="_blank" rel="noopener noreferrer">ASF search ↗</a></p><p>Documented data access; Earthdata login required for some downloads/tools. No scene/coherence coverage audit has been run.</p></div>
-
-<h2>Group records, not official facts</h2>
-<div class="source-item" id="s24"><h3>S24 · 8GEMSDOE public hypothesis page</h3><p><a href="https://buffedlizard55-lab.github.io/8GEMSDOE/docs/hypotheses.html" target="_blank" rel="noopener noreferrer">8GEMSDOE hypotheses ↗</a></p><p>Novelty screen and group-reported candidate tests only; not independently reproduced or official competition results.</p></div>
-<div class="source-item" id="s25"><h3>S25 · 16GEMSDOE research register</h3><p><a href="https://raw.githubusercontent.com/buffedlizard55-lab/16GEMSDOE/main/docs/research/hypothesis_register.md" target="_blank" rel="noopener noreferrer">16GEMSDOE register ↗</a></p><p>Prior proposals and test status, including H18-5 thermal anchors. Not a complete audit of private/unpublished work.</p></div>
-<div class="source-item" id="s26"><h3>S26 · 16GEMSDOE holdout / proxy calibration</h3><p><a href="https://raw.githubusercontent.com/buffedlizard55-lab/16GEMSDOE/main/evidence/hypothesis_h18_validation.json" target="_blank" rel="noopener noreferrer">Validation JSON ↗</a> · <a href="https://raw.githubusercontent.com/buffedlizard55-lab/16GEMSDOE/main/evidence/proxy_calibration_vs_lb.json" target="_blank" rel="noopener noreferrer">Calibration JSON ↗</a> · <a href="https://buffedlizard55-lab.github.io/16GEMSDOE/docs/research/preregistration_h18.md" target="_blank" rel="noopener noreferrer">Preregistration ↗</a></p><p>Group-reported known-label/sparse-proxy results; not rerun here and not hidden-label evidence.</p></div>
-<div class="source-item" id="s27"><h3>S27 · 16GEMSDOE file-similarity registry</h3><p><a href="https://raw.githubusercontent.com/buffedlizard55-lab/16GEMSDOE/main/evidence/submission_similarity.json" target="_blank" rel="noopener noreferrer">Similarity JSON ↗</a></p><p>Group-computed file/pixel comparison. This repository independently checked only the byte-identical GEMSDOE and 5GEMSDOE Git blobs.</p></div>
-<div class="source-item" id="s28"><h3>S28 · Public GEMSDOE bridge manifest</h3><p><a href="https://raw.githubusercontent.com/buffedlizard55-lab/GEMSDOE/main/data/bridge/manifest.json" target="_blank" rel="noopener noreferrer">Manifest ↗</a> · <a href="https://raw.githubusercontent.com/buffedlizard55-lab/GEMSDOE/main/data/README.md" target="_blank" rel="noopener noreferrer">Data README ↗</a></p><p>Team-maintained mirror claims only; a match to its manifest is not proof of original official provenance.</p></div>
-<div class="source-item" id="s29"><h3>S29 · geotiff.js browser library</h3><p><a href="https://github.com/geotiffjs/geotiff.js" target="_blank" rel="noopener noreferrer">Project / MIT license ↗</a> · <a href="https://www.npmjs.com/package/geotiff" target="_blank" rel="noopener noreferrer">npm package ↗</a></p><p>Local browser GeoTIFF read/write; Python/rasterio remains an independent format checker.</p></div>
-<p>The full source-to-claim registry is preserved in <a href="../docs/sources.md">docs/sources.md</a>.</p>
-</article><aside class="doc-aside"><p class="eyebrow">SOURCE POLICY</p><h3>Classify, don’t blend</h3><ul><li>Official competition statements</li><li>Primary papers &amp; government data</li><li>Group self-reports, clearly labeled</li><li>Unknowns stay unknown</li></ul><p><a href="data.html">Data-access caveats →</a></p></aside></div></main>
-<footer class="footer"><div class="shell footer-inner"><a class="brand footer-brand" href="../index.html"><span class="brand-mark">18</span><span>GEMS<span class="brand-muted">DOE</span></span></a><p>Every factual claim needs a traceable source.</p><div class="footer-links"><a href="audit.html">Audit</a><a href="sources.html">Sources</a><a href="https://github.com/buffedlizard55-lab/18GEMSDOE" target="_blank" rel="noopener noreferrer">GitHub ↗</a></div></div></footer></body></html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Sources — 18GEMSDOE</title>
+<link rel="stylesheet" href="../assets/site.css">
+</head>
+<body>
+<header class="site">
+  <div class="wrap">
+    <a class="brand" href="../index.html">18GEMSDOE</a>
+    <nav><a href="../docs/executive_summary.html">Submit</a><a href="../docs/submission.html">Format</a><a href="../docs/hypotheses.html">Hypotheses</a><a href="../docs/validation.html">Validation</a><a href="../docs/results.html">Results</a><a href="../docs/audit.html">Audit</a><a href="../docs/sources.html">Sources</a><a href="../docs/data.html">Data</a></nav>
+  </div>
+</header>
+<main class="wrap">
+<h1 id="sources-every-claim-on-this-site-with-the-official-link">Sources — every claim on this site, with the official link</h1>
+<p>Read each row as: <em>the claim</em>, <em>where it was read from</em>, <em>what the source actually says</em>.
+Anything not listed here should be treated as unverified. Fetched 2026-09-30.</p>
+<h2 id="competition-and-scoring">Competition and scoring</h2>
+<table>
+<thead>
+<tr>
+<th>#</th>
+<th>Claim</th>
+<th>Source</th>
+<th>What the source says (verbatim where quoted)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a id="s1"></a> S1</td>
+<td>The test set is <strong>new faults only</strong></td>
+<td><a href="https://www.drivendata.org/competitions/306/competition-doe-gems/page/967/">Problem description</a></td>
+<td>"we have consulted with fault experts who have manually identified faults that are not contained within the current public USGS database. These new faults will comprise the test dataset for the initial prize round"</td>
+</tr>
+<tr>
+<td><a id="s2"></a> S2</td>
+<td>Metric definition, α=0.2, β=0.8, R=300 m, worked example = 0.60</td>
+<td><a href="https://www.drivendata.org/competitions/306/competition-doe-gems/page/967/">Problem description § Performance metric</a></td>
+<td>triangular kernel <code>k(d)=max(1-d/R,0)</code>; <code>TP_w</code>, <code>FP_w</code>, <code>FN_w</code> as published; <code>DTI = TP_w/(TP_w+αFP_w+βFN_w+ε)</code></td>
+</tr>
+<tr>
+<td><a id="s3"></a> S3</td>
+<td>Submission format</td>
+<td><a href="https://www.drivendata.org/competitions/306/competition-doe-gems/page/967/">Problem description § Submission format</a></td>
+<td>single-layer float32 GeoTIFF, EPSG:32611, 100 m, same bounds, values in [0, 1], NaN outside</td>
+</tr>
+<tr>
+<td><a id="s4"></a> S4</td>
+<td>Known-fault mask is <strong>pixel-exact</strong>, no buffer</td>
+<td><a href="https://community.drivendata.org/t/scoring-clarification-are-known-usgs-ingenious-faults-masked-when-scoring-and-are-they-in-the-final-round-label-set/11516/4">Forum 11516 post 4</a> (DrivenData staff)</td>
+<td>"The mask is indeed pixel-exact - it is identical to the provided set of training fault labels." … "the buffer does not apply to known faults" … "A new-fault ground truth pixel can indeed lie within 300m of a known fault trace."</td>
+</tr>
+<tr>
+<td><a id="s5"></a> S5</td>
+<td>"New fault" includes extensions, splays, parallel strands</td>
+<td><a href="https://community.drivendata.org/t/where-do-you-draw-the-line/11536/2">Forum 11536 post 2</a> (DrivenData staff)</td>
+<td>"any fault pixel not already captured by USGS/INGENIOUS" and "can include newly mapped geometry of an existing fault system"</td>
+</tr>
+<tr>
+<td><a id="s6"></a> S6</td>
+<td>Three scored submissions per week; one final submission</td>
+<td><a href="https://docs.nlr.gov/docs/fy26osti/96647.pdf">Official rules §3.4, §3.5</a></td>
+<td>"up to three per week" … "Each participating entity … is allowed to have one final submission"</td>
+</tr>
+<tr>
+<td><a id="s7"></a> S7</td>
+<td>Labels come from INGENIOUS</td>
+<td><a href="https://docs.nlr.gov/docs/fy26osti/96647.pdf">Official rules §3.3</a></td>
+<td>"These labels were obtained from the INGENIOUS project's Great Basin Regional Dataset Compilation" (fn 4: Ayling et al. 2022, <a href="https://doi.org/10.15121/1881483">doi:10.15121/1881483</a>)</td>
+</tr>
+<tr>
+<td><a id="s7b"></a> S7b</td>
+<td><strong>The organizers will not disclose how the test faults were made</strong>; the Phase-2 test set is updated by expert review of all Phase-1 submissions</td>
+<td><a href="https://community.drivendata.org/t/how-were-the-new-test-faults-identified-data-sources-and-fault-types/11527/7">Forum 11527 post 7</a> (DrivenData staff)</td>
+<td>"We're not sharing details about the data sources, fault types, or coverage behind the test faults beyond what's in the problem description." / "the largest prize pool (Phase 2) will use a test set that is updated by expert review of all Phase 1 submissions"</td>
+</tr>
+<tr>
+<td><a id="s8"></a> S8</td>
+<td>Public score ≠ the score that wins the first round</td>
+<td><a href="https://docs.nlr.gov/docs/fy26osti/96647.pdf">Official rules §3.6.1–3.6.2</a></td>
+<td>"The competitor's score on the private test dataset will be used for the first prize round" … "you must make your decision without knowledge of your scores on the private test set"</td>
+</tr>
+<tr>
+<td><a id="s9"></a> S9</td>
+<td>Live leaderboard state</td>
+<td><a href="https://www.drivendata.org/competitions/306/competition-doe-gems/leaderboard/">Leaderboard</a></td>
+<td>2026-09-30 snapshot: #1 DARD 0.3168, #2 alexoktaba 0.3042, #3 joeyfezster 0.2919; <code>extradr19</code> 0.1855 at #22</td>
+</tr>
+<tr>
+<td><a id="s10"></a> S10</td>
+<td>Allowed external data</td>
+<td><a href="https://www.drivendata.org/competitions/306/competition-doe-gems/page/967/">Problem description § External datasets</a></td>
+<td>"Participants are allowed to use any additional data sources, provided that the participants possess a license that permits the data to be used in this challenge"</td>
+</tr>
+</tbody>
+</table>
+<h2 id="data">Data</h2>
+<table>
+<thead>
+<tr>
+<th>#</th>
+<th>Dataset</th>
+<th>Official source</th>
+<th>Licence</th>
+<th>Used here</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a id="s11"></a> S11</td>
+<td>GeoDAWN airborne magnetic &amp; radiometric surveys</td>
+<td><a href="https://www.sciencebase.gov/catalog/item/657e1d85d34e23d3533209f7">ScienceBase 657e1d85…</a>, <a href="https://doi.org/10.5066/P93LGLVQ">doi:10.5066/P93LGLVQ</a>, <a href="https://www.usgs.gov/data/geodawn-airborne-magnetic-and-radiometric-surveys-northwestern-great-basin-nevada-and">USGS overview</a></td>
+<td>US public domain</td>
+<td>yes — via a pinned public mirror (see S14)</td>
+</tr>
+<tr>
+<td><a id="s12"></a> S12</td>
+<td>USGS State Geologic Map Compilation (SGMC) — the proxy catalogue</td>
+<td><a href="https://doi.org/10.3133/ds1052">doi:10.3133/ds1052</a>, data <a href="https://doi.org/10.5066/F7WH2N65">doi:10.5066/F7WH2N65</a>, service <code>SB_5888bf4fe4b05ccb964bab9d_USGS_SGMC_feature</code></td>
+<td>US public domain</td>
+<td>yes (raster staged)</td>
+</tr>
+<tr>
+<td><a id="s13"></a> S13</td>
+<td>INGENIOUS Great Basin Regional Dataset Compilation</td>
+<td><a href="https://gdr.openei.org/submissions/1391">GDR submissions/1391</a>, <a href="https://doi.org/10.15121/1881483">doi:10.15121/1881483</a></td>
+<td>CC BY 4.0</td>
+<td>as the label source only</td>
+</tr>
+<tr>
+<td><a id="s14"></a> S14</td>
+<td>Native-resolution GeoDAWN grids (mirror)</td>
+<td><code>codeload.github.com/jklinck/geothermal_research</code> (public repository distributing the USGS rasters)</td>
+<td>redistributed US public domain</td>
+<td>yes — area 22103 <code>upcont_tmi150</code> for the deep-gradient arm; area 2 grid verified identical to the competition grid</td>
+</tr>
+<tr>
+<td><a id="s15"></a> S15</td>
+<td>USGS 3DEP 1 m DEM (from the competition's <code>1m_DEM_links.csv</code>)</td>
+<td><a href="https://www.usgs.gov/3d-elevation-program/about-3dep-products-services">3DEP</a>, <a href="https://apps.nationalmap.gov/downloader/">National Map downloader</a>, <a href="https://registry.opendata.aws/usgs-lidar/">AWS Open Data</a></td>
+<td>US public domain, no use restrictions</td>
+<td><strong>not obtainable from this sandbox</strong> (S3 host blocked) — flagged as a limitation, not used</td>
+</tr>
+<tr>
+<td><a id="s16"></a> S16</td>
+<td>USGS Quaternary Fault and Fold Database (QFaults)</td>
+<td><a href="https://doi.org/10.5066/P9BCVRCK">doi:10.5066/P9BCVRCK</a>, <a href="https://earthquake.usgs.gov/arcgis/rest/services/haz/Qfaults/MapServer">ArcGIS service</a></td>
+<td>US public domain</td>
+<td>measured to be ≈ the training labels, therefore <strong>not</strong> a source of novel faults</td>
+</tr>
+</tbody>
+</table>
+<h2 id="method-literature-for-the-physics-not-for-the-scores">Method literature (for the physics, not for the scores)</h2>
+<table>
+<thead>
+<tr>
+<th>#</th>
+<th>Reference</th>
+<th>Used for</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a id="s17"></a> S17</td>
+<td>Hanks, Bucknam, Lajoie &amp; Wallace (1984), <em>Modification of wave-cut and faulting-controlled landforms</em>, JGR 89, 5771–5790, <a href="https://doi.org/10.1029/JB089iB07p05771">doi:10.1029/JB089iB07p05771</a></td>
+<td>scarp morphology degrades by diffusion — a scarp is a <em>young</em> step, a shoreline is not</td>
+</tr>
+<tr>
+<td><a id="s18"></a> S18</td>
+<td>Andrews &amp; Hanks (1985), <em>Scarp degraded by linear diffusion</em>, JGR 90, 10193–10208, <a href="https://doi.org/10.1029/JB090iB12p10193">doi:10.1029/JB090iB12p10193</a></td>
+<td>inversion returns κt, not an age, without an independent diffusivity calibration</td>
+</tr>
+<tr>
+<td><a id="s19"></a> S19</td>
+<td>Hilley, DeLong, Prentice, Blisniuk &amp; Arrowsmith (2010), <em>Morphologic dating of fault scarps using airborne laser swath mapping</em>, JGR 115, B04404, <a href="https://doi.org/10.1029/2009JB006668">doi:10.1029/2009JB006668</a></td>
+<td>curvature-template scarp detection with signal-to-noise — and its rate of false positives on non-tectonic steps</td>
+</tr>
+<tr>
+<td><a id="s20"></a> S20</td>
+<td>Hermant, Kiersnowski &amp; Bellanger (2025), <em>Using Deep Learning to Map Quaternary Faults in Western USA</em>, Stanford SGW, <a href="https://pangea.stanford.edu/ERE/db/GeoConf/papers/SGW/2025/Hermant.pdf">PDF</a></td>
+<td>the closest published study on this exact task: topography inputs, 128×128 tiles at 10 m, no empty tiles, catalogue offsets up to 400 m</td>
+</tr>
+<tr>
+<td><a id="s21"></a> S21</td>
+<td>Mattéo et al. (2021), <em>Automatic fault mapping … with deep learning</em>, JGR Solid Earth 126, <a href="https://doi.org/10.1029/2020JB021269">doi:10.1029/2020JB021269</a></td>
+<td>recommended on the competition About page; cited, not used</td>
+</tr>
+<tr>
+<td><a id="s22"></a> S22</td>
+<td>Horton, San Juan &amp; Stoeser (2017), <a href="https://pubs.usgs.gov/ds/1052/ds1052.pdf">SGMC report</a></td>
+<td>what the proxy catalogue's features mean (structure layer attribute dictionary)</td>
+</tr>
+<tr>
+<td><a id="s22b"></a> S22b</td>
+<td>Glen &amp; Earney (2024), <em>GeoDAWN: airborne magnetic and radiometric surveys of the northwestern Great Basin</em>, USGS data release, <a href="https://doi.org/10.5066/P93LGLVQ">doi:10.5066/P93LGLVQ</a></td>
+<td>the K/Th/U/ratio grids that are <strong>not</strong> in the provided stack (H19-D), and the grids that <em>are</em> (<code>rtp</code>, <code>tmi</code>, <code>tmi_hg</code>, <code>tmi_vg</code>, and <code>tc</code> under a misleading tag)</td>
+</tr>
+<tr>
+<td><a id="s22c"></a> S22c</td>
+<td>Faulds &amp; Hinz (2015), <em>Favorable tectonic and structural settings of geothermal systems in the Great Basin</em>, <a href="https://www.osti.gov/servlets/purl/1724082">OSTI 1724082</a></td>
+<td>step-overs and fault terminations host a large share of Great Basin geothermal systems (mechanism behind H19-E)</td>
+</tr>
+<tr>
+<td><a id="s22d"></a> S22d</td>
+<td>Siler, Zhang, Spycher et al. (2019), <a href="https://pubs.usgs.gov/publication/70202167">USGS pub 70202167</a></td>
+<td>fault intersections and terminations control upflow — the structural reason to weight search density near tips</td>
+</tr>
+</tbody>
+</table>
+<h2 id="group-material-reported-not-re-run-here">Group material (reported, not re-run here)</h2>
+<table>
+<thead>
+<tr>
+<th>#</th>
+<th>Source</th>
+<th>Used for</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a id="s23"></a> S23</td>
+<td><a href="https://raw.githubusercontent.com/buffedlizard55-lab/16GEMSDOE/main/evidence/submission_similarity.json"><code>16GEMSDOE/evidence/submission_similarity.json</code></a></td>
+<td>the 21 registered files, byte-identity of the repeated 0.1563 entry</td>
+</tr>
+<tr>
+<td><a id="s24"></a> S24</td>
+<td><a href="https://raw.githubusercontent.com/buffedlizard55-lab/16GEMSDOE/main/evidence/proxy_calibration_vs_lb.json"><code>16GEMSDOE/evidence/proxy_calibration_vs_lb.json</code></a></td>
+<td>ρ = +0.52 (SGMC-gap) vs +0.17 (known-fault) against public score, n = 15</td>
+</tr>
+<tr>
+<td><a id="s25"></a> S25</td>
+<td><a href="https://raw.githubusercontent.com/buffedlizard55-lab/16GEMSDOE/main/evidence/lb_signal_attribution.json"><code>16GEMSDOE/evidence/lb_signal_attribution.json</code></a></td>
+<td>the feature-enrichment prior (magnetic worms positive, basin-margin gradients negative)</td>
+</tr>
+<tr>
+<td><a id="s26"></a> S26</td>
+<td><a href="https://raw.githubusercontent.com/buffedlizard55-lab/GEMSDOE/main/docs/METRIC_STRATEGY.md"><code>GEMSDOE/docs/METRIC_STRATEGY.md</code></a></td>
+<td>the measured metric baselines (blanket 0.0956 on their window; thin beats blobby)</td>
+</tr>
+<tr>
+<td><a id="s27"></a> S27</td>
+<td><a href="https://raw.githubusercontent.com/buffedlizard55-lab/16GEMSDOE/main/docs/research/hypothesis_register.md"><code>16GEMSDOE/docs/research/hypothesis_register.md</code></a></td>
+<td>the novelty screen: what the group has already proposed, tested or failed</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Terms of use.</strong> DrivenData's terms prohibit robots and automated access; this project links
+to the leaderboard and stores dated manual snapshots only (<a href="https://www.drivendata.org/termsofuse/">terms</a>).</p>
+</main>
+<footer class="wrap">
+  <p>Static site. Every figure on these pages is rendered from a committed evidence file at build time.
+  Sources are linked for manual review; see <a href="../docs/audit.html">Audit</a> for what was and was not verified.</p>
+</footer>
+</body>
+</html>

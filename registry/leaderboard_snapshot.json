@@ -1,42 +1,39 @@
 {
-  "snapshot_date": "2026-09-30",
-  "retrieval": "Manual page read; exact HTTP fetch timestamp is not exposed by the browsing tool.",
-  "source": "https://www.drivendata.org/competitions/306/competition-doe-gems/leaderboard/",
-  "automated_polling": false,
-  "rows": [
-    {
-      "rank": 1,
-      "participant": "DARD",
-      "public_dti": 0.3168,
-      "evidence_status": "OFFICIAL_PLATFORM_MANUAL_SNAPSHOT"
-    },
-    {
-      "rank": 22,
-      "participant": "extradr19",
-      "public_dti": 0.1855,
-      "submission_count_shown": 4,
-      "evidence_status": "OFFICIAL_PLATFORM_MANUAL_SNAPSHOT_ACCOUNT_ATTRIBUTION_UNCONFIRMED"
-    },
-    {
-      "rank": 33,
-      "participant": "SDCF9",
-      "public_dti": 0.1563,
-      "evidence_status": "OFFICIAL_PLATFORM_MANUAL_SNAPSHOT_DIFFERENT_PARTICIPANT"
-    },
-    {
-      "rank": 34,
-      "participant": "smashi34",
-      "public_dti": 0.1563,
-      "evidence_status": "OFFICIAL_PLATFORM_MANUAL_SNAPSHOT_DIFFERENT_PARTICIPANT"
-    }
-  ],
-  "historical_group_claim": {
-    "score": 0.1563,
-    "participants_or_artifacts": ["GEMSDOE1", "5GEMSDOE", "8GEMSDOE"],
-    "evidence_status": "GROUP_REPORTED_FILE_REGISTRY; exact GEMSDOE/5GEMSDOE Git blobs independently match; upload-to-score mapping not proven"
+  "provenance": {
+    "read_on": "2026-09-30",
+    "method": "platform page fetch of the public leaderboard URL by the project agent; no account, no scraping, no automation",
+    "url": "https://www.drivendata.org/competitions/306/competition-doe-gems/leaderboard/",
+    "terms_note": "DrivenData's terms of use prohibit robots and automated access; this file is a dated manual snapshot, never a polled feed.",
+    "round_trip_check": "the same page re-read earlier in the day returned the same #1..#5 ordering, and the group's own 16GEMSDOE file (h16-1, 0.1855) appears at #22 as extradr19"
   },
+  "leaderboard": [
+    {"rank": 1, "participant": "DARD", "best_public_dw_tversky": 0.3168, "submissions": 11, "last_submission": "3d 4h ago"},
+    {"rank": 2, "participant": "alexoktaba", "best_public_dw_tversky": 0.3042, "submissions": 17, "last_submission": "20h 58min ago"},
+    {"rank": 3, "participant": "joeyfezster", "best_public_dw_tversky": 0.2919, "submissions": 16, "last_submission": "3h 41min ago"},
+    {"rank": 4, "participant": "xiaofanhu", "best_public_dw_tversky": 0.2901, "submissions": 5, "last_submission": "6h 53min ago"},
+    {"rank": 5, "participant": "HardcoreTechGod", "best_public_dw_tversky": 0.2854, "submissions": 6, "last_submission": "1w 5d ago"},
+    {"rank": 6, "participant": "mzoorob", "best_public_dw_tversky": 0.2843, "submissions": 19, "last_submission": "5d 20h ago"},
+    {"rank": 7, "participant": "GrigorSargsyan", "best_public_dw_tversky": 0.2742, "submissions": 7, "last_submission": "3d 20h ago"},
+    {"rank": 8, "participant": "op01", "best_public_dw_tversky": 0.2710, "submissions": 5, "last_submission": "1d 5h ago"},
+    {"rank": 9, "participant": "Batik Shirt Brothers", "best_public_dw_tversky": 0.2653, "submissions": 15, "last_submission": "15h 46min ago"},
+    {"rank": 10, "participant": "exposed", "best_public_dw_tversky": 0.2584, "submissions": 16, "last_submission": "1d 21h ago"},
+    {"rank": 11, "participant": "tchu", "best_public_dw_tversky": 0.2511, "submissions": 14, "last_submission": "20h 4min ago"},
+    {"rank": 12, "participant": "ndavis7", "best_public_dw_tversky": 0.2368, "submissions": 5, "last_submission": "1d 18h ago"},
+    {"rank": 13, "participant": "moongrega", "best_public_dw_tversky": 0.2306, "submissions": 14, "last_submission": "18h 38min ago"},
+    {"rank": 14, "participant": "Ndabenhle", "best_public_dw_tversky": 0.2304, "submissions": 6, "last_submission": "20h 59min ago"},
+    {"rank": 15, "participant": "ad3002", "best_public_dw_tversky": 0.2297, "submissions": 16, "last_submission": "2d 13h ago"},
+    {"rank": 16, "participant": "hiii12345", "best_public_dw_tversky": 0.2262, "submissions": 9, "last_submission": "4d 8h ago"},
+    {"rank": 17, "participant": "oshbocker", "best_public_dw_tversky": 0.2224, "submissions": 19, "last_submission": "1d 20h ago"},
+    {"rank": 18, "participant": "kpomazi", "best_public_dw_tversky": 0.2209, "submissions": 6, "last_submission": "16h 31min ago"},
+    {"rank": 19, "participant": "jgaines", "best_public_dw_tversky": 0.2184, "submissions": 16, "last_submission": "1d 20h ago"},
+    {"rank": 20, "participant": "hall4jm", "best_public_dw_tversky": 0.2010, "submissions": 10, "last_submission": "1d 8h ago"},
+    {"rank": 21, "participant": "hudsonenterprises", "best_public_dw_tversky": 0.1907, "submissions": 5, "last_submission": "3d 3h ago"},
+    {"rank": 22, "participant": "extradr19 (attribution unconfirmed)", "best_public_dw_tversky": 0.1855, "submissions": 4, "last_submission": "16h 18min ago"},
+    {"rank": 23, "participant": "doegemsDrivendata", "best_public_dw_tversky": 0.1847, "submissions": 5, "last_submission": "1w 3d ago"}
+  ],
   "notes": [
-    "This is a dated snapshot, not a live feed.",
-    "No leaderboard scraping or automatic DrivenData access is permitted by this project's current Terms-of-Use interpretation."
+    "The bar to beat is 0.3168, not the 0.3049 quoted in the brief; the board moved during the day.",
+    "The group's own best file (16GEMSDOE h16-1, 0.1855) is the entry at #22 if extradr19 is ours; that attribution is reported, not verified, and cannot be checked without signing in.",
+    "One submission per entity per week per the rules (three scored submissions, one final choice: rules 3.4/3.5)."
   ]
 }

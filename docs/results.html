@@ -1,31 +1,209 @@
 <!doctype html>
-<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="description" content="Dated official leaderboard snapshot, group-reported proxy results, and an audit of repeated 0.1563 scores."><title>Evidence &amp; score history — 18GEMSDOE</title><link rel="stylesheet" href="../assets/site.css"></head>
-<body><a class="skip-link" href="#main">Skip to content</a><header class="topbar"><a class="brand" href="../index.html"><span class="brand-mark">18</span><span>GEMS<span class="brand-muted">DOE</span></span></a><nav aria-label="Main navigation"><a href="hypotheses.html">Research</a><a href="results.html">Evidence</a><a href="data.html">Data &amp; provenance</a><a href="submission.html" class="nav-cta">Submission guide <span aria-hidden="true">↗</span></a></nav></header>
-<main id="main"><section class="page-hero"><div class="shell"><p class="eyebrow">RESULTS · ATTRIBUTION MATTERS</p><h1>Scores are not all the same kind of evidence.</h1><p>We separate official leaderboard snapshots, independently checked artifact identity, group-reported proxy calculations, and inference. There is no new 18GEMSDOE model result.</p></div></section>
-<div class="shell doc-layout"><article class="doc-content"><div class="callout warning"><p><strong>No 18GEMSDOE validation result exists.</strong> We have not run a candidate against the hidden holdout, reproduced the 16GEMSDOE holdout, or submitted a new file from this checkout.</p></div>
-<h2>Official public leaderboard — manual snapshot, 30 Sep 2026</h2><p>The public DrivenData leaderboard was read manually. This is a dated snapshot, not an automated feed. The official leaderboard page is the authority for current values and may have changed since this record was captured.</p>
-<table class="doc-table"><thead><tr><th>Rank</th><th>Participant</th><th>Public DTI</th><th>Evidence / attribution</th></tr></thead><tbody>
-<tr><td>1</td><td><strong>DARD</strong></td><td>0.3168</td><td>Official platform manual snapshot.</td></tr>
-<tr><td>22</td><td><strong>extradr19</strong></td><td>0.1855</td><td>Official platform manual snapshot; four submissions shown. Whether this account is our entrant is unresolved.</td></tr>
-<tr><td>33</td><td>SDCF9</td><td>0.1563</td><td>Separate leaderboard participant.</td></tr>
-<tr><td>34</td><td>smashi34</td><td>0.1563</td><td>Separate leaderboard participant.</td></tr>
-</tbody></table><p><a href="https://www.drivendata.org/competitions/306/competition-doe-gems/leaderboard/" target="_blank" rel="noopener noreferrer">Open the official live leaderboard ↗</a>. This project does not scrape or automatically poll it.</p>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Results &amp; score ledger — 18GEMSDOE</title>
+<link rel="stylesheet" href="../assets/site.css">
+</head>
+<body>
+<header class="site">
+  <div class="wrap">
+    <a class="brand" href="../index.html">18GEMSDOE</a>
+    <nav><a href="../docs/executive_summary.html">Submit</a><a href="../docs/submission.html">Format</a><a href="../docs/hypotheses.html">Hypotheses</a><a href="../docs/validation.html">Validation</a><a href="../docs/results.html">Results</a><a href="../docs/audit.html">Audit</a><a href="../docs/sources.html">Sources</a><a href="../docs/data.html">Data</a></nav>
+  </div>
+</header>
+<main class="wrap">
+<h1 id="results-the-board-the-groups-history-and-why-four-entries-were-one-file">Results — the board, the group's history, and why four entries were one file</h1>
+<h2 id="1-the-live-board-dated-manual-snapshot">1. The live board (dated manual snapshot)</h2>
+Read from the public leaderboard on **2026-09-30** ([source](https://www.drivendata.org/competitions/306/competition-doe-gems/leaderboard/)); DrivenData&#x27;s terms of use prohibit robots and automated access; this file is a dated manual snapshot, never a polled feed.
 
-<h2>Why 0.1563 repeated</h2><p><strong>What we independently checked:</strong> the tracked submission TIFFs in public <code>GEMSDOE</code> and <code>5GEMSDOE</code> are the exact same Git blob—Git SHA-1 <code>812e61b74050d1350cc2bde1fab0c76ead32e0c4</code>, 570,890 bytes. Their tracked sidecar <code>submission_field.bin</code> blobs also match, SHA-1 <code>6a89b64e01a7c11b8235449c538390ac3435605d</code>, 532,072 bytes. Byte-identical TIFFs necessarily contain the same prediction values.</p>
-<p><strong>What prior group records report:</strong> 16GEMSDOE’s public similarity registry associates the duplicate `GEMSDOE1`/`5GEMSDOE` artifact with a historical 0.1563 score and says `8GEMSDOE` differs only on pixels excluded under that project’s scored-pixel definition. We did not independently rerun that pixel-mask comparison or prove the exact upload-to-score mapping. In the current public GitHub account, `GEMSDOE1` is not a repository name; the registry uses it as a display label for `GEMSDOE`.</p>
-<p><strong>Why equal leaderboard rows are not evidence of equal files:</strong> the current snapshot separately lists SDCF9 and smashi34 at 0.1563. Equal rounded DTI scores do not show those accounts used the same raster. Nor do they resolve which historical file was uploaded under which account. The strongest explanation for the group’s duplicate 0.1563 record is repeated/near-identical predictions, but only the GEMSDOE/5GEMSDOE Git-blob identity is directly verified here.</p>
-<div class="callout"><p><strong>Finding:</strong> duplicate artifact identity is proven for two public files; historical score attribution and all other 0.1563 rows remain unresolved. No claim is made that score equality proves file equality.</p></div>
+| Rank | Participant | Best public DW-Tversky | Submissions |
+|---:|---|---:|---:|
+| #1 | DARD | 0.3168 | 11 |
+| #2 | alexoktaba | 0.3042 | 17 |
+| #3 | joeyfezster | 0.2919 | 16 |
+| #4 | xiaofanhu | 0.2901 | 5 |
+| #5 | HardcoreTechGod | 0.2854 | 6 |
+| #6 | mzoorob | 0.2843 | 19 |
+| #7 | GrigorSargsyan | 0.2742 | 7 |
+| #8 | op01 | 0.2710 | 5 |
+| #9 | Batik Shirt Brothers | 0.2653 | 15 |
+| #10 | exposed | 0.2584 | 16 |
+| #11 | tchu | 0.2511 | 14 |
+| #12 | ndavis7 | 0.2368 | 5 |
+| #13 | moongrega | 0.2306 | 14 |
+| #14 | Ndabenhle | 0.2304 | 6 |
+| #15 | ad3002 | 0.2297 | 16 |
+| #16 | hiii12345 | 0.2262 | 9 |
+| #17 | oshbocker | 0.2224 | 19 |
+| #18 | kpomazi | 0.2209 | 6 |
+| #19 | jgaines | 0.2184 | 16 |
+| #20 | hall4jm | 0.2010 | 10 |
+| #21 | hudsonenterprises | 0.1907 | 5 |
+| #22 | extradr19 (attribution unconfirmed) | 0.1855 | 4 |
+| #23 | doegemsDrivendata | 0.1847 | 5 |
 
-<h2>Prior spatial proxy evidence (group-reported; not rerun)</h2><p>The 16GEMSDOE public evidence JSON reports the following four-quadrant known-catalogue and sparse-proxy means. Those are sibling-project calculations, not independent results from this checkout, not official public DTI, and not hidden-test evidence.</p>
-<table class="doc-table"><thead><tr><th>Candidate</th><th>Mean dense DTI</th><th>Mean sparse proxy DTI</th><th>Reported status</th></tr></thead><tbody>
-<tr><td>H16-1 comparator</td><td>0.21272</td><td>0.08541</td><td>Group-reported baseline</td></tr>
-<tr><td>H18-3a endpoint/junction complexity</td><td>0.21319</td><td>0.09401</td><td>Group reports pass; not independently reproduced</td></tr>
-<tr><td>H18-1 product of experts</td><td>0.20389</td><td>0.08062</td><td>Group reports fail</td></tr>
-<tr><td>H18-3b oblique-strike prior</td><td>0.15681</td><td>0.03694</td><td>Group reports fail</td></tr>
-<tr><td>H18-3c combined prior</td><td>0.15014</td><td>0.04966</td><td>Group reports fail</td></tr>
-</tbody></table>
-<p>The 16GEMSDOE post-hoc analysis reports no detectable association between its dense known-fault proxy and public scores across 15 unique files (Spearman ρ=0.171, p=0.5413). This is a small, group-reported calibration analysis, not proof that every possible holdout is useless; it does caution against treating any reconstruction proxy as a leaderboard guarantee. See the <a href="https://raw.githubusercontent.com/buffedlizard55-lab/16GEMSDOE/main/evidence/hypothesis_h18_validation.json" target="_blank" rel="noopener noreferrer">validation JSON</a> and <a href="https://raw.githubusercontent.com/buffedlizard55-lab/16GEMSDOE/main/evidence/proxy_calibration_vs_lb.json" target="_blank" rel="noopener noreferrer">proxy-calibration JSON</a>.</p>
+The bar is **the top row**, not the 0.3049 quoted when this project started. The group's own best file (16GEMSDOE `h16-1`, 0.1855) is the entry at #22 *if* `extradr19` is this group's account — an attribution that cannot be verified without signing in and is therefore labelled, not assumed.
 
-<h2>18GEMSDOE score ledger</h2><p>No new candidate score, public submission, or leaderboard improvement is claimed. The manual snapshot and prior records are persisted in the <a href="../registry/score-ledger.csv">CSV ledger</a> and <a href="../registry/leaderboard_snapshot.json">snapshot JSON</a>, with evidence-class notes. If the `extradr19` account is ours, confirm with the signed-in competition account before updating attribution.</p>
-</article><aside class="doc-aside"><p class="eyebrow">EVIDENCE CLASSES</p><h3>Read the labels</h3><ul><li><strong>Official snapshot</strong> — manually observed platform row.</li><li><strong>Directly verified</strong> — file/hash checked in this session.</li><li><strong>Group-reported</strong> — a sibling project’s report, not rerun here.</li><li><strong>Inference</strong> — interpretation, not a direct observation.</li></ul><p><a href="audit.html">See open irregularities →</a></p><p><a href="../registry/score-ledger.csv">Download score ledger CSV →</a></p></aside></div></main>
-<footer class="footer"><div class="shell footer-inner"><a class="brand footer-brand" href="../index.html"><span class="brand-mark">18</span><span>GEMS<span class="brand-muted">DOE</span></span></a><p>No proxy score is a leaderboard score.</p><div class="footer-links"><a href="audit.html">Audit</a><a href="sources.html">Sources</a><a href="https://github.com/buffedlizard55-lab/18GEMSDOE" target="_blank" rel="noopener noreferrer">GitHub ↗</a></div></div></footer></body></html>
+
+<h2 id="2-the-groups-own-history">2. The group's own history</h2>
+<p>The numbers below are <strong>[GROUP-REPORTED]</strong> public scores, read from the group's own similarity audit
+(<code>16GEMSDOE/evidence/submission_similarity.json</code>, 21 entries, generated 2026-09-30T01:14Z) which pins
+each file's bytes and counts its pixels. Emission is "positive pixels in the file / positive pixels
+that the pixel-exact known-fault mask leaves in the score".</p>
+<table>
+<thead>
+<tr>
+<th>File</th>
+<th style="text-align: right;">Public score</th>
+<th style="text-align: right;">Emission (all / scored px)</th>
+<th>Note</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>GEMSDOE1</code> — <code>ens12-adopted-floor0.1-w0</code></td>
+<td style="text-align: right;">0.1563</td>
+<td style="text-align: right;">172,974 / 166,519</td>
+<td>reference file; SHA-256 <code>7f00890a…</code>, 570,890 B</td>
+</tr>
+<tr>
+<td><code>5GEMSDOE</code> — same name</td>
+<td style="text-align: right;">0.1563</td>
+<td style="text-align: right;">172,974 / 166,519</td>
+<td><strong>exact byte duplicate of the row above</strong></td>
+</tr>
+<tr>
+<td><code>8GEMSDOE</code> — <code>Hedge-v2 = max(ens12, catalogue)</code></td>
+<td style="text-align: right;">0.1563</td>
+<td style="text-align: right;">227,507 / 166,519</td>
+<td>the extra 60,988 px are the catalogue, all masked → score unchanged</td>
+</tr>
+<tr>
+<td><code>GEMSDOE2</code> — dual-family union</td>
+<td style="text-align: right;">0.1560</td>
+<td style="text-align: right;">183,642 / 175,949</td>
+<td>Jaccard ≈ 0.95 with <code>ens12</code></td>
+</tr>
+<tr>
+<td><code>7GEMSDOE</code> — lidar scarp ridge, top 2 %</td>
+<td style="text-align: right;">0.1461</td>
+<td style="text-align: right;">76,859 / 76,859</td>
+<td>none of its emission is on known faults</td>
+</tr>
+<tr>
+<td><code>12GEMSDOE</code> — <code>r7-nms3-dem10-scarp</code></td>
+<td style="text-align: right;">0.1294</td>
+<td style="text-align: right;">103,347 / 103,347</td>
+<td>the group's highest SGMC-gap proxy score — and one of its lowest public scores</td>
+</tr>
+<tr>
+<td><code>GEMSDOE3</code> — <code>pindrop-v4-nodes</code></td>
+<td style="text-align: right;">0.1193</td>
+<td style="text-align: right;">155,021 / 155,021</td>
+<td>point-like emission</td>
+</tr>
+<tr>
+<td><code>GEMSDOE3</code> — <code>pindrop-v4-ridge</code> (control)</td>
+<td style="text-align: right;">0.1152</td>
+<td style="text-align: right;">155,021 / 155,021</td>
+<td>same mass, different geometry</td>
+</tr>
+<tr>
+<td><code>GEMSDOE10-H20</code></td>
+<td style="text-align: right;">0.0921</td>
+<td style="text-align: right;">153,957 / 143,657</td>
+<td></td>
+</tr>
+<tr>
+<td><code>GEMSDOE3</code> — <code>pindrop-v4-discovery</code></td>
+<td style="text-align: right;">0.0830</td>
+<td style="text-align: right;">155,021 / 155,021</td>
+<td></td>
+</tr>
+<tr>
+<td><code>15GEMSDOE</code></td>
+<td style="text-align: right;">0.0782</td>
+<td style="text-align: right;">99,999 / 98,736</td>
+<td></td>
+</tr>
+<tr>
+<td><code>GEMSDOE10-H16</code></td>
+<td style="text-align: right;">0.0461</td>
+<td style="text-align: right;">310,042 / 283,532</td>
+<td></td>
+</tr>
+<tr>
+<td><code>GEMSDOE4</code> — combined</td>
+<td style="text-align: right;">0.0343</td>
+<td style="text-align: right;">264,247 / 258,323</td>
+<td>thick union blob</td>
+</tr>
+<tr>
+<td><code>6GEMSDOE</code> — <code>hgb88-topk03</code></td>
+<td style="text-align: right;">0.0286</td>
+<td style="text-align: right;">155,021 / 131,416</td>
+<td>catalogue-adjacent</td>
+</tr>
+<tr>
+<td><code>11GEMSDOE</code> — structural area 06</td>
+<td style="text-align: right;">0.0202</td>
+<td style="text-align: right;">343,526 / 282,538</td>
+<td>near-catalogue</td>
+</tr>
+<tr>
+<td><code>GEMSDOE9</code> — placeholder</td>
+<td style="text-align: right;">0.0107</td>
+<td style="text-align: right;">147,684 / 145,610</td>
+<td></td>
+</tr>
+<tr>
+<td><code>14GEMSDOE</code> — <code>r5-geom-horse-ensemble</code></td>
+<td style="text-align: right;">0.0020</td>
+<td style="text-align: right;">116,225 / 116,219</td>
+<td></td>
+</tr>
+<tr>
+<td><code>16GEMSDOE</code> — <code>h16-1-topo-geophys-baseline-ridges</code></td>
+<td style="text-align: right;">0.1855</td>
+<td style="text-align: right;"><em>not in the audit's 21 entries</em></td>
+<td>the group's best; reported to this project, and the leaderboard's #22 entry is 0.1855 under <code>extradr19</code></td>
+</tr>
+</tbody>
+</table>
+<p><strong>[INFERENCE]</strong> Two regimes are visible: thin line networks over real structures land at 0.12–0.19;
+emissions that sit on or beside the catalogue collapse to ≤0.05. Nothing in the group's history exceeds
+0.19, and four of the entries are one prediction.</p>
+<h2 id="3-why-the-repeat-happened">3. Why the repeat happened</h2>
+<p><strong>[VERIFIED-HERE]</strong> One byte sequence (<code>7f00890a…</code>, 570,890 B, a hard 0/1 mask, 172,974 positive
+pixels) is committed as the submission in more than one repository; <strong>[GROUP-REPORTED]</strong> the same
+scored content appears at eight paths across six repositories. Repositories were seeded from earlier
+repositories' evidence folders, whose default <code>submission.tif</code> <em>is</em> <code>ens12</code> — so uploading "the
+submission" again produced the same score and taught nobody anything. This repository's packager
+therefore refuses any hash it has already offered (<code>registry/submission-hashes.json</code>).</p>
+<h2 id="4-what-the-metric-rewards-measured-not-asserted">4. What the metric rewards (measured, not asserted)</h2>
+<p><code>DTI = TP_w / (0.2·M + 0.8·|G|)</code> with <code>M</code> the emitted mass. Consequences:</p>
+<ul>
+<li>each emitted pixel the metric can charge for costs <strong>0.2</strong> of the denominator; each newly covered
+  truth pixel returns up to <strong>0.8</strong> — false positives are cheap, misses are 4× dearer;</li>
+<li>raising all values toward 1 can only help (the <code>0.8·|G|</code> term is fixed), so a field should be
+  emitted at uniform 1, not shaded;</li>
+<li>therefore a one-pixel-wide line on a true structure beats a broad anomaly of the same recall, and a
+  candidate population is worth adding whenever more than ≈ 3–6 % of its pixels sit within 300 m of a
+  truth pixel.</li>
+</ul>
+<p>The sensitivity table on the <a href="validation.html">Validation</a> page applies that arithmetic to the shipped
+field's actual paid mass, for assumed truth sizes from 30,000 to 240,000 pixels.</p>
+<h2 id="5-score-ledger">5. Score ledger</h2>
+<p><code>registry/score-ledger.csv</code> is the machine-readable record (date, scope, participant, rank, score,
+evidence class, source, note). Rules: an <strong>official</strong> row requires a signed-in read and records the
+account; a <strong>group-reported</strong> row records the repository and file hash; a <strong>proxy</strong> row is never
+written as a leaderboard score.</p>
+</main>
+<footer class="wrap">
+  <p>Static site. Every figure on these pages is rendered from a committed evidence file at build time.
+  Sources are linked for manual review; see <a href="../docs/audit.html">Audit</a> for what was and was not verified.</p>
+</footer>
+</body>
+</html>

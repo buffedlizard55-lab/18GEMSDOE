@@ -1,40 +1,184 @@
 <!doctype html>
-<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="description" content="Preregistered spatial holdout protocol and release gate for 18GEMSDOE."><title>Validation gate — 18GEMSDOE</title><link rel="stylesheet" href="../assets/site.css"></head>
-<body><a class="skip-link" href="#main">Skip to content</a><header class="topbar"><a class="brand" href="../index.html"><span class="brand-mark">18</span><span>GEMS<span class="brand-muted">DOE</span></span></a><nav aria-label="Main navigation"><a href="hypotheses.html">Research</a><a href="results.html">Evidence</a><a href="data.html">Data &amp; provenance</a><a href="submission.html" class="nav-cta">Submission guide <span aria-hidden="true">↗</span></a></nav></header>
-<main id="main"><section class="page-hero"><div class="shell"><p class="eyebrow">VALIDATION · PREREGISTER BEFORE TUNING</p><h1>The gate protects the evidence.</h1><p>Random pixels are not independent spatial tests. The hypothesis must beat a reproduced comparator on withheld basins or fault systems, survive mechanism-specific controls, and retain its provenance.</p></div></section>
-<div class="shell doc-layout"><article class="doc-content"><div class="callout danger"><p><strong>Current protocol: DRAFT / NOT LOCKED / NO RESULTS.</strong> Authorized training data, official template/labels, exact candidate source coverage, and a spatial holdout are absent. Do not tune or report a 18GEMSDOE holdout score yet.</p></div>
-<h2>Before any model code</h2><ol><li>Acquire official competition data through the authorized account; stage raw files outside Git and verify exact bytes/metadata.</li><li>Define whole-basin or whole-fault-system blocks. Keep a spatial buffer so related pieces of one structure or marker group do not cross folds.</li><li>Freeze the deterministic split polygons/masks, labels/inputs manifest hashes, and preregistration commit before feature engineering or threshold tuning.</li><li>Reproduce the H18-3a comparator and its evaluator on exactly that split; if the comparator cannot be reproduced, the candidate cannot pass.</li><li>Record predictions before opening the one-time sealed confirmatory slice. Do not use the sealed slice to select features, thresholds, or examples.</li></ol>
-<h2>Promotion criteria (all required)</h2><table class="doc-table"><thead><tr><th>Gate</th><th>Required evidence</th><th>Checker</th></tr></thead><tbody><tr><td>Preregis­tration &amp; provenance</td><td>Candidate named; holdout locked before tuning; source/input and holdout hashes; reproducible baseline.</td><td>Evidence JSON assertions plus independent human review.</td></tr><tr><td>Dense + sparse DTI</td><td>Candidate mean exceeds reproduced comparator on both metrics.</td><td>Python and browser gates recompute means from four fold arrays.</td></tr><tr><td>Fold robustness</td><td>Sparse DTI wins at least 3 of 4 spatial folds; neither metric loses &gt;0.01 in any fold.</td><td>Python and browser gates recompute fold deltas.</td></tr><tr><td>Uncertainty</td><td>Paired block-bootstrap 95% lower bounds are positive for dense and sparse metrics.</td><td>Numeric check only; method and resampling units require audit.</td></tr><tr><td>Mechanism controls</td><td>For H18-N1, the multi-marker detector beats shoreline-only, road/canal, channel, and randomized-lineplacebo controls at the same output budget. Other candidates require their stated controls.</td><td>Evidence flag plus review of stored control outputs; boolean alone is not proof.</td></tr><tr><td>Novelty &amp; uniqueness</td><td>Distinct physical operator; no duplicate scored-pixel output against public group artifacts.</td><td>Evidence flag plus independent comparison; no private leaderboard scraping.</td></tr><tr><td>Format &amp; policy</td><td>Official EPSG:32611 100 m template, one-band float32, `[0,1]`, null outside; compliant submission budget.</td><td>Python validator and generated-output round trip against actual official template.</td></tr></tbody></table>
-<div class="callout warning"><p>A positive proxy result is necessary under this process, not proof of hidden-test performance or a future leaderboard gain. The organizers do not disclose hidden-label source methods. Report official results only after manual confirmation on DrivenData.</p></div>
-<h2>Evidence JSON contract</h2><p>The format tools expect schema version 1, including fields below. Values must come from an executed, reproducible run; do not populate this schema with proposed or fabricated metrics. The repository’s <a href="../registry/holdout-evidence.template.json">downloadable template is deliberately BLOCKED</a>, and must not be edited to imply a test passed unless all source evidence is present.</p>
-<pre class="mono-box">{
-  "schema_version": 1,
-  "candidate_id": "H18-N1",
-  "pre_registered": true,
-  "holdout_locked_before_tuning": true,
-  "baseline_independently_reproduced": true,
-  "negative_controls_pass": true,
-  "content_unique": true,
-  "holdout_id": "verified-split-id",
-  "holdout_manifest_sha256": "64 lowercase/uppercase hex characters",
-  "input_manifest_sha256": "64 lowercase/uppercase hex characters",
-  "preregistration_commit": "commit-hash",
-  "gate_status": "PASS",
-  "baseline": {
-    "status": "INDEPENDENTLY_REPRODUCED",
-    "dense_fold_dti": [0.0, 0.0, 0.0, 0.0],
-    "sparse_fold_dti": [0.0, 0.0, 0.0, 0.0]
-  },
-  "candidate": {
-    "dense_fold_dti": [0.0, 0.0, 0.0, 0.0],
-    "sparse_fold_dti": [0.0, 0.0, 0.0, 0.0]
-  },
-  "paired_block_bootstrap_95pct_lower_bound": {
-    "dense": null,
-    "sparse": null
-  }
-}</pre>
-<p><strong>Important:</strong> the software recomputes means/fold comparisons and checks required flags/hashes. It cannot verify that the underlying label data, holdout mask, control runs, or unique-content audit are honest, authorized, correctly computed, or independent. A reviewer must inspect source artifacts and logs. A `PASS` string alone never establishes a pass.</p>
-<h2>Current preregistration snapshot</h2><ul><li>Candidate: H18-N1 paleolake multi-marker displacement (conditional).</li><li>Split: fault-system/basin-blocked; final slice intentionally unnamed until authorized files and source coverage are known.</li><li>Known-fault comparator: H18-3a is only group-reported and must be reproduced.</li><li>Predictions written: none.</li><li>Holdout opened: no.</li><li>Release gate: <strong>BLOCKED</strong>.</li></ul><p>See the full <a href="../docs/research/preregistration.md">preregistration Markdown</a>, <a href="results.html">prior evidence labels</a>, and <a href="audit.html">open audit blockers</a>.</p>
-</article><aside class="doc-aside"><p class="eyebrow">DO NOT LEAK</p><h3>One sealed decision</h3><p>Set aside a complete spatial region, lock the split and hash, and evaluate once after freezing predictions. Keep all failed runs and do not adapt to sealed errors.</p><ul><li>No random-pixel split</li><li>No catalog input to detector</li><li>No hidden-label assumptions</li><li>No proxy-to-leaderboard claim</li></ul></aside></div></main>
-<footer class="footer"><div class="shell footer-inner"><a class="brand footer-brand" href="../index.html"><span class="brand-mark">18</span><span>GEMS<span class="brand-muted">DOE</span></span></a><p>Holdout remains locked until authorized data and manifest exist.</p><div class="footer-links"><a href="audit.html">Audit</a><a href="sources.html">Sources</a><a href="https://github.com/buffedlizard55-lab/18GEMSDOE" target="_blank" rel="noopener noreferrer">GitHub ↗</a></div></div></footer></body></html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Validation — 18GEMSDOE</title>
+<link rel="stylesheet" href="../assets/site.css">
+</head>
+<body>
+<header class="site">
+  <div class="wrap">
+    <a class="brand" href="../index.html">18GEMSDOE</a>
+    <nav><a href="../docs/executive_summary.html">Submit</a><a href="../docs/submission.html">Format</a><a href="../docs/hypotheses.html">Hypotheses</a><a href="../docs/validation.html">Validation</a><a href="../docs/results.html">Results</a><a href="../docs/audit.html">Audit</a><a href="../docs/sources.html">Sources</a><a href="../docs/data.html">Data</a></nav>
+  </div>
+</header>
+<main class="wrap">
+<h1 id="validation-what-was-tested-what-passed-what-failed">Validation — what was tested, what passed, what failed</h1>
+<p>Everything on this page is <strong>[MEASURED-HERE]</strong> unless tagged otherwise: the script,
+the inputs' SHA-256 values and the split hash are recorded in
+<code>data/evidence/detector_results.json</code> and <code>data/evidence/holdout_manifest.json</code>.</p>
+<h2 id="1-the-metric-implementation-is-anchored-to-the-official-sources">1. The metric implementation is anchored to the official sources</h2>
+<table>
+<thead>
+<tr>
+<th>Check</th>
+<th>Anchor</th>
+<th>Result</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Worked example: <code>TP_w=3.00, FP_w=1.89, FN_w=2.00</code> → 0.60</td>
+<td>official problem description, "Scoring example"</td>
+<td>reproduced (<code>tests/test_metric.py::test_official_worked_example_arithmetic</code>)</td>
+</tr>
+<tr>
+<td><code>TP_w + FN_w = |G|</code> for any prediction</td>
+<td>follows from the two published definitions</td>
+<td>asserted on synthetic rasters</td>
+</tr>
+<tr>
+<td><code>DTI = TP_w / (0.2·(TP_w + FP_w) + 0.8·|G|)</code></td>
+<td>algebra of the published terms</td>
+<td>asserted in <code>test_dti_identity_form</code></td>
+</tr>
+<tr>
+<td>Known-fault pixels are pixel-exact and free; a 1-px offset is penalised</td>
+<td>forum 11516 post 4 (staff)</td>
+<td>asserted in <code>test_known_mask_is_pixel_exact_and_free</code></td>
+</tr>
+<tr>
+<td>Distance weighting: <code>k=1</code> at 0 px, <code>2/3</code> at 1 px, <code>0</code> at 3 px</td>
+<td>published kernel</td>
+<td>asserted in <code>test_distance_weighting_degrades_with_offset</code></td>
+</tr>
+</tbody>
+</table>
+<h2 id="2-the-holdout-is-spatially-blocked-balanced-and-partly-sealed">2. The holdout is spatially blocked, balanced, and partly sealed</h2>
+<ul>
+<li>512 px (51.2 km) blocks; whole structures, never single pixels.</li>
+<li>Folds balanced greedily on <strong>proxy fault mass</strong>, so no fold is starved of positives.</li>
+<li>56 blocks, 4 folds, <strong>14 blocks sealed before any candidate was built</strong>; the sealed
+  set was read exactly once, at the end, for the arm that the tuning folds selected.</li>
+<li>Split digest: <code>data/evidence/holdout_manifest.json</code> → <code>split_sha256</code>
+  (<code>41332369d7dd448b…</code>); inputs pinned by SHA-256 in the same file.</li>
+</ul>
+<p><strong>Honest limitation.</strong> Blocks are cut on a regular grid, so a fault that happens to
+straddle a block edge appears on both sides of the split. The collar is the metric's own
+R = 3 px, which bounds the leak to that width; it is not zero.</p>
+<h2 id="3-the-shipped-candidate-h19-c">3. The shipped candidate (H19-C)</h2>
+<p><img alt="The three components of the shipped field" src="downloads/candidate_preview.png" /></p>
+<p><em>Colours: blue = training catalogue (masked out of scoring, free), orange = SGMC state-map structure
+lines with no label within 300 m, red = the multi-family physics conjunction. Yellow marks pixels where
+components coincide.</em></p>
+| Property | Value |
+|---|---|
+| candidate | `H19-C` |
+| physics support (tuning-fold choice) | `400,000 px` |
+| physics pixels kept | `388,228 (2.5 % on state-map lines, 1.1 % on the catalogue)` |
+| state-map component | `82,155 px, of which 61,664 px have no label within 300 m` |
+| catalogue component | `60,988 px (masked out of scoring by the platform)` |
+| total emitted | `513,786 px = 9.94 % of the footprint` |
+| mass the metric can charge for | `452,798 px` |
+| sealed catalogue read | `DTI 0.0229 on 12,676 held-out label px` |
+
+**Sensitivity — the score the metric would return for this field, as a function of the truth size and of how much of it the field covers.** Nothing here is a forecast; it is the metric's own arithmetic applied to the field's paid mass.
+
+| assumed truth size | coverage ρ | resulting DTI |
+|---:|---:|---:|
+| 30,000 px | 0.1 | 0.0262 |
+| 30,000 px | 0.2 | 0.0524 |
+| 30,000 px | 0.3 | 0.0786 |
+| 30,000 px | 0.5 | 0.1309 |
+| 30,000 px | 0.7 | 0.1833 |
+| 60,000 px | 0.1 | 0.0433 |
+| 60,000 px | 0.2 | 0.0866 |
+| 60,000 px | 0.3 | 0.1299 |
+| 60,000 px | 0.5 | 0.2165 |
+| 60,000 px | 0.7 | 0.3031 |
+| 120,000 px | 0.1 | 0.0643 |
+| 120,000 px | 0.2 | 0.1286 |
+| 120,000 px | 0.3 | 0.1930 |
+| 120,000 px | 0.5 | 0.3216 |
+| 120,000 px | 0.7 | 0.4503 |
+| 240,000 px | 0.1 | 0.0849 |
+| 240,000 px | 0.2 | 0.1699 |
+| 240,000 px | 0.3 | 0.2548 |
+| 240,000 px | 0.5 | 0.4247 |
+| 240,000 px | 0.7 | 0.5946 |
+
+
+<h2 id="4-arms-controls-and-the-matched-mass-comparison">4. Arms, controls and the matched-mass comparison</h2>
+| Arm | Proxy support (px) | Emission (px) | Proxy DTI | Tuning-fold DTI | Per-fold (tuning) | Matched-support DTI (Δ vs shipped file) |
+|---|---:|---:|---:|---:|---|---|
+| `cond` | 60000 | 59,333 | 0.0037 | 0.0030 | 0: 0.002, 1: 0.006, 2: 0.004, 3: 0.000 | 0.0224 (-0.0790) |
+| `conjunction` | 250000 | 247,498 | 0.1229 | 0.0073 | 0: 0.010, 1: 0.004, 2: 0.004, 3: 0.011 | 0.0926 (-0.0088) |
+| `control_blanket` | full grid | 5,106,385 | 0.0592 | 0.0592 | — | 0.0592 |
+| `control_random` | 60000 | 59,532 | 0.0384 | 0.0200 | 0: 0.013, 1: 0.013, 2: 0.008, 3: 0.042 | 0.0882 (-0.0132) |
+| `deep_mag` | 60000 | 59,639 | 0.0110 | 0.0084 | 0: 0.008, 1: 0.007, 2: 0.008, 3: 0.009 | 0.0315 (-0.0699) |
+| `grav_ridge` | 120000 | 118,576 | 0.0097 | 0.0034 | 0: 0.002, 1: 0.003, 2: 0.004, 3: 0.004 | 0.0125 (-0.0889) |
+| `known_catalogue` | 60000 | 0 | 0.0000 | 0.0000 | 0: 0.000, 1: 0.000, 2: 0.000, 3: 0.000 | 0.0000 (-0.1014) |
+| `mag_ridge` | 250000 | 248,272 | 0.0459 | 0.0114 | 0: 0.012, 1: 0.012, 2: 0.006, 3: 0.015 | 0.0357 (-0.0657) |
+| `seis` | 60000 | 59,102 | 0.0023 | 0.0000 | 0: 0.000, 1: 0.000, 2: 0.000, 3: 0.000 | 0.0088 (-0.0926) |
+| `strain` | 60000 | 59,230 | 0.0164 | 0.0004 | 0: 0.002, 1: 0.000, 2: 0.000, 3: 0.000 | 0.0299 (-0.0715) |
+| `topo_ridge` | 120000 | 119,662 | 0.0848 | 0.0245 | 0: 0.020, 1: 0.007, 2: 0.008, 3: 0.060 | 0.1040 (+0.0026) |
+
+Comparator: the previously shipped `ens12` field (`data/comparator_ens12.tif`, 172,974 px) scores **0.1014** on the same proxy population. The proxy population is USGS SGMC structure with no training label within 300 m (61,664 px).
+
+
+<p>Reading the table:</p>
+<ul>
+<li><strong><code>known_catalogue</code> scores exactly 0.0</strong> on the proxy population. That is the
+  acceptance control: the proxy truth has, by construction, no training label within
+  300 m, so a catalogue copy cannot earn anything. It confirms the population is not a
+  restatement of the labels.</li>
+<li>The <strong>matched random lineament network</strong> is the control that matters. Any lineament
+  detector can look good simply because faults are lines: a random network with the same
+  support already captures part of the proxy.</li>
+<li>The <strong>matched-mass</strong> column re-scores every arm at the shipped file's own support
+  (172,974 px) so no arm wins by buying more coverage.</li>
+</ul>
+<h2 id="5-the-sealed-read-pre-registered-single">5. The sealed read (pre-registered, single)</h2>
+Arm selected on the tuning folds: **`topo_ridge`** at support 250,000 px. Sealed truth: 10,461 proxy pixels in 14 blocks that no selection step touched.
+
+| Field | Sealed-slice proxy DTI |
+|---|---:|
+| `topo_ridge` | 0.0003 |
+| shipped `ens12` comparator | 0.0085 |
+
+Verdict: **the candidate does not beat the comparator on the sealed blocks**. This is written here because it is the result, whichever way it fell.
+
+
+<h2 id="6-what-failed-and-what-that-means">6. What failed, and what that means</h2>
+<ul>
+<li><strong>The sealed slice does not confirm a win over the shipped <code>ens12</code> file.</strong> It is
+  reported here rather than dropped: the arm the tuning folds promoted this pass
+  (<code>topo_ridge</code>, 250,000 px) scores <strong>0.0003 against the comparator's 0.0085</strong> on the 14
+  sealed blocks, and the conjunction — which <em>ties</em> the comparator on the whole proxy
+  population (mean difference −0.0000, P(better) 0.49) — was not promoted. Under the bar
+  this project set (an improvement counts only if it survives the sealed slice <em>and</em> an
+  attempt to argue it away as an artefact), <strong>no arm here is a validated replacement for
+  the shipped file.</strong> They are candidates whose <em>mechanisms</em> are defensible and whose
+  <em>controls</em> are published beside them. That is the honest state, and it is why the
+  packaged file is labelled a candidate on every page.</li>
+<li><strong>Proxy bias.</strong> The SGMC proxy is drawn from published state geologic maps, i.e. from
+  surface mapping — so it systematically rewards topographic detectors and under-rewards
+  magnetic ones. The scored population was drawn by experts from the geophysics. This is
+  the single largest threat to the proxy's validity as a selection instrument, and it is
+  the reason the shipped field's physics component is a <strong>conjunction</strong> (which cannot win
+  by exploiting one proxy's bias) rather than the best-scoring single family.</li>
+<li><strong>Per-block DTI is not a decomposition of the global DTI</strong> (the FP term is global). The
+  paired block bootstrap here compares two emission fields block-by-block on the <em>same</em>
+  proxy truth, which is a valid paired comparison, but the numbers are not additive and
+  are never summed into a headline.</li>
+<li><strong>No leaderboard score is claimed.</strong> Nothing here is a substitute for the hidden new-fault
+  set; the mean of this project's expectations is a <em>direction</em>, not a prediction.</li>
+</ul>
+</main>
+<footer class="wrap">
+  <p>Static site. Every figure on these pages is rendered from a committed evidence file at build time.
+  Sources are linked for manual review; see <a href="../docs/audit.html">Audit</a> for what was and was not verified.</p>
+</footer>
+</body>
+</html>
