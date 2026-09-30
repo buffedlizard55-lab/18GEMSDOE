@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Results ledger · 18GEMSDOE</title>
+<link rel="stylesheet" href="style.css"></head><body>
+<header class="nav"><div class="inner">
+<a class="brand" href="index.html">18GEMSDOE</a>
+<a class="page" href="executive_summary.html">How to submit</a>
+<a class="page" href="hypotheses.html">Hypotheses E1–E5</a>
+<a class="page" href="strategy.html">Metric &amp; strategy</a>
+<a class="page" href="results.html">Results ledger</a>
+<a class="page" href="data.html">Data sources</a>
+<a class="page" href="references.html">References</a>
+<a class="page" href="audit.html">Audit flags</a>
+</div></header>
+<main>
+<h1>Results ledger — every group score, one table</h1>
+<p class="small">Compiled 2026-09-30 from owner-supplied records + live fetches of the group sites and the
+<a href="https://www.drivendata.org/competitions/306/competition-doe-gems/leaderboard/">official leaderboard</a>.
+“Ledger” means: score, file identity (sha), site link, and verification status — joined, or explicitly unjoined.
+Unverified linkages are flagged, not asserted.</p>
+
+<h2>Leaderboard snapshot (fetched 2026-09-30)</h2>
+<table><tr><th>Rank</th><th>Account</th><th>Public DW-Tversky</th><th>Note</th></tr>
+<tr><td>#1</td><td>DARD</td><td><b>0.3168</b></td><td>leader; 11 submissions</td></tr>
+<tr><td>#2</td><td>alexoktaba</td><td>0.3042</td><td>17 submissions</td></tr>
+<tr><td>#3</td><td>joeyfezster</td><td>0.2872</td><td>15 submissions</td></tr>
+<tr><td>#22</td><td>extradr19</td><td>0.1855</td><td>4 submissions — numerically equals the 16GEMSDOE h16-1 file's reported score; linkage <b>unverified</b> (<a href="audit.html#F07">F07</a>)</td></tr>
+<tr><td>#32</td><td>SDCF9</td><td>0.1563</td><td>4 submissions — the duplicated pattern (<a href="#dup">§ duplicates</a>)</td></tr>
+<tr><td>#33</td><td>smashi34</td><td>0.1563</td><td>3 submissions — same duplicated pattern</td></tr>
+<tr><td>#38</td><td>wbg1</td><td>0.1461</td><td>5 submissions — matches 7GEMSDOE's reported 0.1461; linkage unverified</td></tr>
+</table>
+<p class="small">Lower group-linked accounts visible on the board snapshot (smrtdoog5 and others) sit below the
+fetch window shown here; owner records list 14GEMSDOE (smrtdoog5) at 0.0020.</p>
+
+<h2>Group ledger (owner records + site verification)</h2>
+<table><tr><th>Repo / site</th><th>Reported score</th><th>File / note identity</th><th>Verification</th></tr>
+<tr><td><a href="https://buffedlizard55-lab.github.io/GEMSDOE/docs/index.html">GEMSDOE1</a></td><td>0.1563</td><td>sha <span class="mono">7f00890a…</span>, 172,974 px @1.0</td><td><span class="pill ok">byte-verified duplicate (see §)</span></td></tr>
+<tr><td><a href="https://buffedlizard55-lab.github.io/6GEMSDOE/">6GEMSDOE</a></td><td>0.0286</td><td>HGB magnetic blender (hgb88)</td><td><span class="pill ok">site-documented</span></td></tr>
+<tr><td><a href="https://buffedlizard55-lab.github.io/GEMSDOE3/docs/index.html">GEMSDOE3</a></td><td>0.1193 / 0.0830 / 0.1152</td><td>f347b70daa pindrop nodes · 37f9d5b855 catalogue-gap · 4e03fc9705 dense-ridge control</td><td><span class="pill ok">site-documented</span></td></tr>
+<tr><td><a href="https://buffedlizard55-lab.github.io/GEMSDOE2/docs/index.html">GEMSDOE2</a></td><td>0.1560</td><td>recall arm ≈ same bytes (94.6% overlap)</td><td><span class="pill ok">overlap-measured by siblings</span></td></tr>
+<tr><td><a href="https://buffedlizard55-lab.github.io/GEMSDOE4/">GEMSDOE4</a></td><td>0.0343</td><td>Sato ridgeness + structure tensor</td><td><span class="pill ok">site-documented</span></td></tr>
+<tr><td><a href="https://buffedlizard55-lab.github.io/5GEMSDOE/docs/index.html">5GEMSDOE</a></td><td>0.1563</td><td>sha <span class="mono">7f00890a…</span>, 172,974 px @1.0</td><td><span class="pill no">BIT-IDENTICAL to GEMSDOE1</span></td></tr>
+<tr><td><a href="https://buffedlizard55-lab.github.io/7GEMSDOE/">7GEMSDOE</a></td><td>0.1461</td><td>—</td><td><span class="pill wait">site fetch pending re-check</span></td></tr>
+<tr><td><a href="https://buffedlizard55-lab.github.io/8GEMSDOE/">8GEMSDOE</a></td><td>0.1563</td><td>hedge-v2 = 0.1563 pattern ∪ catalogue (masked ⇒ same score)</td><td><span class="pill ok">proven-equivalent by masking rule</span></td></tr>
+<tr><td><a href="https://buffedlizard55-lab.github.io/GEMSDOE9/docs/index.html">9GEMSDOE</a></td><td>0.0107</td><td>—</td><td><span class="pill wait">owner record only</span></td></tr>
+<tr><td><a href="https://buffedlizard55-lab.github.io/11GEMSDOE/docs/index.html">11GEMSDOE</a></td><td>0.0202</td><td>—</td><td><span class="pill wait">owner record only</span></td></tr>
+<tr><td><a href="https://buffedlizard55-lab.github.io/12GEMSDOE/docs/index.html">12GEMSDOE</a></td><td>0.1294</td><td><span class="mono">r7-nms3-dem10-scarp_0c9199f14e62</span> (+allfinite twin, same score)</td><td><span class="pill ok">site-documented</span></td></tr>
+<tr><td><a href="https://buffedlizard55-lab.github.io/15GEMSDOE/docs/index.html">15GEMSDOE</a></td><td>0.0782</td><td><span class="mono">gems-tso1-…-conj_alteration_mag</span> (smashi34)</td><td><span class="pill wait">owner record only</span></td></tr>
+<tr><td><a href="https://buffedlizard55-lab.github.io/14GEMSDOE/docs/index.html">14GEMSDOE</a></td><td>0.0020</td><td>smrtdoog5</td><td><span class="pill wait">owner record only</span></td></tr>
+<tr><td><a href="https://buffedlizard55-lab.github.io/GEMSDOE10/">10GEMSDOE</a></td><td>0.0461 / 0.0921 / — / —</td><td>h16-continuation / h20-dem10-scarp-thin / h25-ctx-ridge / h28-dotted-ridge (wbg1)</td><td><span class="pill wait">owner record only</span></td></tr>
+<tr><td><a href="https://buffedlizard55-lab.github.io/13GEMSDOE/">13GEMSDOE</a></td><td>—</td><td>—</td><td><span class="pill wait">no score reported</span></td></tr>
+<tr><td><a href="https://buffedlizard55-lab.github.io/16GEMSDOE/docs/index.html">16GEMSDOE</a></td><td><b>0.1855</b></td><td><span class="mono">h16-1-…-df20f65e-nan</span> (group best reported)</td><td><span class="pill wait">score↔file linkage unverified (F07)</span></td></tr>
+<tr><td><a href="https://buffedlizard55-lab.github.io/17GEMSDOE/">17GEMSDOE</a></td><td>—</td><td>—</td><td><span class="pill wait">no score reported</span></td></tr>
+<tr><td>18GEMSDOE (this repo)</td><td>—</td><td>no artifact; no slot spent</td><td><span class="pill ok">honest zero</span></td></tr>
+</table>
+
+<h2 id="dup">Why 0.1563 kept repeating — root cause (three layers)</h2>
+<ol>
+<li><b>Same bytes.</b> GEMSDOE1 and 5GEMSDOE host the byte-identical raster (sha
+<span class="mono">7f00890a62878d61…</span>, payload <span class="mono">b966d47c…</span>, 172,974 px at 1.0) —
+verified live on both sites' build panels this session. 8GEMSDOE differs only on known-fault
+pixels, which the evaluator masks (<a href="https://community.drivendata.org/t/scoring-clarification-are-known-usgs-ingenious-faults-masked-when-scoring-and-are-they-in-the-final-round-label-set/11516">forum 11516</a>),
+so it is the <i>same submission</i>. GEMSDOE2 overlaps it 94.6% (0.1560). Three “independent”
+0.1563s are one result counted thrice.</li>
+<li><b>Copied seed.</b> Per the 16GEMSDOE audit, that file sits at 8 paths in 6 repos: each new
+repo was seeded from earlier evidence folders whose default <span class="mono">submission.tif</span>
+is the old winner. Our convention (<a href="executive_summary.html#5">unique name + content-id note</a>)
+exists to make this impossible to do accidentally.</li>
+<li><b>Repeated idea.</b> Near-catalogue top-k predictions were tried in three repos and scored
+≤ 0.046 every time (6GEMSDOE 0.0286; GEMSDOE4 0.0343; 10GEMSDOE h16 0.0461). Same idea, new
+hyperparameters, same ceiling. E1–E5 are new <i>physics</i>, not new settings.</li>
+</ol>
+<p><b>Why 5GEMSDOE == GEMSDOE1 exactly:</b> identical input bytes ⇒ identical DTI. There is no
+mystery beyond the copy. The fix is procedural (content-id notes, registry Jaccard checks before
+upload) and is implemented in this repo's submission contract.</p>
+
+<h2>What the pattern teaches</h2>
+<ul>
+<li>Proxy scores that reward catalogue resemblance <b>invert</b> on the board (hgb88: best proxy 0.1527 → worst board 0.0286). Our holdout truth must be catalogue-<i>complementary</i> by construction.</li>
+<li>The group's only score above 0.16 is the 16GEMSDOE topo+geophysics ridge file (0.1855, linkage unverified) — thin ridges + catalogue-complexity prior, i.e. <i>new geometry near known systems</i>. That is convergent evidence for the E1+E2 direction, not proof.</li>
+<li>Leader gap: 0.3168 − 0.1855 = <b>0.1313</b>. Under β=0.8 this is a recall gap — unmapped strands we do not emit yet.</li>
+</ul>
+<p class="foot"><a href="index.html">← Overview</a> · Next: <a href="data.html">Data sources</a></p>
+</main></body></html>

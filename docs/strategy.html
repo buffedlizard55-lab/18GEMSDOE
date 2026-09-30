@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Metric &amp; strategy · 18GEMSDOE</title>
+<link rel="stylesheet" href="style.css"></head><body>
+<header class="nav"><div class="inner">
+<a class="brand" href="index.html">18GEMSDOE</a>
+<a class="page" href="executive_summary.html">How to submit</a>
+<a class="page" href="hypotheses.html">Hypotheses E1–E5</a>
+<a class="page" href="strategy.html">Metric &amp; strategy</a>
+<a class="page" href="results.html">Results ledger</a>
+<a class="page" href="data.html">Data sources</a>
+<a class="page" href="references.html">References</a>
+<a class="page" href="audit.html">Audit flags</a>
+</div></header>
+<main>
+<h1>Metric &amp; strategy — what the math rewards</h1>
+<p class="small">Source of truth: <a href="https://www.drivendata.org/competitions/306/competition-doe-gems/page/967/">problem description</a>
+(metric + submission format), <a href="https://community.drivendata.org/t/scoring-clarification-are-known-usgs-ingenious-faults-masked-when-scoring-and-are-they-in-the-final-round-label-set/11516">forum 11516</a>
+(masking), <a href="https://community.drivendata.org/t/where-do-you-draw-the-line/11536">forum 11536</a>
+(new-fault definition). Transcribed into <span class="mono">scripts/dti_metric.py</span>.</p>
+
+<h2>1 · The distance-weighted Tversky index (DTI), exactly</h2>
+<p>Predictions are per-pixel probabilities p(x) ∈ [0,1]; ground truth g(x) ∈ {0,1} marks new-fault pixels.
+With triangular kernel k(d) = max(1 − d/R, 0), R = 300 m (3 px at 100 m):</p>
+<pre>TPw = Σ_{g∈G} max_{x:d(x,g)≤R} p(x)·k(d(x,g))        (best kernel-weighted hit per truth pixel)
+FPw = Σ_{x:p(x)&gt;0} p(x)·[1 − max_{g∈G} k(d(x,g))]   (mass far from truth penalised ~fully)
+FNw = Σ_{g∈G} [1 − max_{x:d(x,g)≤R} p(x)·k(d(x,g))]  (truth pixels with no nearby mass)
+DTI = TPw / (TPw + α·FPw + β·FNw + ε),   α = 0.2, β = 0.8</pre>
+<p>Worked example from the official page: TPw=3.00, FPw=1.89, FNw=2.00 → DTI = 0.60.
+Our <span class="mono">dti_metric.py</span> reproduces 0.60 on that fixture before any other use.</p>
+
+<h2>2 · Five strategic consequences</h2>
+<table><tr><th>#</th><th>Consequence</th><th>Design rule</th></tr>
+<tr><td>S1</td><td><b>Recall dominates.</b> β/α = 4: a missed fault pixel costs 4× a false-alarm pixel. Thin, high-confidence traces beat wide uncertain blobs <i>only up to a point</i> — sibling measurement shows smaller budgets beat larger ones at matched mass, i.e. precision still binds through the budget.</td><td>Exact top-k binary emission; tune k on the holdout, never by feel.</td></tr>
+<tr><td>S2</td><td><b>Near-misses are cheap.</b> FP mass within 300 m of truth pays ≈0; truth within 300 m of mass counts ≈a hit. The kernel forgives ~3 px of mislocation.</td><td>1-px skeletonised traces are sufficient; do not spend budget on width (sibling width curve peaks at 0 px).</td></tr>
+<tr><td>S3</td><td><b>Known faults are free.</b> USGS/INGENIOUS pixels are masked from scoring in both rounds (staff, forum 11516). Emitting the catalogue costs nothing and loses nothing.</td><td>Union every candidate with the catalogue (zero-cost floor); never <i>spend budget</i> re-finding it.</td></tr>
+<tr><td>S4</td><td><b>Geometry of known systems counts.</b> "New fault" includes newly mapped extensions/splays/strands of existing systems (staff, forum 11536).</td><td>Weight search density along-strike from tips + inside stepovers/zones (hypotheses E1, E2) above blank far-field ground.</td></tr>
+<tr><td>S5</td><td><b>Phase 2 re-scores everything.</b> The same file is rescored against expert-expanded labels built partly <i>from our predictions</i>; the final round holds $250k of $300k.</td><td>Predict what we truly believe are faults (mechanistically defensible traces experts can verify), not metric-gamed confetti. Reviewable traces &gt; lucky pixels.</td></tr>
+</table>
+
+<h2>3 · What beats 0.3168</h2>
+<p>The leader (DARD, 0.3168 at 2026-09-30 fetch) is ~2× our group's best reported file (0.1855)
+and ~2× the duplicated 0.1563 pattern. Under S1–S4, the gap is almost certainly <b>recalled
+unmapped traces</b>, not better calibration: with β=0.8, each newly recalled fault strand inside
+the kernel buys roughly 4× what an equivalent false-alarm clean-out saves. Our path is therefore:</p>
+<ol>
+<li><b>E1 first:</b> depth-gated buried-fault lineaments — the population a surface catalogue structurally misses.</li>
+<li><b>E2 alongside:</b> kinematic splay fans at tips/stepovers — the population the scoring definition explicitly rewards.</li>
+<li><b>E3/E4 as independent witnesses:</b> fluvial alignments and hydrothermal alignments confirm or veto E1/E2 traces by independent physics; conjunctions enter the emission, singletons stay cheap.</li>
+<li><b>E5 as budget hygiene:</b> evict berms/road-cuts/shorelines so the top-k budget spends on recall.</li>
+</ol>
+<p>What we will <i>not</i> do: re-upload the 0.1563 bytes (proven ceiling, not a floor to build on);
+train another generic ridge blender and hope; spend slots on unvalidated ideas.</p>
+
+<h2>4 · Budget arithmetic (verify locally before trusting)</h2>
+<p>Sibling census (re-measure, don't trust): footprint 5,167,373 px; known faults ~60,988 px (~1.18%).
+The 0.1563 artifact emits 172,974 px (~3.3%); the 16GEMSDOE candidates emit ~2.4%. Sibling holdout
+measurement: at matched mass, hardening beats soft (0.8317 vs 0.7619 in-sample) and 3% beats 4.06%.
+Our protocol re-derives the budget curve on honest folds — the numbers above are priors, not decisions.</p>
+<p class="foot"><a href="index.html">← Overview</a> · Next: <a href="results.html">Results ledger</a></p>
+</main></body></html>

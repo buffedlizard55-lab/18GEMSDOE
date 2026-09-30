@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Data sources · 18GEMSDOE</title>
+<link rel="stylesheet" href="style.css"></head><body>
+<header class="nav"><div class="inner">
+<a class="brand" href="index.html">18GEMSDOE</a>
+<a class="page" href="executive_summary.html">How to submit</a>
+<a class="page" href="hypotheses.html">Hypotheses E1–E5</a>
+<a class="page" href="strategy.html">Metric &amp; strategy</a>
+<a class="page" href="results.html">Results ledger</a>
+<a class="page" href="data.html">Data sources</a>
+<a class="page" href="references.html">References</a>
+<a class="page" href="audit.html">Audit flags</a>
+</div></header>
+<main>
+<h1>Data inventory — official links, licenses, obtainability</h1>
+<p class="small">Rule: external data is encouraged provided the team holds a license permitting
+challenge use and sharing with the sponsor
+(<a href="https://www.drivendata.org/competitions/306/competition-doe-gems/">competition rules summary</a>;
+full text <a href="https://docs.nlr.gov/docs/fy26osti/96647.pdf">rules PDF</a>).
+Every row below was fetched and verified 2026-09-30 unless marked otherwise.</p>
+
+<h2 id="blocker">Competition data (the blocker)</h2>
+<div class="panel"><p><span class="pill no">ABSENT FROM THIS WORKSPACE — NOTHING TRAINED, NOTHING VALIDATED HERE</span></p>
+<p><span class="mono">training_features.tif</span> (19 bands, EPSG:32611, 100 m), labels (vector + raster),
+<span class="mono">sample_submission.tif</span>, and <span class="mono">1m_DEM_links.csv</span> live behind
+DrivenData login at <a href="https://www.drivendata.org/competitions/306/competition-doe-gems/data/">the data tab</a>
+and could not be fetched from this sandbox (login redirect — long-standing, previously verified).
+<b>Owner action:</b> download on any logged-in machine, place under <span class="mono">data/</span>
+(<span class="mono">data/</span> is git-ignored), then run the validator + holdout from the locked protocol.
+No GPU is needed for validation; training the reference U-Net wants one
+(<a href="https://github.com/drivendataorg/gems-prize-reference-solution">reference solution</a>).</p>
+<p>Owner-supplied Dropbox mirrors (competition PDF, example submission, existing-faults raster,
+GeoDAWN numerical features, DEM-links PDF) are listed in the mission brief; they were <b>not</b>
+re-verified this session and must be checksummed against the data-tab originals before use
+(<a href="audit.html#F11">F11</a>).</p></div>
+
+<h2>Competition bands (what E1/E2 use — no new download needed)</h2>
+<table><tr><th>Bands (problem-description wording)</th><th>Used by</th><th>Source</th></tr>
+<tr><td>Reduced-to-pole magnetic anomaly; total magnetic intensity; vertical &amp; horizontal slope of TMI; top-of-crustal magnetic source depth estimate*</td><td>E1</td><td><a href="https://www.drivendata.org/competitions/306/competition-doe-gems/page/967/#provided-features">provided features</a></td></tr>
+<tr><td>Isostatic gravity anomaly + slope of isostatic gravity</td><td>E1</td><td>same</td></tr>
+<tr><td>Dilatation rate, shear strain rate, 2nd invariant of strain-rate tensor</td><td>E2</td><td>same</td></tr>
+<tr><td>Detrended elevation + slope; surface conductivity + depth to conductive base; earthquake density</td><td>context / conjunctions</td><td>same</td></tr>
+</table>
+<p class="small">*Sibling repos report the magnetic-source-depth band has no exact tag match among the 19
+<span class="mono">band_name</span> tags (their <span class="mono">test_bandlayout.py</span> pins this).
+Re-verify against your download; E1 does not depend on it (Euler estimates depth itself).</p>
+
+<h2>Free external data (verified obtainable — E3/E4/E5)</h2>
+<table><tr><th>Dataset</th><th>Official source</th><th>License / cost</th><th>Used by</th><th>Status</th></tr>
+<tr><td>3DEP 1/3″ (~10 m) seamless DEM</td><td><a href="https://catalog.data.gov/dataset/1-3rd-arc-second-digital-elevation-models-dems-usgs-national-map-3dep-downloadable-data-co">data.gov listing</a> · <a href="https://www.usgs.gov/3d-elevation-program">3DEP program</a></td><td>Public domain; free</td><td>E3, E5</td><td><span class="pill ok">verified</span></td></tr>
+<tr><td>NHDPlus HR flowlines + catchments</td><td><a href="https://www.usgs.gov/national-hydrography/access-national-hydrography-products">USGS access page</a> · <a href="https://hydro.nationalmap.gov/arcgis/rest/services/NHDPlus_HR/MapServer">map service</a></td><td>Public domain; free (GDB by HU4)</td><td>E3</td><td><span class="pill ok">verified</span></td></tr>
+<tr><td>GeoDAWN mag/radiometric release (grids + line data + contractor report)</td><td><a href="https://doi.org/10.5066/P93LGLVQ">doi:10.5066/P93LGLVQ</a> (Glen &amp; Earney 2024)</td><td>Public domain (USGS release)</td><td>E1 seam test; radiometric checks</td><td><span class="pill ok">verified; Area 1: 200 m lines, Area 2: 400 m lines</span></td></tr>
+<tr><td>INGENIOUS regional compilation (paleo-geothermal 82 kB; wells/springs 19.85 MB; faults; strain; conductance…)</td><td><a href="https://gdr.openei.org/submissions/1391">GDR 1391</a>, <a href="https://doi.org/10.15121/1881483">doi:10.15121/1881483</a></td><td>CC-BY 4.0</td><td>E4</td><td><span class="pill ok">verified listing + sizes</span></td></tr>
+<tr><td>State Geologic Map Compilation (SGMC) — lithology + faults</td><td><a href="https://doi.org/10.5066/F7WH2N65">doi:10.5066/F7WH2N65</a> (update <a href="https://doi.org/10.5066/P1A3DQZK">doi:10.5066/P1A3DQZK</a>)</td><td>Public domain; ~1:1M compilation</td><td>E1/E3/E4 confound tests</td><td><span class="pill ok">verified; coarse — positions ±100s m</span></td></tr>
+<tr><td>1 m 3DEP DEM tiles (716 links)</td><td>competition <span class="mono">1m_DEM_links.csv</span></td><td>Public domain; ≈130 GB full region (sibling-measured)</td><td>E5 calibration subset</td><td><span class="pill wait">sibling-verified only (F10)</span></td></tr>
+<tr><td>USGS Quaternary Fault &amp; Fold Database (viewer + reports)</td><td><a href="https://www.usgs.gov/programs/earthquake-hazards/faults">faults program</a> · <a href="https://experience.arcgis.com/experience/3e35ddef76634cbdb65415f8b155195">viewer</a></td><td>Public domain</td><td>catalogue methodology</td><td><span class="pill ok">verified</span></td></tr>
+</table>
+
+<h2 id="catalogue">Where the catalogue is thin (methodology, not just raster)</h2>
+<ul>
+<li>The database targets faults believed capable of M&gt;6 in the Quaternary and is explicitly
+“substantially complete” but subject to revision
+(<a href="https://www.usgs.gov/programs/earthquake-hazards/faults">USGS faults page</a>).</li>
+<li>Nevada entries are commonly compiled from <b>reconnaissance photogeologic mapping</b> at
+1:62.5k–1:250k with <b>no trench or scarp-morphology studies</b> — e.g. the Walker Lane entries
+noting "Trench investigations and detailed studies of scarp morphology have not been completed"
+(<a href="https://landslides.usgs.gov/static/lfs/nshm/qfaults/Reports/1307.pdf">example Qfault report PDF</a>).
+Desk-compiled segments, young cover masking scarps, and sparse fieldwork are exactly where
+extensions/splays go unmapped — the ground E1/E2 overweight.</li>
+<li>INGENIOUS Quaternary-fault compilations (v1/v2 superseding) live on GDR 1391; slip/dilation-tendency grids exist for the same faults (<a href="https://doi.org/10.5066/P9YL58W6">doi:10.5066/P9YL58W6</a>).</li>
+</ul>
+
+<h2>Shelved after verification</h2>
+<ul>
+<li>USGS Great Basin <b>MT conductance maps</b> (<a href="https://doi.org/10.5066/P9TWT2LU">doi:10.5066/P9TWT2LU</a>):
+five depth ranges spanning <b>2–200 km</b> from ~800 stations — too coarse for 100 m traces. Regional prior at most.</li>
+</ul>
+<p class="foot"><a href="index.html">← Overview</a> · Next: <a href="references.html">References</a></p>
+</main></body></html>

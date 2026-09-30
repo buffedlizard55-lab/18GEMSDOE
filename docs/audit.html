@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Audit flags · 18GEMSDOE</title>
+<link rel="stylesheet" href="style.css"></head><body>
+<header class="nav"><div class="inner">
+<a class="brand" href="index.html">18GEMSDOE</a>
+<a class="page" href="executive_summary.html">How to submit</a>
+<a class="page" href="hypotheses.html">Hypotheses E1–E5</a>
+<a class="page" href="strategy.html">Metric &amp; strategy</a>
+<a class="page" href="results.html">Results ledger</a>
+<a class="page" href="data.html">Data sources</a>
+<a class="page" href="references.html">References</a>
+<a class="page" href="audit.html">Audit flags</a>
+</div></header>
+<main>
+<h1>Audit flags — irregularities for owner review</h1>
+<p class="small">Standing rule: irregularities are flagged, never smoothed over. Each flag names the
+evidence, the risk, and the required action.</p>
+
+<table><tr><th>ID</th><th>Flag</th><th>Severity</th><th>Action required</th></tr>
+<tr id="F06"><td><b>F06</b></td><td><b>Stale “0.3049” leader figure in group notes.</b> Live leaderboard fetch on 2026-09-30
+shows #1 DARD at <b>0.3168</b> (alexoktaba 0.3042 at #2). Strategy text anchored on 0.3049 understates the gap by 0.0119.</td>
+<td><span class="pill wait">MEDIUM</span></td><td>Re-snapshot the leaderboard before any slot decision; this repo uses 0.3168 (2026-09-30).</td></tr>
+<tr id="F07"><td><b>F07</b></td><td><b>0.1855 score↔file linkage unverified.</b> Owner records attribute 0.1855 to the 16GEMSDOE
+h16-1 file (<span class="mono">…-df20f65e-nan.tif</span>), and leaderboard account <i>extradr19</i> sits at 0.1855 —
+but the 16GEMSDOE page snapshot says its files are "not yet live-scored". Either the page is stale or the linkage is wrong.</td>
+<td><span class="pill wait">MEDIUM</span></td><td>Owner: confirm which account uploaded which sha before citing 0.1855 as "our best". Do not strategise on an unjoined ledger row.</td></tr>
+<tr id="F08"><td><b>F08</b></td><td><b>Multi-account pattern is a compliance question.</b> Group scores are spread across many
+DrivenData accounts (SDCF9, smashi34, smrtdoog5, wbg1, extradr19, …). The rules require one final
+submission per participating entity and bar team members from separate final submissions
+(<a href="https://docs.nlr.gov/docs/fy26osti/96647.pdf">rules PDF §3.4</a>); eligibility/certifications
+govern (§1.3, §3.6.4, App. A). A prize won by an ineligible entry can be withheld.</td>
+<td><span class="pill no">HIGH</span></td><td>Owner: consolidate to a single eligible team <i>before</i> the deadline selection; get written organiser clearance for any exception. This repo will not help evade account rules.</td></tr>
+<tr id="F14"><td><b>F14</b></td><td><b>Generative-AI use must be disclosed.</b> Rules §3.2: "You must <b>indicate in the narrative</b>
+… the extent to which, if any, you used generative AI technology and how you used it to develop
+your submission." This repo's code, prose, and hypotheses are AI-assisted throughout; the finalist
+narrative must say so, and finalists must deliver reproducible code + documentation (§3.2).</td>
+<td><span class="pill wait">MEDIUM</span></td><td>Owner: keep an AI-use log from now on; draft the disclosure paragraph before the deadline. Reproducibility is already this repo's design (validator + metric + locked protocol).</td></tr>
+<tr id="F09"><td><b>F09</b></td><td><b>"Four GeoDAWN survey blocks" unverified.</b> The official release text verified this session
+names <b>Area 1 (200 m lines, Bell Jet Ranger)</b> and <b>Area 2 (400 m lines)</b>
+(<a href="https://doi.org/10.5066/P93LGLVQ">doi:10.5066/P93LGLVQ</a>). A four-block / four-aircraft claim needs the contractor report PDF inside the release, which was not fetched here.</td>
+<td><span class="pill wait">LOW</span></td><td>E1's seam test uses the verified Area 1/2 boundary; extend to four blocks only after reading the contractor report.</td></tr>
+<tr id="F10"><td><b>F10</b></td><td><b>1 m DEM census is sibling-sourced.</b> “716 tile URLs, one tile live (185,344,605 B), ≈130 GB total”
+comes from 8GEMSDOE's measurement, not from this session. The <span class="mono">1m_DEM_links.csv</span> itself is behind login here.</td>
+<td><span class="pill wait">LOW</span></td><td>Re-enumerate from the data-tab CSV on the owner machine before budgeting E5 calibration.</td></tr>
+<tr id="F11"><td><b>F11</b></td><td><b>Dropbox mirrors not re-verified.</b> Owner-supplied Dropbox links (rules PDF, example submission,
+existing-faults raster, GeoDAWN features, DEM-links PDF) were not fetched or checksummed this session.</td>
+<td><span class="pill wait">MEDIUM</span></td><td>Checksum every mirror against the data-tab original before use; record sha256 in the ledger.</td></tr>
+<tr id="F12"><td><b>F12</b></td><td><b>Sibling citation error (8GEMSDOE H8).</b> Its hypothesis page attributes the “newly mapped geometry
+of an existing fault system” definition to <b>forum 11516</b>; the definition actually appears in staff's reply on
+<b><a href="https://community.drivendata.org/t/where-do-you-draw-the-line/11536">forum 11536</a></b> (11516 covers masking only).
+Claim correct, citation wrong.</td>
+<td><span class="pill wait">LOW</span></td><td>Fixed in this repo (all citations point at 11536). Notified here for the group record.</td></tr>
+<tr id="F13"><td><b>F13</b></td><td><b>No holdout, no validation, no artifact in this repo.</b> Stated plainly so it cannot drift into
+implication: every DTI figure on this site is either an official leaderboard value, a sibling-measured value, or a
+pre-registered <i>prediction</i> — none is an 18GEMSDOE measurement.</td>
+<td><span class="pill ok">ACKNOWLEDGED</span></td><td>Resolve by placing data and running the locked protocol; until then, no slot.</td></tr>
+</table>
+
+<h2>Closed this session</h2>
+<ul>
+<li><span class="pill ok">CLOSED</span> “New fault includes extensions/splays/strands” — <b>confirmed on the record</b>
+(staff, <a href="https://community.drivendata.org/t/where-do-you-draw-the-line/11536">forum 11536</a>).</li>
+<li><span class="pill ok">CLOSED</span> Known-fault masking — <b>confirmed on the record</b> (staff,
+<a href="https://community.drivendata.org/t/scoring-clarification-are-known-usgs-ingenious-faults-masked-when-scoring-and-are-they-in-the-final-round-label-set/11516">forum 11516</a>).</li>
+<li><span class="pill ok">CLOSED</span> Why 5GEMSDOE == GEMSDOE1 — <b>byte-identical files</b>, verified live on both sites.</li>
+<li><span class="pill ok">CLOSED</span> Test-fault sources/types/coverage — organizers <b>declined to disclose</b>
+(staff, <a href="https://community.drivendata.org/t/how-were-the-new-test-faults-identified-data-sources-and-fault-types/11527/7">forum 11527</a>); strategies assuming lidar-only or geophysics-only truth are unlicensed.</li>
+</ul>
+<p class="foot"><a href="index.html">← Overview</a></p>
+</main></body></html>

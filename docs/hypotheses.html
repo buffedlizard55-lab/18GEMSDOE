@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Hypotheses E1–E5 · 18GEMSDOE</title>
+<link rel="stylesheet" href="style.css"></head><body>
+<header class="nav"><div class="inner">
+<a class="brand" href="index.html">18GEMSDOE</a>
+<a class="page" href="executive_summary.html">How to submit</a>
+<a class="page" href="hypotheses.html">Hypotheses E1–E5</a>
+<a class="page" href="strategy.html">Metric &amp; strategy</a>
+<a class="page" href="results.html">Results ledger</a>
+<a class="page" href="data.html">Data sources</a>
+<a class="page" href="references.html">References</a>
+<a class="page" href="audit.html">Audit flags</a>
+</div></header>
+<main>
+<h1>Five new hypotheses (E1–E5)</h1>
+<p>Each names its layers, its physical signature, why it should catch faults <b>missing</b>
+from USGS/INGENIOUS, how it differs from everything already implemented across the group
+program (8GEMSDOE H1–H10 + H-A–H-E; 16GEMSDOE H16-1/H18-3a/H18-4; GEMSDOE4 Sato ridgeness;
+6GEMSDOE magnetic HGB; GEMSDOE3 Pindrop; 10/12/15GEMSDOE scarp/ridge/alteration arms),
+at least one named non-fault confound with a distinguishing test, and a pre-registered
+falsification rule. <b>None has been validated — validation is owed, starting with E1.</b>
+Method citations are verified in <a href="references.html">References</a>; data obtainability
+in <a href="data.html">Data</a>.</p>
+
+<h2>Ranking at a glance (expected DTI ÷ implementation cost)</h2>
+<table><tr><th>#</th><th>Hypothesis</th><th>Layers</th><th>Expected gain</th><th>Cost</th><th>New data?</th></tr>
+<tr><td><b>E1 ★</b></td><td>Euler depth-gated potential-field lineaments</td><td>RTP magnetics, TMI gradients, isostatic gravity + slope (competition bands)</td><td>highest</td><td>low</td><td>none</td></tr>
+<tr><td><b>E2</b></td><td>Riedel-splay fans from mapped tips, strain-sign gated</td><td>catalogue geometry + shear/dilatation rate bands</td><td>medium</td><td>low</td><td>none</td></tr>
+<tr><td><b>E3</b></td><td>Fluvial SL-index / knickpoint-alignment detector</td><td>3DEP 10 m DEM + NHDPlus HR flowlines (both free, public domain)</td><td>medium</td><td>medium</td><td>yes — verified obtainable</td></tr>
+<tr><td><b>E4</b></td><td>Paleo-geothermal + spring alignments ∩ geophysical edges</td><td>INGENIOUS paleo-geothermal + well/spring data (GDR 1391, CC-BY) ∩ E1/HGM edges</td><td>low–medium alone; high as conjunction</td><td>low</td><td>yes — verified obtainable</td></tr>
+<tr><td><b>E5</b></td><td>Scarp diffusion-age discriminator (dates, not just detects)</td><td>10 m DEM (+ 1 m tiles for calibration subset)</td><td>low direct; frees budget for recall</td><td>medium–high</td><td>partially (1 m subset heavy)</td></tr>
+</table>
+<p class="small">Ordering rationale: E1 and E2 need no new data and target the two populations the
+scoring rule rewards most (buried structures invisible to surface mapping; newly mapped
+geometry of known systems — <a href="https://community.drivendata.org/t/where-do-you-draw-the-line/11536">forum 11536</a>).
+E3 brings a wholly unused physical family (fluvial). E4 is the best <i>conjunction</i> term
+(hydrothermal-plumbing physics is independent of potential-field physics, so joint agreement
+is weighed as evidence). E5 is a precision instrument whose direct DTI payoff is capped by
+α=0.2 but which earns its keep under exact top-k budgets by evicting systematic false positives.</p>
+
+<h2 id="E1">E1 ★ — Euler-deconvolution depth-gated lineaments (VALIDATE FIRST)</h2>
+<div class="panel">
+<p><b>Layers:</b> reduced-to-pole magnetic anomaly, TMI horizontal + vertical gradients,
+isostatic gravity anomaly + slope — all competition bands
+(<a href="https://www.drivendata.org/competitions/306/competition-doe-gems/page/967/#provided-features">provided features</a>).</p>
+<p><b>Mechanism.</b> A normal fault juxtaposes basement against basin fill (or offsets
+intra-basement units), creating a lateral contact in density and magnetization. Blakely &amp;
+Simpson (1986) show horizontal-gradient-magnitude maxima sit over such boundaries, and
+Miller &amp; Singh (1994) show the tilt-derivative zero contour tracks them independent of
+amplitude. E1 goes one level deeper: run <b>Euler deconvolution</b> (Thompson 1982; Reid et
+al. 1990) with a <b>contact/step structural index (SI = 0 magnetic)</b> along those edges.
+Genuine fault contacts yield tight clusters of solutions at the cover–basement depth;
+deep crustal fabric yields deep scattered solutions; survey noise yields unstable ones.
+<b>Emission = density of well-clustered, shallow-contact Euler solutions</b>, skeletonised
+to 1-px traces — a depth-gated lineament field, not an edge-amplitude field.</p>
+<p><b>Why it catches catalogue-missing faults.</b> The USGS Quaternary compilation maps faults
+with surface expression (scarps, offset layers —
+<a href="https://www.drivendata.org/competitions/306/competition-doe-gems/page/968/#about-the-task">about page</a>).
+Buried range-front faults under young cover have no scarp but still juxtapose dense,
+magnetic basement against light fill — the USGS Nevada gravity memo states isostatic
+patterns "reveal features of subsurface geology, including the location of buried faults"
+(<a href="https://pubs.usgs.gov/ds/2006/234/nv_iso.htm">USGS DS 234</a>). Depth-gating is
+what separates them from the deep fabric that drowns amplitude-only edge maps.</p>
+<p><b>Differs from implemented:</b> 8GEMSDOE H1 (gravity TDR+HGM) and H7 (magnetic TDR×AS)
+emit edge <i>amplitude</i> with no depth discrimination; 6GEMSDOE's magnetic HGB and
+10GEMSDOE's continuation arm likewise carry no source-depth estimate. <b>No group line runs
+Euler deconvolution or gates on solution depth/clustering.</b></p>
+<p><b>Named confounds + distinguishing tests:</b></p>
+<ul>
+<li><i>Lithologic contacts</i> (same SI, same edge). <b>Test:</b> solution-density contrast
+along known fault traces vs. SGMC-mapped lithologic contacts far from faults
+(SGMC: <a href="https://doi.org/10.5066/F7WH2N65">doi:10.5066/F7WH2N65</a>); E1 must show
+excess density on faults after stratifying by contact length.</li>
+<li><i>GeoDAWN Area 1 (200 m lines) vs Area 2 (400 m lines) seam</i> — different sampling
+biases solution density (<a href="https://doi.org/10.5066/P93LGLVQ">doi:10.5066/P93LGLVQ</a>;
+"four blocks" is <a href="audit.html#F09">unverified — F09</a>). <b>Test:</b> per-area
+normalisation + seam-exclusion rerun; the holdout verdict must survive dropping a 1 km
+band around the seam.</li>
+</ul>
+<p><b>Pre-registration (locked before running):</b> predicted direction — E1 top-k field beats
+budget-matched random AND the H1-style amplitude-only field on ≥2 of 3 leave-one-system-out
+folds in the buried-regime pseudo-truth, measured by the exact kernel DTI
+(<span class="mono">scripts/dti_metric.py</span>). Falsified if it merely re-ranks the same
+amplitude edges (rank correlation with HGM &gt; 0.9 with no DTI gain). Full protocol:
+<a href="https://github.com/buffedlizard55-lab/18GEMSDOE/blob/arena/01a0f0a5-18gemsdoe/knowledge/holdout_protocol.md">holdout protocol</a>.</p>
+<p><span class="pill wait">STATUS: UNVALIDATED — no data in this workspace; validation owed before any slot.</span></p>
+</div>
+
+<h2 id="E2">E2 — Riedel-splay fans from mapped tips, gated by strain-rate sign</h2>
+<div class="panel">
+<p><b>Layers:</b> catalogue fault geometry (labels) + dilatation rate, shear strain rate,
+second-invariant strain bands (competition).</p>
+<p><b>Mechanism.</b> The GeoDAWN area sits in/near the Walker Lane, a dextral transtensional
+shear system (Faulds &amp; Henry 2008). Clay/sand shear experiments show strike-slip systems
+grow synthetic <b>Riedel (R) shears at ~12–17° to the master zone</b> (Tchalenko 1970; Naylor
+et al. 1986), plus extensional stepover splays where the corridor dilates. E2 projects
+<b>single-tip fans at kinematically predicted splay angles</b> (R-splay ≈ master strike ±15°,
+sense-consistent with dextral shear; stepover splays where dilatation &gt; 0), each ray
+weighted by gap decay × angular match × mean positive dilatation along the ray — then
+skeletonised. It predicts <i>where the rock mechanics says the next strand must go</i>.</p>
+<p><b>Why it catches catalogue-missing faults.</b> Staff explicitly confirmed "new fault …
+can include newly mapped geometry of an existing fault system"
+(<a href="https://community.drivendata.org/t/where-do-you-draw-the-line/11536">forum 11536</a>),
+and desk-compiled catalogue segments systematically under-map short splays near tips and
+inside stepovers (cf. the thin-mapping discussion in <a href="data.html#catalogue">Data § catalogue</a>).
+This is the highest-value-per-pixel ground in the competition.</p>
+<p><b>Differs from implemented:</b> 8GEMSDOE H8 joined <i>pairs</i> of tips with straight
+corridors and was <b>falsified on gap-bridging</b> (native 0.0001 vs random 0.049) — E2 never
+connects tips; it projects single-tip fans at predicted angles with strain-sign gating, which
+H8 lacked. 16GEMSDOE H18-3a boosts near endpoints/junctions but with an isotropic complexity
+prior, not kinematic angles.</p>
+<p><b>Named confounds + distinguishing tests:</b></p>
+<ul>
+<li><i>Regional joint sets</i> share orientations with R-splays. <b>Test:</b> fan orientations
+must associate with their parent master fault (angle + distance falloff from the tip), not
+with the regional joint rose; control fans projected at the mirror (kinematically forbidden)
+angle must score ≤ random.</li>
+<li><i>H8's failure mode</i> (corridors through empty ground). <b>Test:</b> leave-one-system-out
+folds with splay-regime pseudo-truth; pre-registered kill rule — falsified if E2 ≤ random on
+≥2 of 3 folds.</li>
+</ul>
+<p><b>Pre-registration:</b> E2 beats budget-matched random and the mirror-angle control on ≥2
+of 3 folds. <span class="pill wait">STATUS: UNVALIDATED.</span></p>
+</div>
+
+<h2 id="E3">E3 — Fluvial SL-index / knickpoint-alignment detector</h2>
+<div class="panel">
+<p><b>Layers:</b> USGS 3DEP 1/3″ (~10 m) DEM + NHDPlus HR flowlines — both free public domain
+(<a href="https://catalog.data.gov/dataset/1-3rd-arc-second-digital-elevation-models-dems-usgs-national-map-3dep-downloadable-data-co">3DEP listing</a>;
+<a href="https://www.usgs.gov/national-hydrography/access-national-hydrography-products">NHD access</a>).</p>
+<p><b>Mechanism.</b> A fault with vertical throw crossing a drainage imprints a
+<b>knickpoint</b> (slope break) and a <b>stream-length-gradient (SL) anomaly</b>,
+SL = (dH/dL)·L (Hack 1973), on the channel profile; normalised steepness carries the same
+signal (Burbank &amp; Anderson 2011, ch. on channel response to active faulting). Channels
+persist where scarps erode: a fault whose 2 m scarp has diffused below 100 m detectability
+still offsets every stream it crosses. <b>Operator:</b> route flow on the 10 m DEM (or adopt
+NHDPlus HR reaches), compute SL per reach, flag reach-scale outliers, then <b>link outliers
+into traces only where ≥3 outliers from independent channels align within a 300 m corridor
+along a consistent strike</b> (RANSAC line support). Emission = supported alignment segments.</p>
+<p><b>Why it catches catalogue-missing faults.</b> Compilers map offset <i>layers and scarps</i>;
+a fault system that offsets drainages without preserving a continuous scarp (degraded,
+aggraded, or plowed-out) leaves knickpoint alignments no scarp detector and no profile
+operator can see. The multi-channel alignment requirement is the catalogue-blind population's
+fingerprint.</p>
+<p><b>Differs from implemented:</b> no group line performs any fluvial-network analysis.
+8GEMSDOE H3 samples an antisymmetric step along the gradient; H9 measures map-view orientation
+coherence; H-A runs hysteresis on curvature — all are <i>hillslope</i> operators. E3 is a
+<i>channel-profile</i> operator on routed networks.</p>
+<p><b>Named confounds + distinguishing tests:</b></p>
+<ul>
+<li><i>Lithologic knickpoints</i> (hard/soft contacts). <b>Test:</b> alignments must cross ≥2
+SGMC lithologic units; alignments confined to one mapped contact are discarded and the
+holdout rerun must survive the discard.</li>
+<li><i>Dams, road crossings, canal drops.</i> <b>Test:</b> NHD flowline attribution + TIGER
+roads intersection mask; alignments supported only by masked reaches are abstentions, not emissions.</li>
+</ul>
+<p><b>Pre-registration:</b> aligned-knickpoint segments beat budget-matched random and beat
+<i>unaligned</i> knickpoint density (the alignment requirement must carry the gain) on ≥2 of 3
+folds. <span class="pill wait">STATUS: UNVALIDATED. External data verified obtainable; ~10 m DEM for the footprint is a moderate download.</span></p>
+</div>
+
+<h2 id="E4">E4 — Paleo-geothermal + spring alignments intersected with geophysical edges</h2>
+<div class="panel">
+<p><b>Layers:</b> INGENIOUS paleo-geothermal features (sinter/tufa/travertine) + well/spring
+temperature &amp; chemistry points — GDR submission 1391,
+<a href="https://doi.org/10.15121/1881483">doi:10.15121/1881483</a>, CC-BY, small downloads
+(82 kB + 19.85 MB) — <b>intersected</b> with E1/HGM potential-field edges.</p>
+<p><b>Mechanism.</b> Fault damage zones are vertical fluid conduits: upwelling geothermal
+fluids precipitate sinter/tufa/travertine at the surface and feed hot springs <i>along the
+trace</i>, even where the scarp is erased and the magnetic contrast is weak. The physics
+(hydrothermal plumbing + surface precipitation) is <b>mechanistically independent</b> of
+potential-field edge physics (density/susceptibility contrast) — so a pixel where a
+deposit/spring alignment coincides with a gravity/magnetic edge is weighed as evidence in
+the proper sense: joint agreement of independent origins is far less likely by chance.
+<b>Operator:</b> kernel-density ridges + RANSAC line support on deposits/springs, emission =
+alignment pixels within 300 m of an E1 edge.</p>
+<p><b>Why it catches catalogue-missing faults.</b> Blind and degraded faults with active or
+recent fluid flow advertise themselves geochemically while showing compilers nothing
+mappable. The deposits are also exactly the "structures indicative of geothermal resources"
+the prize exists to find.</p>
+<p><b>Differs from implemented:</b> no group line uses point-feature alignments at all;
+8GEMSDOE H-C intersects radiometric ratios with lineaments (different physics, no point
+alignments); nothing touches the GDR 1391 deposit/spring compilations.</p>
+<p><b>Named confounds + distinguishing tests:</b></p>
+<ul>
+<li><i>Valley-bottom springs / lithologic-contact seeps</i> align with topography, not faults.
+<b>Test:</b> alignments parallel to valley axes or confined to one SGMC contact score lower
+than alignments cutting across them; the intersection with E1 edges must carry the gain
+(ablation: alignments alone vs. intersection).</li>
+<li><i>Sparse points → spurious RANSAC lines.</i> <b>Test:</b> pre-registered minimum support
+(≥4 independent deposits/springs per segment); permutation control (randomised point locations
+must yield ~zero supported segments).</li>
+</ul>
+<p><b>Pre-registration:</b> intersection beats alignments-alone and edges-alone (super-additivity
+of independent evidence) on ≥2 of 3 folds. <span class="pill wait">STATUS: UNVALIDATED.</span></p>
+</div>
+
+<h2 id="E5">E5 — Scarp diffusion-age discriminator</h2>
+<div class="panel">
+<p><b>Layers:</b> 10 m DEM for inference; 1 m 3DEP tiles for calibration subset
+(competition <span class="mono">1m_DEM_links.csv</span>; full-region ≈130 GB per sibling
+measurement — <a href="audit.html#F10">re-verify before budgeting — F10</a>).</p>
+<p><b>Mechanism.</b> Scarp degradation obeys the linear diffusion equation
+∂h/∂t = κ∂²h/∂x², whose solution is an error-function profile parameterised by
+diffusive age κt (Hanks et al. 1984; inverse solution for age: Andrews &amp; Hanks 1985).
+E5 fits κt to every H3/H-A candidate scarp profile: <b>fresh anthropogenic steps</b> (road
+cuts, berms, κt ≈ 0) and <b>over-mature shorelines</b> (Pleistocene Lake Lahontan
+high-stand scarps, morphologically analysed in this very region by Hanks &amp; Wallace 1985)
+are <b>rejected</b>; scarps with Quaternary-consistent κt are retained. Shorelines get a
+second kill-test for free: they parallel elevation contours, faults cut across them.</p>
+<p><b>Why it matters for scoring.</b> E5 is a <i>precision</i> instrument: with α=0.2 its
+direct DTI payoff is capped, but under exact top-k budgets every evicted berm/shoreline
+pixel is a recalled fault pixel elsewhere. It converts H3 from a step detector into a
+<i>fault</i>-step detector.</p>
+<p><b>Differs from implemented:</b> 8GEMSDOE H3/H-A <i>detect</i> steps; no line <i>dates</i>
+them or rejects anthropogenic/shoreline steps. No group line fits diffusion age or applies
+the contour-parallelism shoreline test.</p>
+<p><b>Named confounds + distinguishing tests:</b></p>
+<ul>
+<li><i>Composite (multi-event) scarps</i> violate single-event κt. <b>Test:</b> two-event
+diffusion fit where single-event residuals fail; aspect-stratified κ (diffusivity is
+microclimatically controlled — retain only within-aspect comparisons).</li>
+<li><i>Plowed/graded fault scarps</i> look fresh (low κt) but are tectonic. <b>Test:</b>
+κt≈0 rejections must intersect the TIGER-roads / land-use mask to be discarded; low-κt
+steps far from any road are abstentions, not rejections.</li>
+</ul>
+<p><b>Pre-registration:</b> H3+E5 (dated) beats H3-alone at matched budget on ≥2 of 3 folds,
+with the gain attributable to FP eviction (measured FP-rate drop on road/shoreline masks).
+<span class="pill wait">STATUS: UNVALIDATED — and the most expensive arm; run last.</span></p>
+</div>
+
+<h2>What was deliberately NOT proposed</h2>
+<ul>
+<li><b>MT depth-slice conductance lineaments</b> — investigated and <b>shelved</b>: the USGS
+Great Basin conductance maps start at 2 km depth and derive from ~800 stations over the whole
+Great Basin (<a href="https://doi.org/10.5066/P9TWT2LU">doi:10.5066/P9TWT2LU</a>) — far too
+coarse to resolve 100 m traces. Usable at most as a regional zone prior, not a detector.</li>
+<li><b>Re-tuned blenders / generic ridge stacks</b> — the group has run this family to
+diminishing returns (dense-ridge control 0.1152; HGB 0.0286; apex in-sample arms that
+collapse out-of-sample). New slots go only to new physics.</li>
+<li><b>Tip-to-tip straight corridors</b> — already falsified (H8: 0.0001 vs random 0.049). E2
+is the kinematically constrained successor, not a retry.</li>
+</ul>
+
+<h2>Validation contract (applies to all five)</h2>
+<ol>
+<li>Spatially blocked folds (leave-one-fault-system-out) with a 300 m train-exclusion buffer —
+no train pixel inside the metric kernel of test truth.</li>
+<li>Budget-matched random control + a <b>mechanism-specific control</b> (E1: amplitude-only
+edges; E2: mirror-angle fans; E3: unaligned knickpoints; E4: each arm alone; E5: undated steps).</li>
+<li>Hypothesis + predicted direction written <b>before</b> running (above); a further locked
+slice tested once, at the end; improvement counts only if it survives the locked slice and
+the investigator's best artifact argument. Full text:
+<a href="https://github.com/buffedlizard55-lab/18GEMSDOE/blob/arena/01a0f0a5-18gemsdoe/knowledge/holdout_protocol.md">holdout protocol</a>.</li>
+</ol>
+<p class="foot"><a href="index.html">← Overview</a> · Next: <a href="strategy.html">Metric &amp; strategy</a></p>
+</main></body></html>
