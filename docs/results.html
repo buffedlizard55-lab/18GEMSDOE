@@ -48,69 +48,133 @@ The bar is **the top row**, not the 0.3049 quoted when this project started. The
 
 
 <h2 id="2-the-groups-own-history">2. The group's own history</h2>
+<p>The numbers below are <strong>[GROUP-REPORTED]</strong> public scores, read from the group's own similarity audit
+(<code>16GEMSDOE/evidence/submission_similarity.json</code>, 21 entries, generated 2026-09-30T01:14Z) which pins
+each file's bytes and counts its pixels. Emission is "positive pixels in the file / positive pixels
+that the pixel-exact known-fault mask leaves in the score".</p>
 <table>
 <thead>
 <tr>
-<th>File (as reported to this project)</th>
+<th>File</th>
 <th style="text-align: right;">Public score</th>
-<th style="text-align: right;">Emission</th>
+<th style="text-align: right;">Emission (all / scored px)</th>
 <th>Note</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td><code>GEMSDOE1</code> / <code>5GEMSDOE</code> — <code>ens12-adopted-floor0.1-w0</code></td>
+<td><code>GEMSDOE1</code> — <code>ens12-adopted-floor0.1-w0</code></td>
 <td style="text-align: right;">0.1563</td>
-<td style="text-align: right;">172,974 px</td>
-<td><strong>byte-identical files</strong> — SHA-256 <code>7f00890a…</code>, recomputed here</td>
+<td style="text-align: right;">172,974 / 166,519</td>
+<td>reference file; SHA-256 <code>7f00890a…</code>, 570,890 B</td>
 </tr>
 <tr>
-<td><code>8GEMSDOE</code> — <code>max(ens12, catalogue)</code></td>
+<td><code>5GEMSDOE</code> — same name</td>
 <td style="text-align: right;">0.1563</td>
-<td style="text-align: right;">172,974 px</td>
-<td>same scored content; adding the catalogue changed nothing, exactly as the pixel-exact mask predicts</td>
+<td style="text-align: right;">172,974 / 166,519</td>
+<td><strong>exact byte duplicate of the row above</strong></td>
+</tr>
+<tr>
+<td><code>8GEMSDOE</code> — <code>Hedge-v2 = max(ens12, catalogue)</code></td>
+<td style="text-align: right;">0.1563</td>
+<td style="text-align: right;">227,507 / 166,519</td>
+<td>the extra 60,988 px are the catalogue, all masked → score unchanged</td>
 </tr>
 <tr>
 <td><code>GEMSDOE2</code> — dual-family union</td>
 <td style="text-align: right;">0.1560</td>
-<td style="text-align: right;">175,949 px</td>
-<td>overlap with <code>ens12</code> Jaccard ≈ 0.95</td>
+<td style="text-align: right;">183,642 / 175,949</td>
+<td>Jaccard ≈ 0.95 with <code>ens12</code></td>
 </tr>
 <tr>
 <td><code>7GEMSDOE</code> — lidar scarp ridge, top 2 %</td>
 <td style="text-align: right;">0.1461</td>
-<td style="text-align: right;">76,859 px</td>
+<td style="text-align: right;">76,859 / 76,859</td>
 <td>none of its emission is on known faults</td>
 </tr>
 <tr>
 <td><code>12GEMSDOE</code> — <code>r7-nms3-dem10-scarp</code></td>
 <td style="text-align: right;">0.1294</td>
-<td style="text-align: right;">103,347 px</td>
+<td style="text-align: right;">103,347 / 103,347</td>
 <td>the group's highest SGMC-gap proxy score — and one of its lowest public scores</td>
 </tr>
 <tr>
-<td><code>GEMSDOE3</code> — nodes / catalogue-gap / dense-ridge control</td>
-<td style="text-align: right;">0.1193 / 0.0830 / 0.1152</td>
-<td style="text-align: right;">point-like</td>
-<td>three distinct fields</td>
+<td><code>GEMSDOE3</code> — <code>pindrop-v4-nodes</code></td>
+<td style="text-align: right;">0.1193</td>
+<td style="text-align: right;">155,021 / 155,021</td>
+<td>point-like emission</td>
 </tr>
 <tr>
-<td><code>16GEMSDOE</code> — H16-1 topo-geophys baseline ridges</td>
-<td style="text-align: right;"><strong>0.1855</strong></td>
-<td style="text-align: right;">123,939 px</td>
-<td>the group's best; sits at leaderboard #22 if <code>extradr19</code> is the group's account</td>
+<td><code>GEMSDOE3</code> — <code>pindrop-v4-ridge</code> (control)</td>
+<td style="text-align: right;">0.1152</td>
+<td style="text-align: right;">155,021 / 155,021</td>
+<td>same mass, different geometry</td>
 </tr>
 <tr>
-<td><code>6GEMSDOE</code>, <code>11GEMSDOE</code>, <code>GEMSDOE9</code>, <code>14GEMSDOE</code></td>
-<td style="text-align: right;">0.0286, 0.0202, 0.0107, 0.0020</td>
-<td style="text-align: right;">—</td>
-<td>catalogue-adjacent top-k and failed arms</td>
+<td><code>GEMSDOE10-H20</code></td>
+<td style="text-align: right;">0.0921</td>
+<td style="text-align: right;">153,957 / 143,657</td>
+<td></td>
+</tr>
+<tr>
+<td><code>GEMSDOE3</code> — <code>pindrop-v4-discovery</code></td>
+<td style="text-align: right;">0.0830</td>
+<td style="text-align: right;">155,021 / 155,021</td>
+<td></td>
+</tr>
+<tr>
+<td><code>15GEMSDOE</code></td>
+<td style="text-align: right;">0.0782</td>
+<td style="text-align: right;">99,999 / 98,736</td>
+<td></td>
+</tr>
+<tr>
+<td><code>GEMSDOE10-H16</code></td>
+<td style="text-align: right;">0.0461</td>
+<td style="text-align: right;">310,042 / 283,532</td>
+<td></td>
+</tr>
+<tr>
+<td><code>GEMSDOE4</code> — combined</td>
+<td style="text-align: right;">0.0343</td>
+<td style="text-align: right;">264,247 / 258,323</td>
+<td>thick union blob</td>
+</tr>
+<tr>
+<td><code>6GEMSDOE</code> — <code>hgb88-topk03</code></td>
+<td style="text-align: right;">0.0286</td>
+<td style="text-align: right;">155,021 / 131,416</td>
+<td>catalogue-adjacent</td>
+</tr>
+<tr>
+<td><code>11GEMSDOE</code> — structural area 06</td>
+<td style="text-align: right;">0.0202</td>
+<td style="text-align: right;">343,526 / 282,538</td>
+<td>near-catalogue</td>
+</tr>
+<tr>
+<td><code>GEMSDOE9</code> — placeholder</td>
+<td style="text-align: right;">0.0107</td>
+<td style="text-align: right;">147,684 / 145,610</td>
+<td></td>
+</tr>
+<tr>
+<td><code>14GEMSDOE</code> — <code>r5-geom-horse-ensemble</code></td>
+<td style="text-align: right;">0.0020</td>
+<td style="text-align: right;">116,225 / 116,219</td>
+<td></td>
+</tr>
+<tr>
+<td><code>16GEMSDOE</code> — <code>h16-1-topo-geophys-baseline-ridges</code></td>
+<td style="text-align: right;">0.1855</td>
+<td style="text-align: right;"><em>not in the audit's 21 entries</em></td>
+<td>the group's best; reported to this project, and the leaderboard's #22 entry is 0.1855 under <code>extradr19</code></td>
 </tr>
 </tbody>
 </table>
 <p><strong>[INFERENCE]</strong> Two regimes are visible: thin line networks over real structures land at 0.12–0.19;
-emissions that sit on or beside the catalogue collapse to ≤0.05. Nothing in the group's history
-exceeds 0.19, and four of the entries are one prediction.</p>
+emissions that sit on or beside the catalogue collapse to ≤0.05. Nothing in the group's history exceeds
+0.19, and four of the entries are one prediction.</p>
 <h2 id="3-why-the-repeat-happened">3. Why the repeat happened</h2>
 <p><strong>[VERIFIED-HERE]</strong> One byte sequence (<code>7f00890a…</code>, 570,890 B, a hard 0/1 mask, 172,974 positive
 pixels) is committed as the submission in more than one repository; <strong>[GROUP-REPORTED]</strong> the same

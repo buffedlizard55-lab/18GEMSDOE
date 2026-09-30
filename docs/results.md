@@ -6,20 +6,35 @@
 
 ## 2. The group's own history
 
-| File (as reported to this project) | Public score | Emission | Note |
+The numbers below are **[GROUP-REPORTED]** public scores, read from the group's own similarity audit
+(`16GEMSDOE/evidence/submission_similarity.json`, 21 entries, generated 2026-09-30T01:14Z) which pins
+each file's bytes and counts its pixels. Emission is "positive pixels in the file / positive pixels
+that the pixel-exact known-fault mask leaves in the score".
+
+| File | Public score | Emission (all / scored px) | Note |
 |---|---:|---:|---|
-| `GEMSDOE1` / `5GEMSDOE` — `ens12-adopted-floor0.1-w0` | 0.1563 | 172,974 px | **byte-identical files** — SHA-256 `7f00890a…`, recomputed here |
-| `8GEMSDOE` — `max(ens12, catalogue)` | 0.1563 | 172,974 px | same scored content; adding the catalogue changed nothing, exactly as the pixel-exact mask predicts |
-| `GEMSDOE2` — dual-family union | 0.1560 | 175,949 px | overlap with `ens12` Jaccard ≈ 0.95 |
-| `7GEMSDOE` — lidar scarp ridge, top 2 % | 0.1461 | 76,859 px | none of its emission is on known faults |
-| `12GEMSDOE` — `r7-nms3-dem10-scarp` | 0.1294 | 103,347 px | the group's highest SGMC-gap proxy score — and one of its lowest public scores |
-| `GEMSDOE3` — nodes / catalogue-gap / dense-ridge control | 0.1193 / 0.0830 / 0.1152 | point-like | three distinct fields |
-| `16GEMSDOE` — H16-1 topo-geophys baseline ridges | **0.1855** | 123,939 px | the group's best; sits at leaderboard #22 if `extradr19` is the group's account |
-| `6GEMSDOE`, `11GEMSDOE`, `GEMSDOE9`, `14GEMSDOE` | 0.0286, 0.0202, 0.0107, 0.0020 | — | catalogue-adjacent top-k and failed arms |
+| `GEMSDOE1` — `ens12-adopted-floor0.1-w0` | 0.1563 | 172,974 / 166,519 | reference file; SHA-256 `7f00890a…`, 570,890 B |
+| `5GEMSDOE` — same name | 0.1563 | 172,974 / 166,519 | **exact byte duplicate of the row above** |
+| `8GEMSDOE` — `Hedge-v2 = max(ens12, catalogue)` | 0.1563 | 227,507 / 166,519 | the extra 60,988 px are the catalogue, all masked → score unchanged |
+| `GEMSDOE2` — dual-family union | 0.1560 | 183,642 / 175,949 | Jaccard ≈ 0.95 with `ens12` |
+| `7GEMSDOE` — lidar scarp ridge, top 2 % | 0.1461 | 76,859 / 76,859 | none of its emission is on known faults |
+| `12GEMSDOE` — `r7-nms3-dem10-scarp` | 0.1294 | 103,347 / 103,347 | the group's highest SGMC-gap proxy score — and one of its lowest public scores |
+| `GEMSDOE3` — `pindrop-v4-nodes` | 0.1193 | 155,021 / 155,021 | point-like emission |
+| `GEMSDOE3` — `pindrop-v4-ridge` (control) | 0.1152 | 155,021 / 155,021 | same mass, different geometry |
+| `GEMSDOE10-H20` | 0.0921 | 153,957 / 143,657 | |
+| `GEMSDOE3` — `pindrop-v4-discovery` | 0.0830 | 155,021 / 155,021 | |
+| `15GEMSDOE` | 0.0782 | 99,999 / 98,736 | |
+| `GEMSDOE10-H16` | 0.0461 | 310,042 / 283,532 | |
+| `GEMSDOE4` — combined | 0.0343 | 264,247 / 258,323 | thick union blob |
+| `6GEMSDOE` — `hgb88-topk03` | 0.0286 | 155,021 / 131,416 | catalogue-adjacent |
+| `11GEMSDOE` — structural area 06 | 0.0202 | 343,526 / 282,538 | near-catalogue |
+| `GEMSDOE9` — placeholder | 0.0107 | 147,684 / 145,610 | |
+| `14GEMSDOE` — `r5-geom-horse-ensemble` | 0.0020 | 116,225 / 116,219 | |
+| `16GEMSDOE` — `h16-1-topo-geophys-baseline-ridges` | 0.1855 | *not in the audit's 21 entries* | the group's best; reported to this project, and the leaderboard's #22 entry is 0.1855 under `extradr19` |
 
 **[INFERENCE]** Two regimes are visible: thin line networks over real structures land at 0.12–0.19;
-emissions that sit on or beside the catalogue collapse to ≤0.05. Nothing in the group's history
-exceeds 0.19, and four of the entries are one prediction.
+emissions that sit on or beside the catalogue collapse to ≤0.05. Nothing in the group's history exceeds
+0.19, and four of the entries are one prediction.
 
 ## 3. Why the repeat happened
 
