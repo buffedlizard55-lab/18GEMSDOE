@@ -1,0 +1,7 @@
+data/
+*.tif
+*.tiff
+*.zip
+__pycache__/
+*.pyc
+.conda/

@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Executive summary — how to submit · 18GEMSDOE</title>
+<link rel="stylesheet" href="style.css"></head><body>
+<header class="nav"><div class="inner">
+<a class="brand" href="index.html">18GEMSDOE</a>
+<a class="page" href="executive_summary.html">How to submit</a>
+<a class="page" href="hypotheses.html">Hypotheses E1–E5</a>
+<a class="page" href="strategy.html">Metric &amp; strategy</a>
+<a class="page" href="results.html">Results ledger</a>
+<a class="page" href="data.html">Data sources</a>
+<a class="page" href="references.html">References</a>
+<a class="page" href="audit.html">Audit flags</a>
+</div></header>
+<main>
+<h1>Executive summary — how to submit, exactly</h1>
+<p class="small">Binding spec: <a href="https://www.drivendata.org/competitions/306/competition-doe-gems/page/967/#submission-format">submission format</a> ·
+<a href="https://docs.nlr.gov/docs/fy26osti/96647.pdf">official rules (PDF) §3.2, §3.4</a> · upload budget: <b>3 submissions per week</b> · one final submission per entity (§3.4).</p>
+
+<h2>1 · What the platform demands (verbatim requirements)</h2>
+<table><tr><th>#</th><th>Requirement</th><th>Value</th></tr>
+<tr><td>G1</td><td>Single-band GeoTIFF (or .zip containing one)</td><td>count = 1</td></tr>
+<tr><td>G2</td><td>dtype float32</td><td><span class="mono">float32</span></td></tr>
+<tr><td>G3</td><td>CRS = training data CRS</td><td>EPSG:32611 (UTM 11N)</td></tr>
+<tr><td>G4</td><td>Resolution 100 m, same shape</td><td>3292 cols × 3730 rows</td></tr>
+<tr><td>G5</td><td>Same bounds / geotransform</td><td><span class="mono">(100, 0, 243350, 0, -100, 4508550)</span> (sibling-measured from template — re-verify against your sample submission)</td></tr>
+<tr><td>G6</td><td>Values in [0, 1] on the scored footprint</td><td>finite everywhere inside; min ≥ 0, max ≤ 1</td></tr>
+<tr><td>G7</td><td>Outside the bounds = null/NaN</td><td>NaN + <span class="mono">nodata=NaN</span>, matching the official sample profile</td></tr>
+</table>
+<p class="small">G5's transform numbers come from sibling-repo measurement of the official template, not from
+this repo (we hold no template copy). <span class="mono">validate_submission.py</span> checks a candidate
+against <i>your local</i> sample-submission template instead of trusting these digits — see §4.</p>
+
+<h2>2 · The “Predicted values must be in range [0, 1]” error — root cause and fix</h2>
+<div class="panel">
+<p><b>Root cause (verified across sibling repos and consistent with the spec):</b> the backend
+validator inspects the scored footprint pixels. If <b>any pixel inside the footprint is NaN
+(or ±Inf, or &lt;0, or &gt;1)</b>, the form rejects the file with
+<i>“Predicted values must be in range [0, 1]”</i>. NaN <b>outside</b> the footprint is the
+official convention (“data outside the bounds is null or nan”) and is <i>not</i> the problem.</p>
+<p><b>Permanent fix (build-time, not hope):</b></p>
+<ol>
+<li>Read the official sample submission as the template; derive the footprint mask = finite pixels of the template.</li>
+<li>Write predictions finite and clipped to [0, 1] on <b>every</b> footprint pixel (5,167,373 of them per sibling census — re-measure locally).</li>
+<li>Write NaN outside the footprint; set <span class="mono">nodata=nan</span>.</li>
+<li>Re-read the written file from disk with <b>two</b> independent range checks (whole-array nan-aware min/max <i>and</i> masked read) before offering it for upload. <span class="mono">scripts/validate_submission.py</span> does all of this.</li>
+</ol>
+<p><b>Fallback only:</b> if the form ever rejects a validator-passing NaN-outside file, mint a
+maximum-compatibility variant with 0.0 outside and no nodata tag. Under the published scorer
+the two are the same number (unscored pixels carry no weight), so this cannot change the score.</p>
+</div>
+
+<h2>3 · Click-by-click upload</h2>
+<ol>
+<li>Run <span class="mono">python scripts/validate_submission.py candidate.tif --template sample_submission.tif</span>. Proceed only on <b>13/13 PASS</b>.</li>
+<li>Open the <a href="https://www.drivendata.org/competitions/306/competition-doe-gems/submissions/">DrivenData submission page</a> → “Make new submission”.</li>
+<li><b>File to submit:</b> choose the validated <span class="mono">.tif</span> (or a <span class="mono">.zip</span> containing exactly one <span class="mono">.tif</span>).</li>
+<li><b>Note (optional):</b> paste the unique note (§5). This is how the team tells submissions apart later.</li>
+<li>Submit. Record the returned public score next to the file's sha256 in <a href="results.html">Results</a> the same day — never from memory later.</li>
+<li>Remember the budget: <b>3 submissions per week</b> (rules §3.2, §3.4). A rejected-format upload still costs attention; a validated file never wastes a slot on format.</li>
+</ol>
+
+<h2>4 · Validate locally first (no upload needed)</h2>
+<pre>python scripts/validate_submission.py candidate.tif --template sample_submission.tif
+# 13 gates: band count, dtype, CRS, shape, transform, footprint finite,
+# footprint range [0,1] (3 independent read paths), outside-NaN, nodata tag,
+# profile-vs-template, sha256 + pixel census report.</pre>
+<p>The script prints the sha256, the finite/NaN census, and exactly which gate fails on
+which pixels. Gate list mirrors the sibling-validated 13-gate set so results are comparable.</p>
+
+<h2>5 · Unique-name + note convention (required)</h2>
+<p>Every candidate filename embeds hypothesis, date, and content id; every upload note pastes the same id:</p>
+<pre>file: gems18-&lt;HYP&gt;-&lt;short-desc&gt;-&lt;YYYYMMDD&gt;-&lt;sha8&gt;-nan.tif
+note: 18GEMSDOE &lt;HYP&gt; | &lt;short-desc&gt; | id &lt;sha8&gt; | holdout &lt;dense&gt;/&lt;sparse&gt; vs best &lt;..&gt;</pre>
+<p>Example: <span class="mono">gems18-E1-euler-depthgate-20261002-a1b2c3d4-nan.tif</span> /
+<span class="mono">18GEMSDOE E1 | Euler depth-gated lineaments | id a1b2c3d4 | holdout 0.2xx/0.0xx vs best …</span>.
+Never re-upload byte-identical files under new names — that is exactly how the group
+manufactured the phantom “0.1563 × N” record (see <a href="results.html#dup">Results § duplicates</a>).
+<span class="mono">scripts/validate_submission.py</span> prints the sha8 to paste.</p>
+
+<h2>6 · Slot discipline (binding)</h2>
+<ul>
+<li>No file is uploaded from this repo until its hypothesis beats the holdout best under the
+<a href="https://github.com/buffedlizard55-lab/18GEMSDOE/blob/arena/01a0f0a5-18gemsdoe/knowledge/holdout_protocol.md">locked protocol</a> — pre-registered direction, spatially blocked folds, locked final slice.</li>
+<li>One hypothesis per slot; notes always carry the content id so ledger and board stay joinable.</li>
+<li>Compliance: each human competes under <b>one</b> account / one team per the
+<a href="https://www.drivendata.org/competitions/306/competition-doe-gems/rules/">competition rules</a>.
+The group's historical multi-account pattern is flagged for owner review (<a href="audit.html#F08">F08</a>) — do not replicate it without written clearance.</li>
+</ul>
+<p class="foot"><a href="index.html">← Overview</a> · Next: <a href="hypotheses.html">Hypotheses E1–E5</a></p>
+</main></body></html>

@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>18GEMSDOE — GEMS Prize entry: new-fault discovery, mechanistically grounded</title>
+<link rel="stylesheet" href="style.css"></head><body>
+<header class="nav"><div class="inner">
+<a class="brand" href="index.html">18GEMSDOE</a>
+<a class="page" href="executive_summary.html">How to submit</a>
+<a class="page" href="hypotheses.html">Hypotheses E1–E5</a>
+<a class="page" href="strategy.html">Metric &amp; strategy</a>
+<a class="page" href="results.html">Results ledger</a>
+<a class="page" href="data.html">Data sources</a>
+<a class="page" href="references.html">References</a>
+<a class="page" href="audit.html">Audit flags</a>
+</div></header>
+<main>
+<h1>Find faults nobody has mapped — on mechanism, not resemblance</h1>
+<p class="small">DOE GEMS Prize · DrivenData #306 · ends <b>Dec 3, 2026 23:59 UTC</b> · limit <b>3 submissions / week</b> (rules §3.2, §3.4) ·
+<a href="https://www.drivendata.org/competitions/306/competition-doe-gems/">competition</a> ·
+<a href="https://www.drivendata.org/competitions/306/competition-doe-gems/leaderboard/">leaderboard</a></p>
+
+<div class="panel">
+<h2 style="margin-top:0;border:none">The file to submit</h2>
+<p><span class="pill no">NO ARTIFACT IN THIS REPO YET</span></p>
+<p>This repo currently ships <b>no submission GeoTIFF</b> — and that is deliberate.
+Competition rasters require a logged-in DrivenData download and are absent from this
+workspace (see <a href="data.html#blocker">the data blocker</a>), so any raster minted
+here today would be unvalidated bytes. Per our binding rule, <b>no idea spends a weekly
+slot until it beats the holdout best under the locked protocol</b> — and no holdout
+exists here yet either.</p>
+<p>What this repo <i>does</i> give you today:</p>
+<ul>
+<li><a href="executive_summary.html">Executive summary / how-to-submit</a> — exact upload steps, the
+“Predicted values must be in range [0, 1]” fix, and the unique-name + note convention.</li>
+<li><a class="mono" href="https://github.com/buffedlizard55-lab/18GEMSDOE/blob/arena/01a0f0a5-18gemsdoe/scripts/validate_submission.py">scripts/validate_submission.py</a>
+— 13-gate format checker. Run it on <i>any</i> candidate file before upload.</li>
+<li><a class="mono" href="https://github.com/buffedlizard55-lab/18GEMSDOE/blob/arena/01a0f0a5-18gemsdoe/scripts/dti_metric.py">scripts/dti_metric.py</a>
+— the exact distance-weighted Tversky index transcribed from the official spec.</li>
+<li><a href="hypotheses.html">Five new hypotheses (E1–E5)</a> — each with mechanism, primary-paper
+method, named confound, and a pre-registered falsification test. Top candidate to validate first: <b>E1</b>.</li>
+</ul>
+</div>
+
+<h2>Where we stand (2026-09-30)</h2>
+<div class="grid">
+<div class="card"><h3>Leaderboard leader</h3><div class="kpi">0.3168</div>
+<p class="small">DARD · live value on the <a href="https://www.drivendata.org/competitions/306/competition-doe-gems/leaderboard/">official page</a> at fetch time. (The figure 0.3049 quoted in earlier group notes is a stale snapshot — flagged <a href="audit.html#F06">F06</a>.)</p></div>
+<div class="card"><h3>Group best reported</h3><div class="kpi">0.1855</div>
+<p class="small">16GEMSDOE h16-1 file <span class="mono">…-df20f65e-nan.tif</span>. Its linkage to any specific leaderboard account is <b>unverified</b> — flagged <a href="audit.html#F07">F07</a>. Gap to leader: 0.1313.</p></div>
+<div class="card"><h3>Why 0.1563 kept repeating</h3><div class="kpi">same bytes</div>
+<p class="small">GEMSDOE1 ≡ 5GEMSDOE (sha <span class="mono">7f00890a…</span>, 172,974 px); 8GEMSDOE differs only on masked catalogue pixels; GEMSDOE2 overlaps 94.6%. Full analysis: <a href="results.html#dup">Results § duplicates</a>.</p></div>
+</div>
+
+<h2>What is actually scored</h2>
+<p>Both prize rounds score <b>new expert-mapped faults absent from USGS/INGENIOUS</b> —
+and staff confirmed known-fault pixels are <b>masked/excluded from scoring</b>
+(<a href="https://community.drivendata.org/t/scoring-clarification-are-known-usgs-ingenious-faults-masked-when-scoring-and-are-they-in-the-final-round-label-set/11516">forum 11516</a>),
+while "new fault" explicitly <b>includes newly mapped geometry of an existing fault
+system</b> — extensions, splays, parallel strands
+(<a href="https://community.drivendata.org/t/where-do-you-draw-the-line/11536">forum 11536</a>).
+Reproducing the catalogue therefore earns nothing by itself; finding unmapped traces —
+especially near known systems — is the entire game. The metric (α=0.2, β=0.8, R=300 m)
+punishes missed faults 4× harder than false alarms: it is a <b>recall game under a
+pixel budget</b>. Details: <a href="strategy.html">Metric &amp; strategy</a>.</p>
+
+<h2>Explore</h2>
+<div class="grid">
+<div class="card"><h3>1 · How to submit →</h3><p>Click-by-click upload guide, format gates, rejection triage, naming convention.</p><a class="btn" href="executive_summary.html">Executive summary</a></div>
+<div class="card"><h3>2 · Hypotheses E1–E5 →</h3><p>Five mechanistically new candidates, ranked, each with a kill-test pre-registered.</p><a class="btn" href="hypotheses.html">Hypotheses</a></div>
+<div class="card"><h3>3 · Metric &amp; strategy →</h3><p>DTI math, masking rule, budget effects, and what beats 0.3168.</p><a class="btn" href="strategy.html">Strategy</a></div>
+<div class="card"><h3>4 · Results ledger →</h3><p>Every group score in one table, duplicate forensics, leaderboard snapshot.</p><a class="btn" href="results.html">Results</a></div>
+<div class="card"><h3>5 · Data sources →</h3><p>Inventory with official links, licenses, and obtainability status.</p><a class="btn" href="data.html">Data</a></div>
+<div class="card"><h3>6 · References →</h3><p>Primary papers behind every method. No half-remembered technique names.</p><a class="btn" href="references.html">References</a></div>
+</div>
+
+<p class="foot">18GEMSDOE · session branch <span class="mono">arena/01a0f0a5-18gemsdoe</span> · all claims link to verifiable sources; gaps are labeled as gaps. Open issues: <a href="audit.html">Audit flags</a>.</p>
+</main></body></html>
