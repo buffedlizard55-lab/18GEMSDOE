@@ -1,127 +1,141 @@
 <!doctype html>
 <html lang="en">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="theme-color" content="#102721">
-  <meta name="description" content="18GEMSDOE: an evidence-led, reproducible research project for the GEMS Prize fault mapping challenge.">
-  <title>18GEMSDOE — GEMS Prize Research</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="assets/site.css">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Home — 18GEMSDOE</title>
+<link rel="stylesheet" href="assets/site.css">
 </head>
 <body>
-  <a class="skip-link" href="#main">Skip to content</a>
-  <header class="topbar">
-    <a class="brand" href="index.html" aria-label="18GEMSDOE home"><span class="brand-mark">18</span><span>GEMS<span class="brand-muted">DOE</span></span></a>
-    <nav aria-label="Main navigation">
-      <a href="docs/hypotheses.html">Research</a>
-      <a href="docs/results.html">Evidence</a>
-      <a href="docs/data.html">Data &amp; provenance</a>
-      <a href="docs/submission.html" class="nav-cta">Submission guide <span aria-hidden="true">↗</span></a>
-    </nav>
-  </header>
+<header class="site">
+  <div class="wrap">
+    <a class="brand" href="index.html">18GEMSDOE</a>
+    <nav><a href="docs/executive_summary.html">Submit</a><a href="docs/submission.html">Format</a><a href="docs/hypotheses.html">Hypotheses</a><a href="docs/validation.html">Validation</a><a href="docs/results.html">Results</a><a href="docs/audit.html">Audit</a><a href="docs/sources.html">Sources</a><a href="docs/data.html">Data</a></nav>
+  </div>
+</header>
+<main class="wrap">
+<h1 id="18gemsdoe-download-the-submission-see-the-evidence">18GEMSDOE — download the submission, see the evidence</h1>
+<div class="hero">
+<strong>One click to a competition-ready file.</strong> The GeoTIFF below is a single-band float32
+raster in the official submission format (EPSG:32611, 100 m, template bounds, finite values in [0, 1]
+inside the footprint, NaN outside) and has passed the format validator against the official template.
+Nothing is generated or uploaded in your browser.
+</div>
 
-  <main id="main">
-    <section class="hero shell">
-      <div class="hero-copy">
-        <div class="eyebrow"><span class="status-dot"></span> GEMS Prize · 18GEMSDOE · Research status</div>
-        <h1>Find the fault,<br><span class="text-accent">not just the edge.</span></h1>
-        <p class="hero-lede">A physically grounded, evidence-first effort to map unmapped fault strands—without mistaking a striking lineament for tectonic evidence.</p>
-        <div class="hero-actions">
-          <a class="button button-primary" href="docs/hypotheses.html">Explore the research <span aria-hidden="true">→</span></a>
-          <a class="button button-quiet" href="docs/submission.html">How submission works</a>
-        </div>
-        <p class="micro-copy">Current release gate: <strong>closed</strong>. No candidate has passed the locked-holdout review.</p>
-      </div>
-      <aside class="hero-status" aria-label="Project release status">
-        <div class="status-card-top"><span class="label">RELEASE READINESS</span><span class="pill pill-blocked">BLOCKED</span></div>
-        <div class="gate-visual" aria-hidden="true"><span class="gate-line"></span><span class="gate-lock">⌑</span></div>
-        <h2>No upload-ready file</h2>
-        <p>There is no verified model prediction, official holdout result, or approved GeoTIFF in this repository.</p>
-        <div class="status-card-foot"><span>As of 30 Sep 2026</span><span class="mono">0 CANDIDATES CLEARED</span></div>
-      </aside>
-      <div class="hero-grid" aria-hidden="true"></div>
-      <div class="hero-coordinate mono" aria-hidden="true">39° N · GREAT BASIN<br>RESEARCH, NOT GUESSWORK</div>
-    </section>
+<div class="download-card"><a class="button button-primary button-big" href="docs/downloads/18GEMSDOE_H19-C_20260930T212401Z_c11e495e.tif" download>⬇ Download 18GEMSDOE_H19-C_20260930T212401Z_c11e495e.tif</a><p class="micro-copy">Right-click → “Save link as…” if your browser opens it instead. The file name carries the candidate id, the UTC build time and the content hash, so two downloads can never be confused.</p><details><summary>Bytes, hash and format check</summary><table class="kv"><tr><td>candidate</td><td><code>H19-C</code></td></tr><tr><td>bytes</td><td><code>457,340 (447 KiB)</code></td></tr><tr><td>sha256</td><td><code>c11e495e5817730ad5f0fdc368b810f79050cbb6bd65e98c98123b7921ed336b</code></td></tr><tr><td>bands / dtype</td><td><code>1 / [&#x27;float32&#x27;]</code></td></tr><tr><td>crs / resolution</td><td><code>EPSG:32611 / [100.0, 100.0]</code></td></tr><tr><td>value range in footprint</td><td><code>0.0 … 1.0</code></td></tr><tr><td>footprint pixels</td><td><code>5,167,373</code></td></tr><tr><td>format check</td><td><code>PASS</code></td></tr><tr><td>format validated</td><td><code>2026-09-30T21:24:01Z</code></td></tr></table><p class="micro-copy">Comment to paste into the upload form: <code>18GEMSDOE H19-C | training catalogue + SGMC state-map structures absent from it (61,664 px) + &gt;=2-family magnetics/gravity/topography conjunction (388,228 px) | one-pixel, uniform value 1 | holdout split 41332369d7dd448b | sha256 c11e495e5817730a</code></p></details></div>
 
-    <section class="section shell" aria-labelledby="principles-title">
-      <div class="section-heading">
-        <div><p class="eyebrow">WHY THIS PROJECT EXISTS</p><h2 id="principles-title">A better map starts with a better question.</h2></div>
-        <p class="section-intro">Fault mapping is a spatial generalization problem, not a hunt for the most convincing-looking raster edge. Every proposal needs a mechanism, a confounder, and a test designed to prove it wrong.</p>
-      </div>
-      <div class="principle-grid">
-        <article class="principle-card"><span class="card-index">01</span><div class="icon-mark icon-contour" aria-hidden="true"></div><h3>Mechanism over resemblance</h3><p>Prefer physical predictions—such as consistent displacement of multiple shoreline markers—over generic lineament similarity.</p></article>
-        <article class="principle-card"><span class="card-index">02</span><div class="icon-mark icon-block" aria-hidden="true"></div><h3>Spatial tests, not pixel tricks</h3><p>Freeze basin- or fault-system holdouts before tuning. Report dense and sparse results, controls, and uncertainty.</p></article>
-        <article class="principle-card"><span class="card-index">03</span><div class="icon-mark icon-check" aria-hidden="true"></div><h3>Own the outcome</h3><p>Keep failed results, provenance, and caveats visible. A closed gate is more honest—and more useful—than a premature upload.</p></article>
-      </div>
-    </section>
+<h2 id="up-to-date-without-anyone-checking-by-hand">Up to date, without anyone checking by hand</h2>
+Read from the public leaderboard on **2026-09-30** ([source](https://www.drivendata.org/competitions/306/competition-doe-gems/leaderboard/)); DrivenData&#x27;s terms of use prohibit robots and automated access; this file is a dated manual snapshot, never a polled feed.
 
-    <section class="section section-dark">
-      <div class="shell research-feature">
-        <div class="feature-copy">
-          <p class="eyebrow">RESEARCH SHORTLIST · NOT YET TESTED</p>
-          <h2>Three hypotheses.<br><span class="text-accent">Three ways to be wrong.</span></h2>
-          <p>We screened public 8GEMSDOE and 16GEMSDOE records before proposing new candidates. None has been implemented or evaluated on the 18GEMSDOE holdout.</p>
-          <a class="text-link" href="docs/hypotheses.html">Read mechanisms, confounders &amp; holdout tests <span aria-hidden="true">↗</span></a>
-        </div>
-        <div class="hypothesis-stack">
-          <a class="hypothesis-row" href="docs/hypotheses.html#h18-n1"><span class="hypothesis-rank">01</span><span class="hypothesis-name"><strong>Paleolake shoreline displacement</strong><small>Repeated offset of independent marker levels</small></span><span class="hypothesis-tag">CONDITIONAL</span></a>
-          <a class="hypothesis-row" href="docs/hypotheses.html#h18-n2"><span class="hypothesis-rank">02</span><span class="hypothesis-name"><strong>Focal-mechanism plane projection</strong><small>Coherent earthquake source planes</small></span><span class="hypothesis-tag">CONDITIONAL</span></a>
-          <a class="hypothesis-row" href="docs/hypotheses.html#h18-n3"><span class="hypothesis-rank">03</span><span class="hypothesis-name"><strong>Sentinel-1 InSAR discontinuity</strong><small>Persistent displacement signal, if coverage permits</small></span><span class="hypothesis-tag">CONDITIONAL</span></a>
-        </div>
-      </div>
-    </section>
+| Rank | Participant | Best public DW-Tversky | Submissions |
+|---:|---|---:|---:|
+| #1 | DARD | 0.3168 | 11 |
+| #2 | alexoktaba | 0.3042 | 17 |
+| #3 | joeyfezster | 0.2919 | 16 |
+| #4 | xiaofanhu | 0.2901 | 5 |
+| #5 | HardcoreTechGod | 0.2854 | 6 |
+| #6 | mzoorob | 0.2843 | 19 |
+| #7 | GrigorSargsyan | 0.2742 | 7 |
+| #8 | op01 | 0.2710 | 5 |
+| #9 | Batik Shirt Brothers | 0.2653 | 15 |
+| #10 | exposed | 0.2584 | 16 |
+| #11 | tchu | 0.2511 | 14 |
+| #12 | ndavis7 | 0.2368 | 5 |
+| #13 | moongrega | 0.2306 | 14 |
+| #14 | Ndabenhle | 0.2304 | 6 |
+| #15 | ad3002 | 0.2297 | 16 |
+| #16 | hiii12345 | 0.2262 | 9 |
+| #17 | oshbocker | 0.2224 | 19 |
+| #18 | kpomazi | 0.2209 | 6 |
+| #19 | jgaines | 0.2184 | 16 |
+| #20 | hall4jm | 0.2010 | 10 |
+| #21 | hudsonenterprises | 0.1907 | 5 |
+| #22 | extradr19 (attribution unconfirmed) | 0.1855 | 4 |
+| #23 | doegemsDrivendata | 0.1847 | 5 |
 
-    <section class="section shell" aria-labelledby="score-title">
-      <div class="section-heading leaderboard-heading">
-        <div><p class="eyebrow">LEADERBOARD · MANUAL SNAPSHOT</p><h2 id="score-title">Scores with their provenance attached.</h2></div>
-        <a class="text-link" href="https://www.drivendata.org/competitions/306/competition-doe-gems/leaderboard/" target="_blank" rel="noopener noreferrer">Open official leaderboard <span aria-hidden="true">↗</span></a>
-      </div>
-      <div class="leaderboard-panel">
-        <div class="leaderboard-note"><span class="note-icon">i</span><p>Manually recorded on <strong>30 Sep 2026</strong>. This is a dated snapshot, not an automated feed. The 18GEMSDOE entry’s account attribution is unresolved.</p></div>
-        <div class="score-table-wrap">
-          <table class="score-table">
-            <thead><tr><th>Rank</th><th>Leaderboard entry</th><th>DTI</th><th>Evidence class</th></tr></thead>
-            <tbody>
-              <tr><td class="mono">01</td><td><strong>DARD</strong></td><td class="score-value">0.3168</td><td><span class="evidence-tag official">OFFICIAL RESULT</span></td></tr>
-              <tr><td class="mono">22</td><td><strong>extradr19</strong></td><td class="score-value">0.1855</td><td><span class="evidence-tag official">OFFICIAL RESULT</span></td></tr>
-              <tr><td class="mono">33</td><td><strong>SDCF9</strong></td><td class="score-value">0.1563</td><td><span class="evidence-tag official">OFFICIAL RESULT</span></td></tr>
-              <tr><td class="mono">34</td><td><strong>smashi34</strong></td><td class="score-value">0.1563</td><td><span class="evidence-tag official">OFFICIAL RESULT</span></td></tr>
-              <tr class="score-divider"><td colspan="4">Separate group-reported historical 0.1563 · upload-to-score attribution unresolved</td></tr>
-              <tr><td class="mono">—</td><td>GEMSDOE / 5GEMSDOE tracked TIFF files are byte-identical</td><td class="score-value">0.1563*</td><td><span class="evidence-tag group">GROUP CLAIM + HASH VERIFIED</span></td></tr>
-            </tbody>
-          </table>
-        </div>
-        <div class="score-footnote">* Prior project records report 0.1563 for GEMSDOE/5GEMSDOE; their tracked TIFF bytes match exactly. This does not connect those uploads to the separate SDCF9/smashi34 rows. <a href="docs/results.html">Review the score ledger and caveats.</a></div>
-      </div>
-    </section>
+The bar is **the top row**, not the 0.3049 quoted when this project started. The group's own best file (16GEMSDOE `h16-1`, 0.1855) is the entry at #22 *if* `extradr19` is this group's account — an attribution that cannot be verified without signing in and is therefore labelled, not assumed.
 
-    <section class="section section-paper">
-      <div class="shell workflow-section">
-        <div class="section-heading">
-          <div><p class="eyebrow">THE RELEASE PATH</p><h2>Four checks before one upload.</h2></div>
-          <p class="section-intro">A packaging tool can format a supplied raster; it cannot make predictions or establish scientific validity.</p>
-        </div>
-        <div class="workflow-grid">
-          <div class="workflow-step"><span>01</span><h3>Provenance</h3><p>Verify authorized competition data, source versions, and split hashes.</p></div>
-          <div class="workflow-step"><span>02</span><h3>Preregister</h3><p>Lock a spatial holdout and write candidate predictions before evaluation.</p></div>
-          <div class="workflow-step"><span>03</span><h3>Validate</h3><p>Beat the reproduced comparator, survive controls, and check the official grid.</p></div>
-          <div class="workflow-step"><span>04</span><h3>Package &amp; submit</h3><p>Create a unique TIFF locally, review the note, then upload manually.</p></div>
-        </div>
-        <div class="workflow-cta"><a class="button button-dark" href="docs/submission.html">Open the prominent submission guide <span aria-hidden="true">→</span></a><a class="inline-link" href="docs/validation.html">See the validation gate</a></div>
-      </div>
-    </section>
 
-    <section class="section shell values-section" aria-labelledby="values-title">
-      <div class="values-mark" aria-hidden="true"><span>18</span><i></i><i></i><i></i></div>
-      <div class="values-copy"><p class="eyebrow">CORE VALUES</p><h2 id="values-title">Maximize P(Win).<br><span class="text-accent">Own the Outcome.</span></h2><p>Winning means maximizing the probability that a genuinely better, compliant map survives the hidden evaluation—not maximizing the number of speculative submissions. Owning the outcome means exposing uncertainty, keeping the failed tests, and stopping when evidence says stop.</p><a class="text-link" href="docs/charter.html">Project charter &amp; preserved brief <span aria-hidden="true">↗</span></a></div>
-    </section>
-
-    <section class="sources-strip"><div class="shell sources-inner"><div><p class="eyebrow">TRUST, BUT VERIFY</p><h2>Official sources first.</h2></div><div class="source-logos"><a href="https://www.usgs.gov/" target="_blank" rel="noopener noreferrer">USGS <span>↗</span></a><a href="https://www.drivendata.org/competitions/293/competition-gems/" target="_blank" rel="noopener noreferrer">DrivenData <span>↗</span></a><a href="https://earthquake.usgs.gov/fdsnws/event/1/" target="_blank" rel="noopener noreferrer">USGS ComCat <span>↗</span></a><a href="https://search.asf.alaska.edu/" target="_blank" rel="noopener noreferrer">ASF DAAC <span>↗</span></a></div></div></section>
-  </main>
-
-  <footer class="footer"><div class="shell footer-inner"><a class="brand footer-brand" href="index.html"><span class="brand-mark">18</span><span>GEMS<span class="brand-muted">DOE</span></span></a><p>Evidence-led fault research · No hidden data claims · Manual leaderboard snapshot</p><div class="footer-links"><a href="docs/audit.html">Audit</a><a href="docs/sources.html">Sources</a><a href="https://github.com/buffedlizard55-lab/18GEMSDOE" target="_blank" rel="noopener noreferrer">GitHub ↗</a></div></div></footer>
+<h2 id="what-you-are-downloading">What you are downloading</h2>
+<p>A <strong>candidate fault map (H19-C)</strong> built from three components, each published with its size:</p>
+<ol>
+<li><strong>The training catalogue</strong> — the platform masks exactly these pixels out of scoring, so including
+   them is free and makes the file a complete map rather than a partial one.</li>
+<li><strong>State geologic map structure lines that the catalogue does not contain</strong> (61,664 px with no
+   training label within 300 m) — a <em>population</em> bet: if the experts' new faults are structures the
+   state maps carry and the Quaternary catalogue does not, this is where they are.</li>
+<li><strong>Multi-physics conjunction lineaments</strong> — pixels where at least two of magnetics, gravity and
+   topography have a ridge at the same place, thinned to one pixel.</li>
+</ol>
+<p>The physics and the risk are on <a href="docs/hypotheses.html">the hypotheses page</a>; the controls, the locked
+holdout and the sealed read are on <a href="docs/validation.html">the validation page</a>.</p>
+<h2 id="why-this-exists-the-findings-that-changed-the-strategy">Why this exists — the findings that changed the strategy</h2>
+<ol>
+<li><strong>The repeated 0.1563 is one file in several repositories.</strong> <code>GEMSDOE</code> and <code>5GEMSDOE</code> commit
+   byte-identical submissions (SHA-256 <code>7f00890a…</code>, 570,890 B) — recomputed here, not quoted.
+   <a href="docs/audit.html">Audit A-01</a>.</li>
+<li><strong>Known-fault pixels are masked pixel-exactly, with no buffer</strong>, so the catalogue is free to paint
+   and the whole game is the <em>new</em> pixels — an arithmetic fact, not a hunch. <a href="docs/sources.html">Sources S4</a>.</li>
+<li><strong>The labels are the USGS QFaults network inside the footprint</strong> (71,984 of 71,985 QFaults pixels
+   inside the valid footprint lie within 300 m of a label), which says exactly what the scored truth
+   is <em>not</em>. <a href="docs/data.html">Data §2</a>.</li>
+<li><strong>The metric's own algebra</strong> reduces to <code>DTI = TP_w / (0.2·M + 0.8·|G|)</code>, so an emitted pixel costs
+   0.2 and a newly covered truth pixel earns up to 0.8: sparse, thin, confident is arithmetic, not taste.</li>
+</ol>
+<h2 id="where-to-go-next">Where to go next</h2>
+<table>
+<thead>
+<tr>
+<th>Page</th>
+<th>What it answers</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="docs/executive_summary.html">Executive summary</a></td>
+<td>the file, the format requirements, the click-by-click upload path and the <code>[0, 1]</code> error triage</td>
+</tr>
+<tr>
+<td><a href="docs/validation.html">Validation</a></td>
+<td>the locked holdout, the arms, the controls, the sealed read — including what failed</td>
+</tr>
+<tr>
+<td><a href="docs/hypotheses.html">Hypotheses</a></td>
+<td>five candidates with mechanism, non-fault look-alikes, falsification tests and ranking</td>
+</tr>
+<tr>
+<td><a href="docs/results.html">Results</a></td>
+<td>the group's score history, the duplicate analysis, the leaderboard context</td>
+</tr>
+<tr>
+<td><a href="docs/audit.html">Audit</a></td>
+<td>irregularities, what was verified here, what was checked and abandoned</td>
+</tr>
+<tr>
+<td><a href="docs/sources.html">Sources</a></td>
+<td>every claim with its official link, for manual review</td>
+</tr>
+<tr>
+<td><a href="docs/data.html">Data</a></td>
+<td>the official rasters, their SHA-256 pins, and which release layers the stack omits</td>
+</tr>
+</tbody>
+</table>
+<h2 id="honest-status">Honest status</h2>
+<p>No candidate has passed the locked-holdout review: the multi-physics conjunction beats its matched
+random-lineament control on the tuning folds, but at the shipped file's own emitted mass it is only
+marginally ahead of that control, and the arm the tuning folds promote loses on the sealed slice
+(0.0003 vs 0.0085). The download is therefore published as a candidate, not as a validated winner,
+and no verified model prediction beyond that is claimed anywhere on this site.</p>
+<p>The shipped field is a <strong>candidate</strong>. Its physics component beats a matched random-lineament control
+on the tuning folds; its state-map component <strong>cannot be validated from here at all</strong>, and that is
+stated on the file's own page rather than buried. No leaderboard score is claimed for it, and no
+submission is made automatically: this site prepares and validates the file, the team uploads it and
+records the result in <code>registry/score-ledger.csv</code>.</p>
+</main>
+<footer class="wrap">
+  <p>Static site. Every figure on these pages is rendered from a committed evidence file at build time.
+  Sources are linked for manual review; see <a href="docs/audit.html">Audit</a> for what was and was not verified.</p>
+</footer>
 </body>
 </html>

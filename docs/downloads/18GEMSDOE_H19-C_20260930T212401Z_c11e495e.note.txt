@@ -1,0 +1,1 @@
+18GEMSDOE H19-C | training catalogue + SGMC state-map structures absent from it (61,664 px) + >=2-family magnetics/gravity/topography conjunction (388,228 px) | one-pixel, uniform value 1 | holdout split 41332369d7dd448b | sha256 c11e495e5817730a

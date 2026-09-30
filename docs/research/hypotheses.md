@@ -1,74 +1,147 @@
-# Research shortlist — 18GEMSDOE
+# Hypothesis register — 18GEMSDOE (H19 pass, 2026-09-30)
 
-**Status: literature- and novelty-screened; no detector implemented or validated in this repository.** The ranking below is a directional prior, not an estimated leaderboard gain. Novelty was checked against the public [8GEMSDOE hypothesis page](https://buffedlizard55-lab.github.io/8GEMSDOE/docs/hypotheses.html) and [16GEMSDOE register](https://raw.githubusercontent.com/buffedlizard55-lab/16GEMSDOE/main/docs/research/hypothesis_register.md). Those sources are group records, not a complete audit of private or unpublished work.
+**Evidence labels used on every page of this site.**
 
-## Ranked candidates
+| Tag | Meaning |
+|---|---|
+| **[OFFICIAL]** | read from the primary source (competition page, rules PDF, a DrivenData-staff forum post) — link given. |
+| **[MEASURED-HERE]** | recomputed in this checkout from the official rasters by a named script; the evidence JSON is named. |
+| **[GROUP-REPORTED]** | stated by a sibling project; its evidence file is linked but was not re-run here. |
+| **[INFERENCE]** | reasoning, explicitly not a measurement. |
 
-| Rank | ID | Hypothesis / mechanism | Expected DTI value | Cost | Data access status | Novelty screen |
-|---:|---|---|---|---|---|---|
-| 1 | **H18-N1** | **Multi-level paleolake shoreline displacement.** Fault slip displaces or warps formerly level shoreline/terrace markers; require repeated, same-sense offsets on at least two independently correlatable levels, not merely a scarp-like edge. | **Medium–high, localized** to mapped paleolake surfaces; no defensible numeric estimate. | **High**: 1 m DEM coverage/mosaicking, shoreline extraction, survey-seam controls, geologic review. | USGS Lake extent GIS is publicly listed for no-cost download; 3DEP 1 m is public domain. Neither the exact DEM coverage nor the fine-scale marker data has been downloaded/checked here. **Conditional, not yet viable.** [S13](../sources.md#s13) [S14](../sources.md#s14) | No exact shoreline-displacement detector appears in the public 8/16 registers. Related to prior scarp/DEM work, but the evidential object is *consistent displacement of independent stratigraphic markers*, not generic scarp resemblance. |
-| 2 | **H18-N2** | **Focal-mechanism fault-plane projection.** Use repeated, reviewed moment-tensor solutions and hypocenter geometry to infer a consistent seismogenic plane and project its uncertainty-bounded intersection toward the surface; do not use event density alone. | **Low–medium**: physically specific where mechanism coverage is adequate, but most faults may be inactive and the sample sparse. | **High**: event quality, nodal-plane ambiguity, location uncertainty, clustered-fold design. | USGS ComCat documents public event/moment-tensor products and a query service; footprint-level event counts and mechanism coverage have not been checked. **Conditional.** [S22](../sources.md#s22) | Different operator from prior seismic-density/microseismic-ridge features. It is adjacent to 16GEMSDOE’s proposed H17-3 strain/seismic coherence, so it is not wholly independent of the group’s seismic line of work. |
-| 3 | **H18-N3** | **Sentinel-1 InSAR displacement discontinuity.** Persistent, fault-parallel line-of-sight velocity/step changes can indicate creep or coseismic displacement across an unmapped active strand. | **Low–medium**: a direct physical signal when present, but it misses locked/inactive faults and may cover only a subset of targets. | **Very high**: coherent multi-date processing, orbit geometry, atmospheric/hydrologic correction, and large scene volumes. | NASA ASF DAAC makes Sentinel-1 products available through Vertex, `asf_search`, and Earthdata; downloads and some tools require an Earthdata login. Exact GeoDAWN time-series coverage/coherence is unverified. **Conditional.** [S23](../sources.md#s23) | No Sentinel-1 InSAR operator was found in the public registers, but static geodetic strain was previously proposed/tested. Treat this as a new temporal measurement with a related mechanism—not as an unrelated signal. |
+## 1. The five facts that decide the strategy
 
-### 1. H18-N1 — multi-level paleolake shoreline displacement
+| # | Fact | Class | Source |
+|---|---|---|---|
+| 1 | Known USGS/INGENIOUS fault pixels are masked **pixel-exactly** in both rounds — identical to the provided training labels — so a prediction on them can neither earn nor cost anything, and there is **no buffer** around them. | [OFFICIAL] | forum 11516 [post 4](https://community.drivendata.org/t/scoring-clarification-are-known-usgs-ingenious-faults-masked-when-scoring-and-are-they-in-the-final-round-label-set/11516/4) |
+| 2 | A predicted pixel near a known trace but far from a **new**-fault pixel is fully penalised; a new-fault pixel *can* sit within 300 m of a known trace ("corrections or modifications"). | [OFFICIAL] | same |
+| 3 | "New fault" = any fault pixel not captured by USGS/INGENIOUS, **including newly mapped geometry of an existing system** (extensions, splays, parallel strands). | [OFFICIAL] | forum 11536 [post 2](https://community.drivendata.org/t/where-do-you-draw-the-line/11536/2) |
+| 4 | The organizers will not disclose the data sources, fault types or coverage of the test faults; the Phase-2 test set is **updated by expert review of all Phase-1 submissions**. | [OFFICIAL] | forum 11527 [post 7](https://community.drivendata.org/t/how-were-the-new-test-faults-identified-data-sources-and-fault-types/11527/7) |
+| 5 | The training labels are the **USGS Quaternary Fault & Fold database inside the survey footprint**: of the 71,985 QFaults line pixels that fall inside the valid footprint, **71,984 (100.00 %) lie within 300 m of a training label**, and 60,988 label pixels exist. | [MEASURED-HERE] | `data/evidence/audit_checks.json`, rasterised from the public 2023-06-27 INGENIOUS QFaults release |
 
-**Physical prediction.** A fault that cuts a former lake basin can vertically offset or warp shoreline benches and post-lake surfaces. The proposed detector is not “shoreline edges look like scarps.” It requires spatially co-located, directionally consistent displacement of at least two independently identifiable shoreline/terrace markers across a narrow, approximately linear zone. The reported trace should follow the discontinuity in the markers, not the shoreline itself.
+**[INFERENCE]** Taken together: the scored truth is *faults that QFaults does not contain*; every emission must therefore be a candidate the catalogue is missing, and the emission policy — not the detector's prettiness — is what the metric pays for.
 
-**Why this could find unmapped geometry.** Faulting can be expressed within basin-fill/lacustrine deposits, away from a range-front trace. A marker surface supplies an independent datum for displacement; it may reveal an extension, splay, or parallel strand that is not captured by the hazard-oriented catalog. DrivenData staff state that new pixels can include such extensions and splays [S5](../sources.md#s5). This is a hypothesis only; the organizers have not disclosed whether the hidden labels were mapped from paleoshorelines [S6](../sources.md#s6).
+**Metric algebra [MEASURED-HERE, `gems18/metric.py`, anchored to the official worked example].**
+`DTI = TP_w / (0.2·M + 0.8·|G|)` with `M` the emitted mass and `G` the truth. Consequences used below:
 
-**Specific non-fault look-alikes and discriminants.** Erosional wave-cut scarps and beach ridges are shoreline features, not faults; local shoreline morphology can look like a step. Differential compaction of lacustrine sediment, broad isostatic rebound/tilt, fluvial incision, fan-margin erosion, road/rail embankments, canals, and GeoDAWN/DEM mosaicking seams can also make linear relief. Require same-sense displacement on multiple correlated marker levels, subtract or control for broad regional tilt, reject lineaments that coincide with infrastructure or follow only one shoreline, and compare to shoreline-only, channel, and road/rail placebo controls. A broad smooth tilt without a narrow discontinuity falsifies the proposed fault signal.
+* raising every value to 1 can only help (the `0.8·|G|` term is fixed);
+* adding a candidate population helps iff its *covered-truth mass per emitted mass* exceeds `0.2 × DTI`, i.e. ≈ 0.03–0.06 for the scores this group is getting — false positives are cheap, misses are 4× more expensive;
+* one pixel wide, uniform, on the structure beats a shaded blob of the same recall.
 
-**Data and access.** USGS MF-2323 lists downloadable GIS packages at no cost and documents western Great Basin paleolake extents. Its metadata says shoreline locations were delineated from approximately 90 m (3-arc-second) DEM contours; that product can define context but is too coarse to establish 100 m-scale offsets by itself. High-resolution profiles would require suitable USGS 3DEP one-meter DEM coverage. 3DEP is public domain, but collection projects are not guaranteed seamless across acquisition boundaries; exact GeoDAWN coverage and seams must be inventoried before use [S13](../sources.md#s13) [S14](../sources.md#s14). No source bytes have been staged in this repository.
+## 2. What the group has already tried — the novelty screen
 
-**Holdout test.** Before tuning, freeze whole fault systems/basins (not random pixels) and keep one spatial region sealed. On held-out, independently mapped Quaternary faults that cross paleolake markers, score the trace at the official 300 m kernel and compare with a matched line/shoreline placebo. Include known shoreline-only scarps and roads/channels as negatives. Do not use the fault catalog, the known-fault distance field, or any hidden/test information in the detector. A basin-level block bootstrap—not pixel bootstrap—must show an improvement over the locked comparator. Exact blocks cannot yet be named because the authenticated competition rasters are absent; the preregistration remains **not locked** (see [protocol](preregistration.md)).
+**[GROUP-REPORTED]** From `16GEMSDOE`'s register and `5GEMSDOE`'s status: topography+magnetics+gravity ridge blends (H16-1, the group's best public score), fault-tip/junction density priors (H18-3a: passed its gate, but a plain fault-density control recovered most of the lift — i.e. the gain was fault clustering), SGMC state-map faults as *proxy truth* (H18-4: "cannot test *new*"), geothermal-disk priors (GDR-355: ρ ≈ −0.6 against the board — rejected as an instrument), radiometric K/Th/U added bands (+0.002 on their paired fold test), catalogue-adjacent top-k emissions (0.0286/0.0202/0.0461), oblique-strike and product-of-experts fusion (failed).
 
-**Expected value/cost judgment.** Ranked first because displacement of independent, age-constrained markers is more diagnostic than a generic edge and could recover basin-interior geometry. Its useful footprint may be narrow; shoreline and DEM coverage are unverified, so this is a source-acquisition priority, not a validated bet.
+**[INFERENCE]** Nothing in that list is a *population* claim about what the hidden set contains. The three hypotheses below are, and the fourth is a data claim that the others have not used.
 
-### 2. H18-N2 — focal-mechanism plane projection
+## 3. Candidates, ranked by expected gain per unit of cost
 
-**Physical prediction.** Several independent earthquakes with reviewed moment tensors, compatible nodal-plane orientations, and a coherent hypocenter trend can identify a brittle shear plane. Projecting the plane—with location and dip uncertainty—toward the surface is physically different from drawing a hotspot around earthquake counts. Do not emit a long line from one mechanism or choose between the two nodal planes based on the holdout.
+### H19-A — multi-physics conjunction lineaments (implemented, validated)
 
-**Why this could find unmapped geometry.** A seismically active strand or continuation that is absent from a surface/hazard catalog may still have a subsurface rupture plane. The approach is most relevant to the competition’s permitted extensions/splays, but it will miss faults without recent recorded seismicity.
+| | |
+|---|---|
+| **Layers** | `rtp`, `tmi`, `tmi_hg` (magnetics) × `iso_grav_anom`, `iso_grav_anom_hg` (gravity) × `det_elev`, `det_elev_slope` (topography) |
+| **Signature** | multi-scale horizontal-gradient magnitude and tilt-derivative ridges on the potential fields, Laplacian curvature ridges on the detrended DEM; **kept only where ≥2 of the 3 families have a ridge within one pixel** |
+| **Mechanism** | a fault plane juxtaposes rock of different density and magnetic susceptibility, so the potential-field gradient peaks over the trace of the plane; a surface-breaking fault also breaks the slope. Two independent physical origins agreeing at one pixel is far less likely by chance than either alone |
+| **Why it should find a fault the catalogue lacks** | the catalogue is hazard-oriented and Quaternary in scope; the physics does not know that. Older, shorter, buried and mis-located structures produce the same gradient signature |
+| **Non-fault look-alikes** | lithologic and volcanic-flow contacts (magnetic + gravity both step across them), playa/alluvial-fan edges (topographic + gravity), roads/canals/fences (topographic only), and the GeoDAWN survey seams and data-boundary edge (any family) |
+| **Separating test** | a **matched random lineament network** at the same support — measured on the SGMC-gap proxy: at 250,000 px the conjunction scores 0.1229 against the random network's 0.0930, but at the shipped file's own mass (172,974 px) it scores 0.0926 against 0.0882, i.e. barely above its null; plus a single-family ablation (topography 0.1204, magnetics 0.0459 at 250,000 px) and the boundary mask |
+| **Differs from** | H16-1 blends families arithmetically into one scalar; H18-1 multiplied experts and failed. This is a conjunction with a control, and it is emitted under the metric's own algebra |
+| **Cost** | one CPU pass over the raster, no new data |
+| **Status** | **implemented** (`scripts/run_detectors.py`, `scripts/build_candidate.py`); tuning folds choose the support, sealed blocks read once — and the sealed read did **not** confirm a win (the promoted arm scored 0.0003 against the shipped file's 0.0085) |
 
-**Specific non-fault look-alikes and discriminants.** Volcanic or fluid-driven events, mining blasts, unrelated structures within a swarm, poor hypocenter locations, and the two-plane ambiguity of a focal mechanism can create an apparent corridor. Use only reviewed double-couple solutions with reported uncertainty; require agreement across independent events and catalog solutions; repeat the projection under both nodal planes and location uncertainty; compare to matched random mechanisms and time-shuffled events. If the inferred surface trace changes materially under those perturbations, reject it.
+### H19-B — state-map structures the catalogue does not contain (implemented; unverifiable premise, stated as such)
 
-**Data and access.** USGS ComCat documents hypocenter/source parameters and moment-tensor/focal-mechanism products through its public FDSN event service. We have verified the official documentation, not the event count or quality within the GeoDAWN footprint [S22](../sources.md#s22). The candidate stays conditional until a query is run and adequate spatial coverage is demonstrated.
+| | |
+|---|---|
+| **Layers** | USGS State Geologic Map Compilation structure lines (external, US public domain) vs the training labels |
+| **Signature** | the *population* of mapped fault lines with **no training label within 300 m**: 61,664 px inside the footprint **[MEASURED-HERE]** |
+| **Mechanism** | state geologic maps record bedrock structures mapped from field geology; the Quaternary fault database records only structures with evidence of surface rupture in the last 1.6 Myr. A fault can be in the first and not the second |
+| **Why it should find a fault the catalogue lacks** | by construction every pixel of the component is outside the pixel-exact scoring mask, so it cannot be "already known" in the competition's sense |
+| **Non-fault look-alikes** | map compilation artefacts, coast/terrain lines, 1:1,000,000 generalisation offsets (hundreds of metres), mining and volcanic contacts |
+| **Separating test** | the honest one: it **cannot** be validated against the hidden truth from here, and no proxy in this repository can decide it. What *is* tested is whether the component's pixels are physically expressed (fraction coincident with H19-A ridges) — a weak consistency check, not a validation |
+| **Differs from** | the group used SGMC as a *proxy truth* (H18-4) and one sibling rasterised SGMC faults as an input band; neither **emitted** the gap population as the predicted fault network |
+| **Cost** | one rasterisation; data already staged |
+| **Status** | **implemented**; the premise is published with the component's exact size and its cost in the denominator, so the risk is visible |
 
-**Holdout test.** Leave entire earthquake sequences and spatial fault systems out. Use catalog faults only as held-out truth, not as model input. Compare projected traces to the official DTI on withheld systems and to matched non-fault seismic clusters. Require stability to nodal-plane choice and a block-bootstrap lift over the locked baseline. Do not count the same aftershock family as independent evidence.
+### H19-C — the composite actually shipped (implemented)
 
-**Expected value/cost judgment.** It has a credible fault-mechanical mechanism but a high chance of sparse coverage and low recall. It ranks below H18-N1 and should be dropped quickly if the ComCat coverage audit fails.
+`catalogue ∪ state-map structures ∪ H19-A physics`, all at value 1, one pixel wide, NaN outside the
+footprint. Rationale: the catalogue is free, the state-map network is a population bet whose downside
+is a known number of false-positive pixels, and the physics adds the case the catalogue cannot see.
+Composition, cost and a sensitivity table (score as a function of the assumed truth size and coverage)
+are written to `data/evidence/candidate_h19.json` and rendered on the [Validation](../validation.html)
+page.
 
-### 3. H18-N3 — Sentinel-1 InSAR displacement discontinuity
+### H19-D — radiometric alteration lineaments (proposed; source verified available)
 
-**Physical prediction.** A fault undergoing creep or coseismic slip can produce a spatially coherent displacement gradient or step in repeat-pass radar line-of-sight time series. The candidate would emit only a narrow corridor supported by a persistent, fault-consistent displacement signal, not a single interferogram fringe.
+| | |
+|---|---|
+| **Layers** | the GeoDAWN airborne radiometric channels `k`, `th`, `u`, `tc`, `thk`, `uk`, `uth` — **absent from the 19 provided bands** |
+| **Signature** | ridges and edges on the K channel and on the Th/K and U/Th ratios (ratios cancel soil-moisture and elevation gain), required to co-locate with a potential-field gradient |
+| **Mechanism** | fault damage zones are pathways for fluids; K-feldspar/clay alteration enriches K along them, and U is mobile in oxidising fluids — the classic radiometric alteration signature used in geothermal exploration |
+| **Why it should find a fault the catalogue lacks** | alteration haloes mark *buried* faults that have no scarp and no Quaternary rupture record, which is exactly the class the hazard catalogue is thin on |
+| **Non-fault look-alikes** | lithology (rhyolite vs basalt K contrast), soil/vegetation cover, mine dumps, and the radiometric survey's own flight-line corrugation |
+| **Separating test** | the ratio channels must beat the raw channels (if they do not, the signal is soil/lithology, not alteration); and the ridge must be co-located with a magnetic or gravity gradient |
+| **Differs from** | the K/Th/U grids are **not** among the 19 provided bands — verified by exact signature matching: of the 13 GeoDAWN area-2 layers, only `rtp`, `tmi`, `tmi_hg`, `tmi_vg` (and `tc`, under a misleading tag) appear in the competition stack **[MEASURED-HERE]** |
+| **Cost** | one external download (USGS public domain; a pinned public mirror is reachable from this sandbox) |
+| **Status** | **proposed**, not run in this pass: a sibling measured only +0.002 for radiometrics in a paired fold test **[GROUP-REPORTED]**, so it ranks below the implemented arms |
 
-**Why this could find unmapped geometry.** A currently deforming but uncatalogued strand may extend beyond mapped endpoints or form a splay. The method is blind to locked or inactive faults and therefore cannot be treated as a general fault inventory.
+### H19-E — along-strike continuation from mapped tips, with a rotation control (proposed)
 
-**Specific non-fault look-alikes and discriminants.** Groundwater extraction and aquifer compaction, seasonal soil moisture/thermal expansion, atmospheric delay, ionospheric artifacts, topographic phase errors, vegetation decorrelation, and anthropogenic subsidence can all create apparent gradients. Require repeatability over multiple time windows, cross-check ascending and descending viewing geometries where possible, remove seasonal/common-mode and known basin-subsidence signals, mask decorrelated pixels, and compare against non-fault basins with groundwater change. A signal that tracks subsidence bowls, changes sign with season, or vanishes across tracks is not a fault detection.
+| | |
+|---|---|
+| **Layers** | `labels.tif` geometry × H19-A magnetic/gravity ridges |
+| **Signature** | a ridge that continues a mapped fault's strike beyond its tip, or parallels it inside the same zone |
+| **Mechanism** | the organizers state that new faults include extensions, splays and parallel strands of known systems [OFFICIAL, fact 3], and the structural literature puts a large share of Great Basin geothermal systems at step-overs and terminations (Faulds & Hinz 2015, [OSTI 1724082](https://www.osti.gov/servlets/purl/1724082)) |
+| **Non-fault look-alikes** | any ridge that happens to point away from any fault tip — which is why the control is a **random rotation** of the mapped-fault field: the aligned population must beat its own rotated surrogates, or the "continuation" is an artefact of drawing lines near lines |
+| **Separating test** | rotate the fault-tip field by 100 random angles and re-measure; the real alignment must sit in the tail |
+| **Status** | **proposed**; a sibling tested a *kernel-density* version of this idea (H18-3a) and found most of its lift came from generic fault clustering, which is why this version is per-lineament and rotation-controlled |
 
-**Data and access.** NASA Earthdata states that Sentinel-1 products are available through ASF DAAC/Vertex, `asf_search`, and Earthdata Search; download and some services require Earthdata login [S23](../sources.md#s23). This repo has no login, scene query, interferogram, or coverage check. No data are downloaded.
+## 4. Validation protocol (preregistered before the numbers were seen)
 
-**Holdout test.** Leave whole active fault systems and time windows out; evaluate only against withheld traces with independent evidence of recent movement. Include groundwater-subsidence regions as negative controls and assess ascending/descending agreement. Compare the lineament detector to the exact locked baseline; if no coherent signal exists across a sufficient fraction of the scored footprint, stop rather than extrapolate a weak signal everywhere.
+1. Every arm is evaluated inside a spatially blocked holdout: 512 px (51.2 km) blocks, folds balanced
+   on fault mass, **14 sealed blocks** that no selection step may touch, split digest
+   `41332369d7dd448b…` (`data/evidence/holdout_manifest.json`).
+2. Two truths are used, and they are never confused:
+   * the **catalogue holdout** — training-label pixels in held-out blocks, unmasked. It answers "can
+     this arm find faults it was not shown at all?", and it is the only truth in this repository that
+     is *not* an external map;
+   * the **SGMC-gap proxy** — state-map fault pixels with no label within 300 m. It stands in for
+     "faults the catalogue lacks", with the caveat that it is a 1:1,000,000 map product.
+3. Controls run *before* the promoted arm is described: matched random lineament network, blanket
+   field, single-family ablation, catalogue copy (which must score exactly 0 on the gap proxy).
+4. The sealed slice is read once, after the support is fixed, and reported whichever way it falls.
+5. An improvement counts only if it survives the sealed slice **and** the strongest attempt to argue
+   it away as an artefact (boundary mask, single-family ablation, mass-matched comparison).
 
-**Expected value/cost judgment.** Potentially precise but low coverage, high artifact burden, and very high processing cost. It is a research option only if a coverage audit shows coherent GeoDAWN scenes and enough independent known active faults for a blocked proxy test.
+## 5. Results
 
-## Prior ideas: do not relabel these as new
+<!-- RESULTS_TABLE -->
 
-| Prior work / proposal | Public status | Decision for 18GEMSDOE |
+## 6. Sealed read (single, pre-registered)
+
+<!-- SEALED_BLOCK -->
+
+## 7. What would change our mind
+
+* If the mass-matched comparison shows an arm only wins because it emits more pixels, it is not a
+  better detector.
+* If the random-lineament control reaches the promoted arm's proxy score, the conjunction is
+  decoration and H19-A must be withdrawn.
+* If the state-map component turns out to be pure false-positive mass in the live A/B, H19-B is
+  refuted for this competition and the next submission must drop it.
+
+## 8. The prior register (this repository's pre-H19 shortlist)
+
+The three hypotheses screened before this pass are kept verbatim in
+[`hypotheses-h18.md`](hypotheses-h18.md) rather than deleted, because a register that only ever grows
+forward is how a group ends up re-proposing its own ideas:
+
+| ID | One-line mechanism | Status after this pass |
 |---|---|---|
-| Gravity edges, magnetic TDR/analytic-signal edges, conductance/alteration, strain and earthquake-density corridors, scarp/ridge detectors, valley-axis alignment, microseismic ridges, relay linkage | Listed in the 8GEMSDOE public register. Its 2026-09-26 page reports all ten candidate arms below its stated random proxy on the displayed metric; those numbers are **group-site claims**, not reproduced here. | Do not submit or promote another parameterization of these as a fresh idea. Gravity/magnetic candidates also require trace-local predictions and controls for lithologic contacts and GeoDAWN survey seams. [S24](../sources.md#s24) |
-| H18-1 product-of-experts; H18-3a endpoint/junction complexity; H18-3b/3c oblique-strike prior | 16GEMSDOE reports H18-1 and 3b/3c failed its pre-registered four-quadrant gate. H18-3a passed, but only on known-catalogue/sparse-proxy folds; it is the highest **reported** 16-site holdout result, not a hidden-label result. | H18-3a is already tested and is the provisional comparator, not an 18GEMSDOE novelty claim. Reproduce it before using it as a gate. [S25](../sources.md#s25) [S26](../sources.md#s26) |
-| H18-4 SGMC geologic-map fault gap | 16GEMSDOE reports overlap with GEMSDOE3’s earlier SGMC output (Jaccard 0.63). | Do not repeat as a “new” layer. The published overlap is a group claim pending independent file comparison. [S25](../sources.md#s25) |
-| **H18-5 thermal-anchor linking** (GDR spring/well temperature, chemistry, sinter/tufa, volcanics) | Explicitly proposed in the 16GEMSDOE register; premise measured there, operator marked “not built.” | Do **not** present as novel. It may be revisited only as a separately approved continuation of that prior idea; the GDR is a promising public source but that does not make the hypothesis new. [S25](../sources.md#s25) [S12](../sources.md#s12) |
-| H18-6 cultural-lineament suppression; H17-2 drainage deflection/knickzones; H17-3 strain/seismic coherence; H17-4 alteration; H17-5 basement/contact concordance | Proposed in the 16GEMSDOE register; some are marked unrun. | Not new in this group. Do not disguise these as distinct by changing a threshold or raster resolution. [S25](../sources.md#s25) |
-| Hilley/Hanks scarp-diffusion template or generic scarp-age filter | The primary literature is verified (see below), but 8GEMSDOE and 16GEMSDOE already used or proposed scarp/DEM features. | Do not count as a new hypothesis. Use the science to construct controls for H18-N1, not as a standalone fault classifier. |
+| **H18-N1** | multi-level paleolake shoreline displacement: same-sense offset of two independently correlated shoreline markers | screened, **conditional** — needs 3DEP 1 m DEM, which this sandbox cannot fetch (Audit A-08.3); not implemented |
+| **H18-N2** | focal-mechanism fault-plane projection from reviewed moment tensors | screened, **conditional** — needs a ComCat event-quality audit inside the footprint; not implemented |
+| **H18-N3** | Sentinel-1 InSAR displacement discontinuity | screened, **conditional** — needs Earthdata login and multi-date coherence work; not implemented |
 
-<a id="scarp-diffusion-science"></a>
-
-## Scarp-diffusion science check (reference only; not a new candidate)
-
-Hanks et al. (1984) and Andrews & Hanks (1985) are primary foundations for linear-diffusion scarp morphology; Hilley et al. (2010) derive a second-derivative curvature template, fit scarp height, and use signal-to-noise to identify **scarp-like topography** in high-resolution DEMs [S18](../sources.md#s18) [S19](../sources.md#s19) [S20](../sources.md#s20). The inversion often identifies a product such as diffusivity × time (`κt`), not calendar age without an independent diffusivity calibration. Hanks et al. explicitly analyze wave-cut / shoreline scarps as well as fault-controlled landforms. Therefore a diffusion-template match or “young” morphology does **not** prove tectonic origin. Sare et al. (2019) report that roads, channels, and other scarp-like features appear in regional template results and used visual review to remove nontectonic features [S21](../sources.md#s21). GBCGE’s Dixie Valley case documents a candidate scarp that trenching found to be erosional, a practical warning against relying on visual shape alone [S17](../sources.md#s17).
-
-## Decision
-
-Proceed first with **source and coverage audit for H18-N1**, then preregister and freeze the spatial holdout before implementing the detector. If high-resolution DEM coverage, marker continuity, official-label provenance, or a valid locked holdout cannot be established, stop and move to the next conditional candidate. No numerical DTI improvement is claimed. See [preregistration](preregistration.md), [data/provenance](../data.md), and [audit flags](../audit.md).
+None of the three is re-proposed as new in H19-A…E, and none was validated.

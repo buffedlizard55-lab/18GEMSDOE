@@ -2,7 +2,9 @@
 
 ## Current state
 
-**There is no validated 18GEMSDOE submission file to download.** The site’s browser builder is a format tool: it can package an existing local prediction raster only after you provide a passing holdout-evidence JSON and the official sample template. It does not generate a fault model, does not submit anything, and does not imply that a candidate can beat the hidden test. No file has been submitted from this repository.
+**The file to upload lives at the top of the [Executive summary](executive_summary.html) page** — one static GeoTIFF, already validated against the official template, packaged under a unique name with a ready-to-paste note. This page documents the format and the fallback route for a file you built yourself.
+
+The site’s browser builder is a format tool, not a model: it **does not generate fault predictions** and it does not upload anything. It packages a local prediction raster only after you provide passing holdout evidence and the official sample template. Do not submit from this repository anything other than the packaged file whose SHA-256 is printed beside it, and never re-upload a file whose hash is already in `registry/submission-hashes.json`.
 
 ## Correct file format
 

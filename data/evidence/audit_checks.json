@@ -1,0 +1,190 @@
+{
+ "generated_utc": "2026-09-30T21:24:14Z",
+ "generated_by": "scripts/audit_checks.py",
+ "A_official_rasters": {
+  "training_features.tif": {
+   "status": "PASS",
+   "sha256": "4371c82e3b8339b807bdffcf4ef59a225520fe2988d521be208ae33743123bc5",
+   "sha256_pinned": "4371c82e3b8339b807bdffcf4ef59a225520fe2988d521be208ae33743123bc5",
+   "shape": [
+    3730,
+    3292
+   ],
+   "count": 19,
+   "crs": "EPSG:32611",
+   "dtype": "float32",
+   "bounds": [
+    243350.0,
+    4135550.0,
+    572550.0,
+    4508550.0
+   ]
+  },
+  "labels.tif": {
+   "status": "PASS",
+   "sha256": "7ba308ccdc4418b31a178f4f1ef21aaa6e152e4028f2f6f64b01f7eb25ae4093",
+   "sha256_pinned": "7ba308ccdc4418b31a178f4f1ef21aaa6e152e4028f2f6f64b01f7eb25ae4093",
+   "shape": [
+    3730,
+    3292
+   ],
+   "count": 1,
+   "crs": "EPSG:32611",
+   "dtype": "int8",
+   "bounds": [
+    243350.0,
+    4135550.0,
+    572550.0,
+    4508550.0
+   ]
+  },
+  "sample_submission.tif": {
+   "status": "PASS",
+   "sha256": "2176d08e485aa2cd2860ce8df539db4faf4d76163b38a4dd8c30a40454d35cbc",
+   "sha256_pinned": "2176d08e485aa2cd2860ce8df539db4faf4d76163b38a4dd8c30a40454d35cbc",
+   "shape": [
+    3730,
+    3292
+   ],
+   "count": 1,
+   "crs": "EPSG:32611",
+   "dtype": "float32",
+   "bounds": [
+    243350.0,
+    4135550.0,
+    572550.0,
+    4508550.0
+   ]
+  },
+  "labels_value_counts": {
+   "outside_footprint(-1)": 7111787,
+   "no_fault(0)": 5106385,
+   "fault(1)": 60988
+  }
+ },
+ "B_labels_are_qfaults": {
+  "status": "PASS",
+  "shapefile": "/tmp/gr/qfaults_ingenious_nad83conus117_2023-06-27/qfaults_ingenious_nad83conus117_2023-06-27.shp",
+  "records_touching_footprint": 1126,
+  "qfaults_px_grid": 197294,
+  "qfaults_px_inside_valid_footprint": 71985,
+  "qfaults_inside_footprint_within_300m_of_label": 71984,
+  "fraction": 0.9999861082169896,
+  "label_px_within_300m_of_qfaults": 60988,
+  "label_px": 60988,
+  "note": "QFaults pixels outside the valid footprint are not scored and are reported separately on purpose: counting them as 'faults missing from the labels' is a mistake this check exists to prevent."
+ },
+ "C_feature_stack_vs_geodawn": {
+  "status": "PASS",
+  "geodawn_area2_layers": [
+   "dem",
+   "k",
+   "rtp",
+   "tc",
+   "th",
+   "thk",
+   "tmi",
+   "tmi_hg",
+   "tmi_vg",
+   "u",
+   "uk",
+   "upcont_tmi150",
+   "uth"
+  ],
+  "exact_signature_matches": {
+   "dem": [],
+   "k": [],
+   "rtp": [
+    "rtp"
+   ],
+   "tc": [],
+   "th": [],
+   "thk": [],
+   "tmi": [
+    "tmi"
+   ],
+   "tmi_hg": [
+    "tmi_hg"
+   ],
+   "tmi_vg": [
+    "tmi_vg"
+   ],
+   "u": [],
+   "uk": [],
+   "upcont_tmi150": [],
+   "uth": []
+  },
+  "not_present_in_provided_stack": [
+   "dem",
+   "k",
+   "tc",
+   "th",
+   "thk",
+   "u",
+   "uk",
+   "upcont_tmi150",
+   "uth"
+  ],
+  "note": "A layer with no exact-signature match is not in the provided 19-band stack. The radiometric ratios (uk, uth, thk) and single channels (k, th, u) are the material ones: they exist on the competition grid in the public release."
+ },
+ "D_duplicate_evidence": {
+  "status": "PASS",
+  "duplicate_pin": "7f00890a62878d612fb5eef67a9a364a2df819433dde74b6762ce4fc0fc4fe15",
+  "files": {
+   "/tmp/ext/GEMSDOE": {
+    "path": "/tmp/ext/GEMSDOE/data/evidence/runs/ens12-adopted-floor0.1-w0/submission.tif",
+    "sha256": "7f00890a62878d612fb5eef67a9a364a2df819433dde74b6762ce4fc0fc4fe15",
+    "bytes": 570890,
+    "matches_duplicate_pin": true
+   },
+   "/tmp/ext/5GEMSDOE": {
+    "path": "/tmp/ext/5GEMSDOE/data/evidence/runs/ens12-adopted-floor0.1-w0/submission.tif",
+    "sha256": "7f00890a62878d612fb5eef67a9a364a2df819433dde74b6762ce4fc0fc4fe15",
+    "bytes": 570890,
+    "matches_duplicate_pin": true
+   }
+  },
+  "distinct_digests": 1,
+  "conclusion": "One byte sequence is shipped from several repositories: the repeated public score is one prediction, not several ideas converging."
+ },
+ "E_shipped_submission": {
+  "status": "PASS",
+  "path": "docs/downloads/18GEMSDOE_H19-C_20260930T212401Z_c11e495e.tif",
+  "sha256_recomputed": "c11e495e5817730ad5f0fdc368b810f79050cbb6bd65e98c98123b7921ed336b",
+  "sha256_manifest": "c11e495e5817730ad5f0fdc368b810f79050cbb6bd65e98c98123b7921ed336b",
+  "validator": {
+   "valid": true,
+   "warnings": [],
+   "submission": "/home/user/18GEMSDOE/docs/downloads/18GEMSDOE_H19-C_20260930T212401Z_c11e495e.tif",
+   "template": "/home/user/18GEMSDOE/data/sample_submission.tif",
+   "grid": {
+    "width": 3292,
+    "height": 3730,
+    "crs": "EPSG:32611",
+    "transform": [
+     100.0,
+     0.0,
+     243350.0,
+     0.0,
+     -100.0,
+     4508550.0
+    ],
+    "resolution_m": [
+     100.0,
+     100.0
+    ],
+    "bands": 1,
+    "dtype": [
+     "float32"
+    ],
+    "nodata": NaN
+   },
+   "footprint_pixels": 5167373,
+   "outside_pixels": 7111787,
+   "valid_min": 0.0,
+   "valid_max": 1.0
+  },
+  "validator_errors": []
+ },
+ "seconds": 72.0
+}

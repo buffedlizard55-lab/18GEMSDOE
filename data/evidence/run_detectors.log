@@ -1,0 +1,44 @@
+[    0.0s] features (3730, 3292) bands=19 (mag_anom, rtp, tmi_hg, geod_2ndinv, iso_grav_anom_slope, tc, geod_shearrate, geod_dilaterate, tmi_vg, deq_n100a15, iso_grav_anom_vg, det_elev, iso_grav_anom, tmi, depth_to_base_surf, ieq_n100a15, cond_surf, iso_grav_anom_hg, det_elev_slope)
+[    0.1s] footprint 5167373 px | known faults 60988 px | proxy-gap 61664 px
+[    0.1s] partition 56 blocks | split sha256 41332369d7dd448b… | sealed 14
+[    0.1s] magnetics: RTP + TMI horizontal gradient, tilt derivative, TMI-HG
+[   36.4s]   ridge pixels 1179402
+[   36.4s] gravity: isostatic anomaly gradient (physically independent of magnetics)
+[   51.1s]   ridge pixels 364902
+[   51.1s] topography: curvature of detrended elevation + slope of detrended elevation
+[   61.8s]   ridge pixels 754021
+[   61.8s] subsurface, strain and seismicity
+[  104.5s] deep magnetic gradient (native-resolution GeoDAWN): 22103_upcont_tmi150_a2.tif
+[  111.5s] conjunction: >= 2 physically independent families must agree at the same trace
+[  112.0s]   conjunction pixels 678220
+[  112.0s] controls: matched random lineament network, blanket field
+[  867.4s] comparator loaded: data/comparator_ens12.tif (172974 positive px)
+[  872.8s] _depth_base_grad best support   60000 -> proxy DTI 0.0036 (emission 59540 px); folds 0:0.000, 1:0.000, 2:0.011, 3:0.002
+[  878.3s] _grav_slope      best support   60000 -> proxy DTI 0.0032 (emission 59136 px); folds 0:0.004, 1:0.001, 2:0.001, 3:0.004
+[  883.8s] cond             best support   60000 -> proxy DTI 0.0037 (emission 59333 px); folds 0:0.002, 1:0.006, 2:0.004, 3:0.000
+[  890.2s] conjunction      best support  250000 -> proxy DTI 0.1229 (emission 247498 px); folds 0:0.010, 1:0.004, 2:0.004, 3:0.011
+[  896.3s] control_blanket  proxy DTI 0.0592
+[  902.6s] control_random   best support   60000 -> proxy DTI 0.0384 (emission 59532 px); folds 0:0.013, 1:0.013, 2:0.008, 3:0.042
+[  907.6s] deep_mag         best support   60000 -> proxy DTI 0.0110 (emission 59639 px); folds 0:0.008, 1:0.007, 2:0.008, 3:0.009
+[  914.0s] grav_ridge       best support  120000 -> proxy DTI 0.0097 (emission 118576 px); folds 0:0.002, 1:0.003, 2:0.004, 3:0.004
+[  919.2s] known_catalogue  best support   60000 -> proxy DTI 0.0000 (emission 0 px); folds 0:0.000, 1:0.000, 2:0.000, 3:0.000
+[  925.9s] mag_ridge        best support  250000 -> proxy DTI 0.0459 (emission 248272 px); folds 0:0.012, 1:0.012, 2:0.006, 3:0.015
+[  931.3s] seis             best support   60000 -> proxy DTI 0.0023 (emission 59102 px); folds 0:0.000, 1:0.000, 2:0.000, 3:0.000
+[  936.9s] strain           best support   60000 -> proxy DTI 0.0164 (emission 59230 px); folds 0:0.002, 1:0.000, 2:0.000, 3:0.000
+[  944.4s] topo_ridge       best support  120000 -> proxy DTI 0.0848 (emission 119662 px); folds 0:0.020, 1:0.007, 2:0.008, 3:0.060
+[  945.9s] comparator (ens12 shipped file) proxy DTI 0.1014
+[  945.9s] bootstrap _depth_base_grad vs comparator: mean diff -0.0062, P(better) 0.0
+[  945.9s] bootstrap _grav_slope      vs comparator: mean diff -0.0063, P(better) 0.0
+[  945.9s] bootstrap cond             vs comparator: mean diff -0.0062, P(better) 0.0
+[  945.9s] bootstrap conjunction      vs comparator: mean diff -0.0000, P(better) 0.4925
+[  945.9s] bootstrap control_random   vs comparator: mean diff -0.0008, P(better) 0.381
+[  945.9s] bootstrap deep_mag         vs comparator: mean diff -0.0050, P(better) 0.0
+[  945.9s] bootstrap grav_ridge       vs comparator: mean diff -0.0059, P(better) 0.0
+[  945.9s] bootstrap known_catalogue  vs comparator: mean diff -0.0068, P(better) 0.0
+[  945.9s] bootstrap mag_ridge        vs comparator: mean diff -0.0035, P(better) 0.0025
+[  945.9s] bootstrap seis             vs comparator: mean diff -0.0065, P(better) 0.0
+[  945.9s] bootstrap strain           vs comparator: mean diff -0.0048, P(better) 0.0
+[  945.9s] bootstrap topo_ridge       vs comparator: mean diff +0.0018, P(better) 0.6605
+[  949.1s] SEALED topo_ridge@250000: candidate 0.0003 vs comparator 0.0085
+[  968.8s] matched-support (172,974 px) table: cond:0.0224, conjunction:0.0926, control_random:0.0882, deep_mag:0.0315, grav_ridge:0.0125, known_catalogue:0.0000, mag_ridge:0.0357, seis:0.0088, strain:0.0299, topo_ridge:0.1040
+[  969.2s] wrote data/evidence/detector_results.json

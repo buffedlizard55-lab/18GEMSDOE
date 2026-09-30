@@ -1,0 +1,45 @@
+{
+ "generated_utc": "2026-09-30T21:24:01Z",
+ "file": "18GEMSDOE_H19-C_20260930T212401Z_c11e495e.tif",
+ "path": "docs/downloads/18GEMSDOE_H19-C_20260930T212401Z_c11e495e.tif",
+ "bytes": 457340,
+ "sha256": "c11e495e5817730ad5f0fdc368b810f79050cbb6bd65e98c98123b7921ed336b",
+ "candidate_id": "H19-C",
+ "arm": "composite",
+ "note": "18GEMSDOE H19-C | training catalogue + SGMC state-map structures absent from it (61,664 px) + >=2-family magnetics/gravity/topography conjunction (388,228 px) | one-pixel, uniform value 1 | holdout split 41332369d7dd448b | sha256 c11e495e5817730a",
+ "validation": {
+  "valid": true,
+  "errors": [],
+  "warnings": [],
+  "submission": "data/submission_h19.tif",
+  "template": "data/sample_submission.tif",
+  "grid": {
+   "width": 3292,
+   "height": 3730,
+   "crs": "EPSG:32611",
+   "transform": [
+    100.0,
+    0.0,
+    243350.0,
+    0.0,
+    -100.0,
+    4508550.0
+   ],
+   "resolution_m": [
+    100.0,
+    100.0
+   ],
+   "bands": 1,
+   "dtype": [
+    "float32"
+   ],
+   "nodata": NaN
+  },
+  "footprint_pixels": 5167373,
+  "outside_pixels": 7111787,
+  "valid_min": 0.0,
+  "valid_max": 1.0
+ },
+ "evidence": "data/evidence/candidate_h19.json",
+ "evidence_sha256": "efe154beb3771591b839bb459fa3657307c101f8b7432ad5ad4ac3c3e14c42b8"
+}

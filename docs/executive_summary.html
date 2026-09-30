@@ -1,0 +1,124 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Executive summary — how to submit — 18GEMSDOE</title>
+<link rel="stylesheet" href="../assets/site.css">
+</head>
+<body>
+<header class="site">
+  <div class="wrap">
+    <a class="brand" href="../index.html">18GEMSDOE</a>
+    <nav><a href="../docs/executive_summary.html">Submit</a><a href="../docs/submission.html">Format</a><a href="../docs/hypotheses.html">Hypotheses</a><a href="../docs/validation.html">Validation</a><a href="../docs/results.html">Results</a><a href="../docs/audit.html">Audit</a><a href="../docs/sources.html">Sources</a><a href="../docs/data.html">Data</a></nav>
+  </div>
+</header>
+<main class="wrap">
+<h1 id="executive-summary-the-file-and-exactly-how-to-submit-it">Executive summary — the file, and exactly how to submit it</h1>
+<h2 id="the-file">The file</h2>
+<p><strong><code>docs/downloads/</code></strong> holds the ready-to-upload prediction. Click the <code>.tif</code>, save it, upload it.
+Nothing is generated in your browser and nothing is uploaded anywhere by this site — the file is a
+static artefact whose bytes are pinned by SHA-256 below, and it has already passed the format check
+against the official template.</p>
+<div class="download-card"><a class="button button-primary button-big" href="../docs/downloads/18GEMSDOE_H19-C_20260930T212401Z_c11e495e.tif" download>⬇ Download 18GEMSDOE_H19-C_20260930T212401Z_c11e495e.tif</a><p class="micro-copy">Right-click → “Save link as…” if your browser opens it instead. The file name carries the candidate id, the UTC build time and the content hash, so two downloads can never be confused.</p><details><summary>Bytes, hash and format check</summary><table class="kv"><tr><td>candidate</td><td><code>H19-C</code></td></tr><tr><td>bytes</td><td><code>457,340 (447 KiB)</code></td></tr><tr><td>sha256</td><td><code>c11e495e5817730ad5f0fdc368b810f79050cbb6bd65e98c98123b7921ed336b</code></td></tr><tr><td>bands / dtype</td><td><code>1 / [&#x27;float32&#x27;]</code></td></tr><tr><td>crs / resolution</td><td><code>EPSG:32611 / [100.0, 100.0]</code></td></tr><tr><td>value range in footprint</td><td><code>0.0 … 1.0</code></td></tr><tr><td>footprint pixels</td><td><code>5,167,373</code></td></tr><tr><td>format check</td><td><code>PASS</code></td></tr><tr><td>format validated</td><td><code>2026-09-30T21:24:01Z</code></td></tr></table><p class="micro-copy">Comment to paste into the upload form: <code>18GEMSDOE H19-C | training catalogue + SGMC state-map structures absent from it (61,664 px) + &gt;=2-family magnetics/gravity/topography conjunction (388,228 px) | one-pixel, uniform value 1 | holdout split 41332369d7dd448b | sha256 c11e495e5817730a</code></p></details></div>
+
+<h2 id="what-it-contains-in-one-paragraph">What it contains, in one paragraph</h2>
+<p>A <strong>H19-A conjunction field</strong>: every emitted pixel is a place where at least two <em>physically
+independent</em> evidence families — magnetic horizontal gradient / tilt derivative, isostatic-gravity
+horizontal gradient, and topographic curvature of the detrended elevation — have a lineament ridge,
+thinned to one pixel, at uniform value 1, plus the known USGS/INGENIOUS catalogue traces (which the
+platform masks out of scoring, so including them is free). The physics: a fault plane juxtaposes rock
+of different density and magnetic susceptibility, so potential-field gradients peak over the trace of
+the plane, and a surface-breaking fault also breaks the slope. The non-fault look-alikes — lithologic
+contacts, volcanic flow boundaries, playa and alluvial-fan edges, roads and canals, survey-block seams
+and the data-footprint boundary — are the reason the arm requires agreement between independent
+families rather than any single edge, and why a matched random-lineament control is reported beside it.
+Read <a href="validation.html">Validation</a> before you believe any of it. The honest headline: the conjunction
+beats its matched random-lineament control on the tuning folds (0.1229 vs 0.0930 at 250,000 px), is
+only marginally ahead of that control at the shipped file's own mass (0.0926 vs 0.0882), and the arm
+the tuning folds promote <strong>loses</strong> on the sealed slice (0.0003 vs 0.0085). This file is a candidate,
+not a validated winner.</p>
+<h2 id="format-requirements-verified-against-the-official-problem-description">Format requirements (verified against the official problem description)</h2>
+<table>
+<thead>
+<tr>
+<th>Requirement</th>
+<th>Official wording</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Projected CRS</td>
+<td>"same projected coordinate reference system as the training data … UTM zone 11N, EPSG 32611"</td>
+</tr>
+<tr>
+<td>Resolution</td>
+<td>"same resolution as the training data (100 m)"</td>
+</tr>
+<tr>
+<td>Extent</td>
+<td>"same bounds as the training data, and data outside the bounds is null or nan"</td>
+</tr>
+<tr>
+<td>Bands and dtype</td>
+<td>"a single layer with datatype of 32-bit float (<code>float32</code>)"</td>
+</tr>
+<tr>
+<td>Values</td>
+<td>"values between 0 and 1 indicating the confidence or probability of fault presence"</td>
+</tr>
+</tbody>
+</table>
+<p>Source: <a href="https://www.drivendata.org/competitions/306/competition-doe-gems/page/967/#submission-format">https://www.drivendata.org/competitions/306/competition-doe-gems/page/967/#submission-format</a>
+(fetched 2026-09-30). A ZIP containing a single GeoTIFF is also accepted: "You can submit a
+single-band GeoTIFF (.tif) file, or a .zip file containing a single GeoTIFF."</p>
+<h2 id="submit-step-by-step">Submit — step by step</h2>
+<ol>
+<li><strong>Download</strong> the <code>.tif</code> at the top of this page and keep the file name as it is (it carries the
+   candidate id, the UTC time and the content hash so that two entries can never be confused).</li>
+<li><strong>Sign in</strong> to the account registered for the competition and open
+   <a href="https://www.drivendata.org/competitions/306/competition-doe-gems/">the GEMS Prize Challenge</a>.</li>
+<li>Open <strong>Submit → Make new submission</strong>.</li>
+<li><strong>Choose the file</strong> you downloaded. Do not pick a research raster, a previous project's file, or a
+   ZIP containing more than one GeoTIFF.</li>
+<li><strong>Paste the note</strong> from the file's sidecar (<code>docs/downloads/*.note.txt</code>) into the comment field —
+   it records the candidate id, the holdout id and the SHA-256.</li>
+<li><strong>Upload.</strong> If you see <em>"Predicted values must be in range [0, 1]"</em>, work through the triage below
+   rather than clipping the file.</li>
+<li><strong>Record the score</strong>: date, submission id, score, account → <code>registry/score-ledger.csv</code>. A proxy
+   DTI is never recorded as a leaderboard score.</li>
+</ol>
+<p><strong>Budget:</strong> rules §3.4 allows <em>up to three scored submissions per week per entity</em>, and each entity
+must then choose <strong>one</strong> final submission for both prize rounds (<a href="https://docs.nlr.gov/docs/fy26osti/96647.pdf">rules PDF</a>,
+p. 10). Spend them on distinct, informative files — not on the same field from several repositories.</p>
+<h2 id="format-check-before-you-upload-30-seconds-no-data-needed">Format check before you upload (30 seconds, no data needed)</h2>
+<pre><code class="language-bash">python scripts/validate_submission.py docs/downloads/&lt;file&gt;.tif \
+  --template data/sample_submission.tif
+</code></pre>
+<p>The checker verifies grid, CRS, resolution, single band, <code>float32</code>, finite values in [0, 1] inside the
+footprint and NaN outside it. It never rescales, clips or reprojects: if it fails, the file is wrong,
+not the checker.</p>
+<h2 id="if-the-platform-reports-predicted-values-must-be-in-range-0-1">If the platform reports "Predicted values must be in range [0, 1]"</h2>
+<p>That message is about the bytes, and the bytes are checkable:</p>
+<ol>
+<li><strong>Confirm which file you selected.</strong> A research TIFF (probability maps before packaging, a
+   multi-band stack, a mask) is the most common cause.</li>
+<li><strong>Check the range inside the footprint only</strong> — a file can be NaN outside and still hold values
+   above 1, or <code>Inf</code>, inside.</li>
+<li><strong>Check for <code>NaN</code>/<code>Inf</code> inside the valid footprint.</strong> The competition expects finite values there;
+   <code>NaN</code> belongs <em>outside</em> the bounds.</li>
+<li><strong>Re-run the validator above</strong> and compare the reported SHA-256 with the one on this page.</li>
+<li><strong>Re-download</strong> rather than editing the file by hand — clipping changes the metric's behaviour and
+   invalidates the recorded hash.</li>
+</ol>
+<h2 id="what-this-file-is-not">What this file is <strong>not</strong></h2>
+<p>It is not a leaderboard result and no score is claimed for it. It is one candidate, built on the
+official layers only, with its controls and its sealed-slice outcome published beside it — because a
+file that has not survived the locked slice is not allowed to claim a submission slot on this site.</p>
+</main>
+<footer class="wrap">
+  <p>Static site. Every figure on these pages is rendered from a committed evidence file at build time.
+  Sources are linked for manual review; see <a href="../docs/audit.html">Audit</a> for what was and was not verified.</p>
+</footer>
+</body>
+</html>

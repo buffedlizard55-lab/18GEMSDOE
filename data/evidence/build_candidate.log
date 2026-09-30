@@ -1,0 +1,60 @@
+[    0.3s] labels: 60,988 px | footprint 5,167,373 px | SGMC proxy 82,155 px (gap 61,664)
+[    0.4s] partition: 56 blocks, sealed 14, split 41332369d7dd448b…
+[   24.2s]   magnetics ridge px 840,501
+[   38.5s]   gravity ridge px 278,030
+[   51.2s]   topography ridge px 732,029
+[   51.7s]   conjunction px 388,228
+[   55.2s]   support  25,000 -> catalogue-tuning DTI 0.0100 | SGMC-gap DTI 0.0360
+[   58.7s]   support  50,000 -> catalogue-tuning DTI 0.0142 | SGMC-gap DTI 0.0566
+[   62.5s]   support 100,000 -> catalogue-tuning DTI 0.0196 | SGMC-gap DTI 0.0806
+[   66.6s]   support 200,000 -> catalogue-tuning DTI 0.0364 | SGMC-gap DTI 0.1023
+[   70.8s]   support 400,000 -> catalogue-tuning DTI 0.0415 | SGMC-gap DTI 0.1111
+[   70.8s] support chosen on tuning folds: 400,000 px
+[   73.4s] SEALED catalogue read: DTI 0.0229 on 12,676 px (emitted 388,228)
+[   73.5s] composition: {'catalogue_px': 60988, 'state_map_px': 82155, 'state_map_gap_px': 61664, 'physics_px': 388228, 'physics_on_state_map_frac': 0.0254283565327591, 'physics_on_catalogue_frac': 0.011279454341263382, 'total_px': 513786, 'paid_emission_px': 452798, 'coverage_of_footprint': 0.09942885872570066}
+[   74.2s] wrote /home/user/18GEMSDOE/data/submission_h19.tif (457,340 bytes) sha256 c11e495e5817730a…
+[   74.3s] wrote docs/downloads/candidate_preview.png
+{
+ "generated_utc": "2026-09-30T21:20:32Z",
+ "candidate_id": "H19-C",
+ "field": "catalogue \u222a state-map structures \u222a >=2-family physics conjunction",
+ "inputs": {
+  "labels_sha256": "7ba308ccdc4418b31a178f4f1ef21aaa6e152e4028f2f6f64b01f7eb25ae4093",
+  "features_sha256": "4371c82e3b8339b807bdffcf4ef59a225520fe2988d521be208ae33743123bc5",
+  "template_sha256": "2176d08e485aa2cd2860ce8df539db4faf4d76163b38a4dd8c30a40454d35cbc",
+  "proxy_catalogue_sha256": "7563e187171f7210d70295f958b0b2714c1fa504afa35f9a4688fc99b1e1122a"
+ },
+ "holdout": {
+  "split_sha256": "41332369d7dd448b8b24b250417228391bef53f436ed11ddbe28e29857fb0f9e",
+  "blocks": 56,
+  "sealed_blocks": 14
+ },
+ "support_chosen": 400000,
+ "sealed_catalogue_read": {
+  "dti": 0.022907692195283994,
+  "truth_px": 12676,
+  "emission_px": 388228,
+  "tp_w": 2001.31982421875
+ },
+ "components": {
+  "catalogue_px": 60988,
+  "state_map_px": 82155,
+  "state_map_gap_px": 61664,
+  "physics_px": 388228,
+  "physics_on_state_map_frac": 0.0254283565327591,
+  "physics_on_catalogue_frac": 0.011279454341263382,
+  "total_px": 513786,
+  "paid_emission_px": 452798,
+  "coverage_of_footprint": 0.09942885872570066
+ },
+ "notes": [
+  "The state-map component cannot be validated against the hidden truth here; it is included because its pixels are outside the pixel-exact scoring mask and because state maps carry structures the Quaternary catalogue does not.  If that claim is false the component is pure false-positive mass, which is why its exact size is published next to it.",
+  "The physics component is validated on the catalogue holdout (tuning folds choose the support, the sealed blocks are read once) and on the SGMC-gap proxy.",
+  "No leaderboard score is claimed anywhere."
+ ],
+ "submission": {
+  "path": "/home/user/18GEMSDOE/data/submission_h19.tif",
+  "bytes": 457340,
+  "sha256": "c11e495e5817730ad5f0fdc368b810f79050cbb6bd65e98c98123b7921ed336b"
+ }
+}

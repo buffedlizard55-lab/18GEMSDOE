@@ -1,24 +1,242 @@
 <!doctype html>
-<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="description" content="Competition data access, source status, licensing, and provenance checks for 18GEMSDOE."><title>Data &amp; provenance — 18GEMSDOE</title><link rel="stylesheet" href="../assets/site.css"></head>
-<body><a class="skip-link" href="#main">Skip to content</a><header class="topbar"><a class="brand" href="../index.html"><span class="brand-mark">18</span><span>GEMS<span class="brand-muted">DOE</span></span></a><nav aria-label="Main navigation"><a href="hypotheses.html">Research</a><a href="results.html">Evidence</a><a href="data.html">Data &amp; provenance</a><a href="submission.html" class="nav-cta">Submission guide <span aria-hidden="true">↗</span></a></nav></header>
-<main id="main"><section class="page-hero"><div class="shell"><p class="eyebrow">DATA · PROVENANCE · PERMISSION</p><h1>Data access is a gate, too.</h1><p>No competition raster is present or verified in this checkout. A public mirror, sibling-repository result, or expected hash is not a substitute for provenance from the official data tab.</p></div></section>
-<div class="shell doc-layout"><article class="doc-content"><div class="callout danger"><p><strong>Status: blocked for modeling.</strong> Do not infer current authenticated access from a prior project, browser login, cached file, or another team’s status. This workspace contains no official `training_features.tif`, sample template, labels, DEM mosaic, or input manifest.</p></div>
-<h2>What the competition provides</h2><p>The official problem page describes a 100 m multiband `training_features.tif`, fault labels, an example submission, and a list of one-meter DEM tiles. Access to competition files is registered-user/account gated. Obtain data only through the official account and follow competition terms.</p>
-<table class="doc-table"><thead><tr><th>Source / layer</th><th>What is documented</th><th>What remains unverified here</th></tr></thead><tbody>
-<tr><td>Official DrivenData training stack and labels</td><td>Problem description lists feature raster, training labels, sample submission, and DEM links.</td><td>Original file bytes, hashes, exact mask, labels, and data permissions are not in this repo.</td></tr>
-<tr><td>Public GEMSDOE bridge mirror</td><td>Prior session checked a small mirrored `existing_faults.tif` header and its hash against that repository’s manifest.</td><td>Not compared to an official download; raster values, transform, nodata, semantics, and provenance were not independently verified. Large feature stack was not downloaded.</td></tr>
-<tr><td>USGS MF-2323 paleolake GIS</td><td>Public no-cost package is listed; shoreline context derived from about 90 m DEM contours.</td><td>Not downloaded here; fine marker detail and GeoDAWN overlap unverified. Do not claim it resolves 100 m-scale offsets.</td></tr>
-<tr><td>USGS 3DEP 1 m DEM</td><td>Public-domain elevation collection. Collection projects are not necessarily seamless across boundaries.</td><td>Exact competition tile coverage, dates, seams, and GeoDAWN alignment not audited.</td></tr>
-<tr><td>DOE GDR INGENIOUS</td><td>Public listing states CC BY 4.0 and describes temperature, chemistry, sinter/tufa resources.</td><td>Prior direct ZIP fetch returned HTTP 500; archive bytes and schema not checked. Thermal linking is already proposed in 16GEMSDOE and is not novel here.</td></tr>
-<tr><td>USGS ComCat</td><td>Official event service documents source parameters and moment tensors.</td><td>Footprint query, coverage, and solution-quality audit not run.</td></tr>
-<tr><td>NASA ASF Sentinel-1</td><td>NASA documents Sentinel-1 access through ASF DAAC; downloads/some tools need Earthdata login.</td><td>No scenes, coherence analysis, interferograms, or GeoDAWN coverage audit.</td></tr>
-</tbody></table>
-<h2>INGENIOUS and QFault: catalogue limitations</h2><p>The USGS says QFault is a compilation of published maps and studies, used for seismic-hazard characterization; its traces and attributes are simplified geologic interpretations, and only a limited set of metadata fields has been maintained since 2017. QFault distinguishes evidence classes, including Class D nontectonic features such as erosional/fluvial scarps. Archived reports can preserve references and scale/reliability notes, but source scales differ. The Nevada Bureau of Mines and Geology separately cautions that some regional fault layers were digitized at 1:250,000 and can be spatially inaccurate at larger scales. Historical Nevada mapping also noted omitted smaller intrabasin faults; that is not proof of which targets the competition labels.</p><p>The INGENIOUS listing describes its Faults v1 as an updated compilation with attributes following QFault and its v2 as an updated compilation with field definitions. The v2 ZIP was not inspected in this sandbox after a prior download error, so no per-trace accuracy or field-validation claim is made here. Before any catalogue-derived analysis, inspect the actual source and whatever scale, location-certainty and evidence fields the downloaded archive supplies; account for location uncertainty; group related traces/source campaigns in spatial tests; do not treat unmapped ground as a verified negative or every line as field-confirmed. See <a href="sources.html#s9">USGS QFault methodology</a>, <a href="sources.html#s10">historical Nevada catalogue gap</a>, <a href="sources.html#s12">INGENIOUS listing</a>, and the <a href="https://gisweb.unr.edu/nbmg/rest/services/Geology/Faults/MapServer" target="_blank" rel="noopener noreferrer">NBMG fault-layer scale warning ↗</a>.</p>
-<h2>Data placement and verification sequence</h2><ol><li>Retrieve competition files only through the authorized data tab; keep credentials private.</li><li>Store private raw rasters outside Git; record SHA-256, source URL, retrieval time, license/terms, size, and contact in a local provenance manifest.</li><li>Open every raster: verify CRS, band descriptions, dimensions, 100 m grid/transform, dtype, nodata and mask against the official sample.</li><li>Compare any existing mirror copy byte-for-byte with the original official download. A manifest matching its own mirror only proves internal mirror consistency.</li><li>Verify label semantics and scored footprint. Keep known training faults distinct from the test/holdout.</li><li>Commit a source/split manifest and freeze whole-basin or whole-fault-system holdout blocks before implementing or tuning.</li></ol>
-<pre class="mono-box"># Do not add private data to Git.
-export GEMS_DATA_DIR=/path/to/authorized/local/data
-sha256sum "$GEMS_DATA_DIR"/* > local-input-sha256.txt
-# Review metadata and write the provenance manifest before modeling.</pre>
-<p>Full status and source-specific notes are in the <a href="../docs/data.md">data provenance Markdown</a>. See also the <a href="validation.html">preregistration and release gate</a> and the <a href="audit.html">audit flags</a>.</p>
-</article><aside class="doc-aside"><p class="eyebrow">PROVENANCE RULE</p><h3>Verify originals</h3><p>Hash the authorized download. Do not equate a sibling-team mirror hash with official provenance or label meaning.</p><ul><li>No original training raster</li><li>No official sample template</li><li>No split/holdout manifest</li><li>No candidate output</li></ul><p><a href="sources.html">Direct source links →</a></p></aside></div></main>
-<footer class="footer"><div class="shell footer-inner"><a class="brand footer-brand" href="../index.html"><span class="brand-mark">18</span><span>GEMS<span class="brand-muted">DOE</span></span></a><p>Keep private training data out of Git.</p><div class="footer-links"><a href="audit.html">Audit</a><a href="sources.html">Sources</a><a href="https://github.com/buffedlizard55-lab/18GEMSDOE" target="_blank" rel="noopener noreferrer">GitHub ↗</a></div></div></footer></body></html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Data &amp; provenance — 18GEMSDOE</title>
+<link rel="stylesheet" href="../assets/site.css">
+</head>
+<body>
+<header class="site">
+  <div class="wrap">
+    <a class="brand" href="../index.html">18GEMSDOE</a>
+    <nav><a href="../docs/executive_summary.html">Submit</a><a href="../docs/submission.html">Format</a><a href="../docs/hypotheses.html">Hypotheses</a><a href="../docs/validation.html">Validation</a><a href="../docs/results.html">Results</a><a href="../docs/audit.html">Audit</a><a href="../docs/sources.html">Sources</a><a href="../docs/data.html">Data</a></nav>
+  </div>
+</header>
+<main class="wrap">
+<h1 id="data-the-official-rasters-their-hashes-and-where-they-come-from">Data — the official rasters, their hashes, and where they come from</h1>
+<h2 id="1-the-three-official-files">1. The three official files</h2>
+<p><strong>[VERIFIED-HERE]</strong> Assembled and verified by <code>scripts/assemble_data_bridge.py</code> (status PASS on
+2026-09-30); every hash below was recomputed in this checkout from the bytes actually on disk.</p>
+<table>
+<thead>
+<tr>
+<th>Canonical name</th>
+<th style="text-align: right;">Bytes</th>
+<th>SHA-256</th>
+<th>Grid</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>data/training_features.tif</code></td>
+<td style="text-align: right;">418,912,844</td>
+<td><code>4371c82e3b8339b807bdffcf4ef59a225520fe2988d521be208ae33743123bc5</code></td>
+<td>3292 × 3730 × 19 bands, EPSG:32611, 100 m, float32, nodata <code>-3.4028235e38</code>, bounds (243350, 4135550, 572550, 4508550)</td>
+</tr>
+<tr>
+<td><code>data/labels.tif</code></td>
+<td style="text-align: right;">425,830</td>
+<td><code>7ba308ccdc4418b31a178f4f1ef21aaa6e152e4028f2f6f64b01f7eb25ae4093</code></td>
+<td>3292 × 3730, int8, <code>-1</code> = outside footprint (7,111,787 px), <code>0</code> = no fault (5,106,385 px), <code>1</code> = fault (60,988 px)</td>
+</tr>
+<tr>
+<td><code>data/sample_submission.tif</code></td>
+<td style="text-align: right;">1,599,597</td>
+<td><code>2176d08e485aa2cd2860ce8df539db4faf4d76163b38a4dd8c30a40454d35cbc</code></td>
+<td>3292 × 3730, float32, NaN outside the footprint (57.92 %)</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Provenance chain</strong> (each hop is checkable by hand):</p>
+<ol>
+<li>Official data tab (login required): <a href="https://www.drivendata.org/competitions/306/competition-doe-gems/data/">https://www.drivendata.org/competitions/306/competition-doe-gems/data/</a></li>
+<li>The public Dropbox mirrors printed there — URLs recorded verbatim in <code>data/bridge/manifest.json</code>.</li>
+<li>The pinned inventory (<code>data/bridge/inventory.json</code>) measured on a GitHub-hosted runner with
+   unrestricted egress, 2026-09-14; the sibling project's transport workflow aborts on any drift.</li>
+<li>Committed as ≤ 90 MiB parts in the sibling repository <code>buffedlizard55-lab/GEMSDOE</code> (<code>data/bridge/</code>),
+   because GitHub rejects blobs ≥ 100 MB.</li>
+<li>Re-verified here part-by-part and whole-file before the canonical names were written.</li>
+</ol>
+<p><strong>Caveat, stated plainly:</strong> hop 3–4 was performed by a sibling project; this sandbox cannot reach
+Dropbox or DrivenData. What <em>is</em> verified here is that the bytes match the pinned inventory, and that
+the rasters' own metadata (19 bands with the documented names, EPSG:32611, 100 m, the stated bounds,
+int8 labels with the <code>-1/0/1</code> coding) matches the official description of the data.</p>
+<h2 id="2-band-inventory-read-from-the-files-band-tags">2. Band inventory (read from the file's band tags)</h2>
+<table>
+<thead>
+<tr>
+<th style="text-align: right;">#</th>
+<th>Band tag</th>
+<th>Category</th>
+<th style="text-align: right;">#</th>
+<th>Band tag</th>
+<th>Category</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: right;">1</td>
+<td><code>mag_anom</code></td>
+<td>magnetic</td>
+<td style="text-align: right;">11</td>
+<td><code>iso_grav_anom_vg</code></td>
+<td>gravity</td>
+</tr>
+<tr>
+<td style="text-align: right;">2</td>
+<td><code>rtp</code></td>
+<td>magnetic</td>
+<td style="text-align: right;">12</td>
+<td><code>det_elev</code></td>
+<td>topographic</td>
+</tr>
+<tr>
+<td style="text-align: right;">3</td>
+<td><code>tmi_hg</code></td>
+<td>magnetic</td>
+<td style="text-align: right;">13</td>
+<td><code>iso_grav_anom</code></td>
+<td>gravity</td>
+</tr>
+<tr>
+<td style="text-align: right;">4</td>
+<td><code>geod_2ndinv</code></td>
+<td>geodetic strain</td>
+<td style="text-align: right;">14</td>
+<td><code>tmi</code></td>
+<td>magnetic</td>
+</tr>
+<tr>
+<td style="text-align: right;">5</td>
+<td><code>iso_grav_anom_slope</code></td>
+<td>gravity</td>
+<td style="text-align: right;">15</td>
+<td><code>depth_to_base_surf</code></td>
+<td>subsurface</td>
+</tr>
+<tr>
+<td style="text-align: right;">6</td>
+<td><code>tc</code></td>
+<td>magnetic (tilt/curvature)</td>
+<td style="text-align: right;">16</td>
+<td><code>ieq_n100a15</code></td>
+<td>seismic</td>
+</tr>
+<tr>
+<td style="text-align: right;">7</td>
+<td><code>geod_shearrate</code></td>
+<td>geodetic strain</td>
+<td style="text-align: right;">17</td>
+<td><code>cond_surf</code></td>
+<td>subsurface</td>
+</tr>
+<tr>
+<td style="text-align: right;">8</td>
+<td><code>geod_dilaterate</code></td>
+<td>geodetic strain</td>
+<td style="text-align: right;">18</td>
+<td><code>iso_grav_anom_hg</code></td>
+<td>gravity</td>
+</tr>
+<tr>
+<td style="text-align: right;">9</td>
+<td><code>tmi_vg</code></td>
+<td>magnetic</td>
+<td style="text-align: right;">19</td>
+<td><code>det_elev_slope</code></td>
+<td>topographic</td>
+</tr>
+<tr>
+<td style="text-align: right;">10</td>
+<td><code>deq_n100a15</code></td>
+<td>seismic</td>
+<td style="text-align: right;"></td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p><strong>[INFERENCE]</strong> The stack holds <strong>no fault-catalogue band</strong>, which matters: a model cannot leak the
+labels through its inputs. Every band is a physical measurement or a derivative of one, so any fault
+signal in the outputs is learned from physics, not from the answer.</p>
+<h2 id="2b-fingerprint-check-which-release-layers-the-provided-stack-actually-contains">2b. Fingerprint check: which release layers the provided stack actually contains</h2>
+<p><strong>[MEASURED-HERE]</strong> <code>scripts/audit_checks.py</code> check C compares every GeoDAWN area-2 layer with every
+provided band by exact statistics (count, min, max, sum, sum of squares) and, where masks differ, by
+value:</p>
+<table>
+<thead>
+<tr>
+<th>GeoDAWN release layer</th>
+<th>in the provided 19-band stack?</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>rtp</code>, <code>tmi</code>, <code>tmi_hg</code>, <code>tmi_vg</code></td>
+<td><strong>yes</strong> — identical values, identical masks</td>
+</tr>
+<tr>
+<td><code>tc</code> (radiometric total count)</td>
+<td><strong>yes</strong> — values identical, shipped under the misleading tag "tilt angle or total curvature" (Audit A-03)</td>
+</tr>
+<tr>
+<td><code>k</code>, <code>th</code>, <code>u</code>, <code>uk</code>, <code>uth</code>, <code>thk</code></td>
+<td><strong>no</strong></td>
+</tr>
+<tr>
+<td><code>dem</code></td>
+<td><strong>no</strong> (the shipped <code>det_elev</code> is a <em>detrended</em> elevation, not the release DEM)</td>
+</tr>
+<tr>
+<td><code>upcont_tmi150</code></td>
+<td><strong>no</strong></td>
+</tr>
+</tbody>
+</table>
+<p><strong>[INFERENCE]</strong> The radiometric channels are therefore a real, unused, same-grid, public-domain input —
+the basis of hypothesis H19-D — rather than a re-slicing of data already provided.</p>
+<h2 id="3-auxiliary-data-used-and-its-licence">3. Auxiliary data used, and its licence</h2>
+<table>
+<thead>
+<tr>
+<th>Data</th>
+<th>Source</th>
+<th>Licence</th>
+<th>Use here</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>GeoDAWN native-resolution grids, area 22103 (50 m area 1, 100 m area 2)</td>
+<td>public mirror of the <a href="https://www.sciencebase.gov/catalog/item/657e1d85d34e23d3533209f7">USGS GeoDAWN release</a> (<a href="https://doi.org/10.5066/P93LGLVQ">doi:10.5066/P93LGLVQ</a>) distributed at <code>codeload.github.com/jklinck/geothermal_research</code></td>
+<td>US public domain (redistributed)</td>
+<td>the <code>upcont_tmi150</code> deep-gradient arm; the area-2 grid is <strong>identical</strong> to the competition grid (verified)</td>
+</tr>
+<tr>
+<td>SGMC structure (proxy catalogue)</td>
+<td><a href="https://doi.org/10.3133/ds1052">doi:10.3133/ds1052</a> / data <a href="https://doi.org/10.5066/F7WH2N65">doi:10.5066/F7WH2N65</a></td>
+<td>US public domain</td>
+<td>the only available stand-in for "faults the labels lack": 61,664 px with no training label within 300 m</td>
+</tr>
+<tr>
+<td>QFaults</td>
+<td><a href="https://doi.org/10.5066/P9BCVRCK">doi:10.5066/P9BCVRCK</a></td>
+<td>US public domain</td>
+<td><strong>not usable</strong> as a novel-fault source — measured overlap with the labels is 99.997 %</td>
+</tr>
+</tbody>
+</table>
+<h2 id="4-what-is-deliberately-not-committed">4. What is deliberately <strong>not</strong> committed</h2>
+<p>Raw rasters, credentials and large derived rasters stay out of Git (<code>.gitignore</code> blocks <code>data/</code>,
+<code>*.tif</code>). What <em>is</em> committed: the bridge parts (the transport), the manifests, the evidence JSONs, the
+provenance records and the single packaged submission in <code>docs/downloads/</code>. Regenerate everything with
+<code>scripts/assemble_data_bridge.py</code>. If <code>data/</code> is ever empty again, that script plus
+<code>scripts/prepare_data.py</code> is the whole recovery path.</p>
+</main>
+<footer class="wrap">
+  <p>Static site. Every figure on these pages is rendered from a committed evidence file at build time.
+  Sources are linked for manual review; see <a href="../docs/audit.html">Audit</a> for what was and was not verified.</p>
+</footer>
+</body>
+</html>

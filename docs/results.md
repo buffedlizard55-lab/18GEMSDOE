@@ -1,45 +1,53 @@
-# Results and score history
+# Results — the board, the group's history, and why four entries were one file
 
-**Evidence labels:** `OFFICIAL SNAPSHOT` means manually read from the DrivenData public leaderboard; `DIRECTLY VERIFIED` means bytes/hash were checked in this session; `GROUP-REPORTED` means a sibling repository reports a calculation we have not reproduced in 18GEMSDOE; `INFERENCE` is a reasoned interpretation.
+## 1. The live board (dated manual snapshot)
 
-## Current public leaderboard snapshot — 2026-09-30
+<!-- LEADERBOARD_BLOCK -->
 
-The [official leaderboard](https://www.drivendata.org/competitions/306/competition-doe-gems/leaderboard/) was read manually. It showed:
+## 2. The group's own history
 
-| Rank | Participant | Public DTI | Status |
-|---:|---|---:|---|
-| 1 | DARD | 0.3168 | **OFFICIAL SNAPSHOT**; higher than the user’s previously reported 0.3049. |
-| 22 | extradr19 | 0.1855 | **OFFICIAL SNAPSHOT**, four submissions shown. Whether this is our entrant is **unresolved** in this checkout. |
-| 33 | SDCF9 | 0.1563 | Separate displayed participant. |
-| 34 | smashi34 | 0.1563 | Separate displayed participant. |
-
-This is a dated snapshot, not an automated feed. DrivenData’s Terms of Use prohibit automated site access; there is no scraper in this project. See [the score ledger](../registry/score-ledger.csv) and [A-04](audit.md#a-04).
-
-## Why the group saw repeated 0.1563 scores
-
-**Directly verified:** GitHub’s Contents API reports the exact same Git blob for the tracked TIFF in `GEMSDOE` and `5GEMSDOE`:
-
-- Path in both repositories: `data/evidence/runs/ens12-adopted-floor0.1-w0/submission.tif`
-- Git blob SHA-1: `812e61b74050d1350cc2bde1fab0c76ead32e0c4`
-- Size: 570,890 bytes
-- Sidecar `docs/submission_field.bin`: blob `6a89b64e01a7c11b8235449c538390ac3435605d`, 532,072 bytes
-
-Review the [GEMSDOE artifact](https://github.com/buffedlizard55-lab/GEMSDOE/blob/main/data/evidence/runs/ens12-adopted-floor0.1-w0/submission.tif) and the [5GEMSDOE artifact](https://github.com/buffedlizard55-lab/5GEMSDOE/blob/main/data/evidence/runs/ens12-adopted-floor0.1-w0/submission.tif). The 16GEMSDOE public evidence registry reports that `GEMSDOE1` and `5GEMSDOE` were this byte-identical artifact with historical score 0.1563, and that `8GEMSDOE` differed only on pixels excluded by its scored-pixel definition. We did not independently recompute the latter pixel comparison or prove which upload produced each score.
-
-**Interpretation:** identical prediction pixels would be expected to receive the same deterministic public score. The matching files explain a repeated score between those two artifacts far better than a novel model gain. They do **not** prove that every entrant showing 0.1563 submitted the same raster. In this public GitHub account, `GEMSDOE1` is not a current repository name (the repository lookup returned 404); the 16GEMSDOE registry uses it as a display label for the `GEMSDOE` repository.
-
-## Holdout results: prior evidence, not 18GEMSDOE validation
-
-The 16GEMSDOE site publishes a preregistered four-quadrant evaluation on known catalogue faults and a 20%-of-components sparse proxy. Its evidence JSON reports:
-
-| Candidate | Mean dense DTI | Mean sparse-proxy DTI | Group-reported gate |
+| File (as reported to this project) | Public score | Emission | Note |
 |---|---:|---:|---|
-| H16-1 comparator | 0.21272 | 0.08541 | baseline |
-| H18-3a endpoint/junction complexity | 0.21319 | 0.09401 | passed that project’s stated gate |
-| H18-1 product-of-experts | 0.20389 | 0.08062 | failed |
-| H18-3b oblique-strike prior | 0.15681 | 0.03694 | failed |
-| H18-3c combined prior | 0.15014 | 0.04966 | failed |
+| `GEMSDOE1` / `5GEMSDOE` — `ens12-adopted-floor0.1-w0` | 0.1563 | 172,974 px | **byte-identical files** — SHA-256 `7f00890a…`, recomputed here |
+| `8GEMSDOE` — `max(ens12, catalogue)` | 0.1563 | 172,974 px | same scored content; adding the catalogue changed nothing, exactly as the pixel-exact mask predicts |
+| `GEMSDOE2` — dual-family union | 0.1560 | 175,949 px | overlap with `ens12` Jaccard ≈ 0.95 |
+| `7GEMSDOE` — lidar scarp ridge, top 2 % | 0.1461 | 76,859 px | none of its emission is on known faults |
+| `12GEMSDOE` — `r7-nms3-dem10-scarp` | 0.1294 | 103,347 px | the group's highest SGMC-gap proxy score — and one of its lowest public scores |
+| `GEMSDOE3` — nodes / catalogue-gap / dense-ridge control | 0.1193 / 0.0830 / 0.1152 | point-like | three distinct fields |
+| `16GEMSDOE` — H16-1 topo-geophys baseline ridges | **0.1855** | 123,939 px | the group's best; sits at leaderboard #22 if `extradr19` is the group's account |
+| `6GEMSDOE`, `11GEMSDOE`, `GEMSDOE9`, `14GEMSDOE` | 0.0286, 0.0202, 0.0107, 0.0020 | — | catalogue-adjacent top-k and failed arms |
 
-These figures are **group-reported, not independently rerun here**, and known-fault reconstruction is only a proxy for the hidden new-fault task. The 16GEMSDOE post-hoc analysis further reports that its dense known-fault proxy did not correlate detectably with public scores across 15 unique files (Spearman ρ=0.171, p=0.5413); this does not prove all holdouts are useless, but it weakens confidence in treating that proxy as a leaderboard predictor. See [the validation JSON](https://raw.githubusercontent.com/buffedlizard55-lab/16GEMSDOE/main/evidence/hypothesis_h18_validation.json), [the proxy calibration JSON](https://raw.githubusercontent.com/buffedlizard55-lab/16GEMSDOE/main/evidence/proxy_calibration_vs_lb.json), and [the preregistration](https://buffedlizard55-lab.github.io/16GEMSDOE/docs/research/preregistration_h18.md).
+**[INFERENCE]** Two regimes are visible: thin line networks over real structures land at 0.12–0.19;
+emissions that sit on or beside the catalogue collapse to ≤0.05. Nothing in the group's history
+exceeds 0.19, and four of the entries are one prediction.
 
-**18GEMSDOE result:** none. No official feature stack or validated holdout is in this checkout; no new score is claimed, and no new file has been submitted.
+## 3. Why the repeat happened
+
+**[VERIFIED-HERE]** One byte sequence (`7f00890a…`, 570,890 B, a hard 0/1 mask, 172,974 positive
+pixels) is committed as the submission in more than one repository; **[GROUP-REPORTED]** the same
+scored content appears at eight paths across six repositories. Repositories were seeded from earlier
+repositories' evidence folders, whose default `submission.tif` *is* `ens12` — so uploading "the
+submission" again produced the same score and taught nobody anything. This repository's packager
+therefore refuses any hash it has already offered (`registry/submission-hashes.json`).
+
+## 4. What the metric rewards (measured, not asserted)
+
+`DTI = TP_w / (0.2·M + 0.8·|G|)` with `M` the emitted mass. Consequences:
+
+* each emitted pixel the metric can charge for costs **0.2** of the denominator; each newly covered
+  truth pixel returns up to **0.8** — false positives are cheap, misses are 4× dearer;
+* raising all values toward 1 can only help (the `0.8·|G|` term is fixed), so a field should be
+  emitted at uniform 1, not shaded;
+* therefore a one-pixel-wide line on a true structure beats a broad anomaly of the same recall, and a
+  candidate population is worth adding whenever more than ≈ 3–6 % of its pixels sit within 300 m of a
+  truth pixel.
+
+The sensitivity table on the [Validation](validation.html) page applies that arithmetic to the shipped
+field's actual paid mass, for assumed truth sizes from 30,000 to 240,000 pixels.
+
+## 5. Score ledger
+
+`registry/score-ledger.csv` is the machine-readable record (date, scope, participant, rank, score,
+evidence class, source, note). Rules: an **official** row requires a signed-in read and records the
+account; a **group-reported** row records the repository and file hash; a **proxy** row is never
+written as a leaderboard score.
