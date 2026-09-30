@@ -1,0 +1,42 @@
+{
+  "snapshot_date": "2026-09-30",
+  "retrieval": "Manual page read; exact HTTP fetch timestamp is not exposed by the browsing tool.",
+  "source": "https://www.drivendata.org/competitions/306/competition-doe-gems/leaderboard/",
+  "automated_polling": false,
+  "rows": [
+    {
+      "rank": 1,
+      "participant": "DARD",
+      "public_dti": 0.3168,
+      "evidence_status": "OFFICIAL_PLATFORM_MANUAL_SNAPSHOT"
+    },
+    {
+      "rank": 22,
+      "participant": "extradr19",
+      "public_dti": 0.1855,
+      "submission_count_shown": 4,
+      "evidence_status": "OFFICIAL_PLATFORM_MANUAL_SNAPSHOT_ACCOUNT_ATTRIBUTION_UNCONFIRMED"
+    },
+    {
+      "rank": 33,
+      "participant": "SDCF9",
+      "public_dti": 0.1563,
+      "evidence_status": "OFFICIAL_PLATFORM_MANUAL_SNAPSHOT_DIFFERENT_PARTICIPANT"
+    },
+    {
+      "rank": 34,
+      "participant": "smashi34",
+      "public_dti": 0.1563,
+      "evidence_status": "OFFICIAL_PLATFORM_MANUAL_SNAPSHOT_DIFFERENT_PARTICIPANT"
+    }
+  ],
+  "historical_group_claim": {
+    "score": 0.1563,
+    "participants_or_artifacts": ["GEMSDOE1", "5GEMSDOE", "8GEMSDOE"],
+    "evidence_status": "GROUP_REPORTED_FILE_REGISTRY; exact GEMSDOE/5GEMSDOE Git blobs independently match; upload-to-score mapping not proven"
+  },
+  "notes": [
+    "This is a dated snapshot, not a live feed.",
+    "No leaderboard scraping or automatic DrivenData access is permitted by this project's current Terms-of-Use interpretation."
+  ]
+}

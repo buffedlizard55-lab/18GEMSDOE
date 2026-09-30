@@ -1,0 +1,17 @@
+{
+  "name": "18gemsdoe-site-tools",
+  "private": true,
+  "version": "1.0.0",
+  "description": "Local-only browser GeoTIFF packager for the 18GEMSDOE research site",
+  "scripts": {
+    "build": "esbuild web/submission-builder.js --bundle --minify --format=iife --global-name=GemsSubmissionBuilder --outfile=assets/js/submission-builder.bundle.js",
+    "test": "node tests/browser_smoke.mjs"
+  },
+  "dependencies": {
+    "geotiff": "3.0.5"
+  },
+  "devDependencies": {
+    "esbuild": "0.25.5"
+  },
+  "type": "module"
+}
