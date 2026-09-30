@@ -131,17 +131,11 @@ python scripts/build_site.py
 
 **Next steps, in priority order**
 
-0. **Publish the branch (blocked on credentials, 2026-09-30).** The sandbox's GitHub token is invalid
-   (`gh auth status` → "the github.com token in GH_TOKEN is no longer valid"; `git push` → could not
-   read Username), so the work through commit `47b8bf8` is committed locally only. Once GitHub is
-   reconnected in Arena, run:
-
-   ```bash
-   git push -u origin arena/01a0f3cb-18gemsdoe
-   gh pr create --base main --head arena/01a0f3cb-18gemsdoe --fill
-   ```
-
-   Nothing else in this repository needs those credentials.
+0. **Published (2026-09-30).** Branch `arena/01a0f3cb-18gemsdoe` is pushed and
+   [PR #3](https://github.com/buffedlizard55-lab/18GEMSDOE/pull/3) is merged into `main` (merge commit
+   `e8ec2e1`), including the packaged download. GitHub Pages serves this repository from `main` / root —
+   <https://buffedlizard55-lab.github.io/18GEMSDOE/> — so after any further change run
+   `python scripts/build_site.py --check`, merge, and the Pages build follows `main` automatically.
 
 1. **Only calibrate if the team wants the measurement.** The instrument is currently weak (no arm
    beat the comparator on the sealed slice), so the honest options are: (a) spend two slots on a
